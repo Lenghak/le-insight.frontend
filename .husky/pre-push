@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+GREEN='\033[0;32m'
+LIGHT_BLUE='\033[1;36m'
+NO_COLOR='\033[0m'
+
+echo "\n${LIGHT_BLUE}!${NO_COLOR} - Updating Remote"
+git remote update
+
+echo "\n${LIGHT_BLUE}!${NO_COLOR} - Pulling updates"
+git pull origin main
+
+echo "\n${LIGHT_BLUE}!${NO_COLOR} - Testing Build Bundle"
+pnpm run build
+echo "${GREEN}✔${NO_COLOR} - Done Running Build"
+
+echo "${GREEN}✔${NO_COLOR} - Done Running Pre-Push\n"

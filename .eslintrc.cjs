@@ -3,7 +3,7 @@ const path = require("path");
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  extends: ["plugin:astro/recommended"],
+  extends: ["plugin:astro/recommended", "prettier"],
   plugins: ["@typescript-eslint", "astro"],
   overrides: [
     {
@@ -21,7 +21,6 @@ const config = {
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
-        
       },
     },
   ],

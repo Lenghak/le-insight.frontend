@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+GREEN='\033[0;32m'
+LIGHT_BLUE='\033[1;34m'
+NO_COLOR='\033[0m'
+
+
+echo "${LIGHT_BLUE}!${NO_COLOR} Installing packages"
+pnpm i
+echo "${GREEN}✔${NO_COLOR} Done installing"
+
+echo "${GREEN}✔${NO_COLOR} Done Running Post-merge\n"
