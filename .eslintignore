@@ -37,4 +37,5 @@ server
 postcss.config.js
 
 .husky
-./next/
+.next
+.vercel
