@@ -5,4 +5,8 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false }), react()],
+  output: "hybrid",
+  prefetch: {
+    defaultStrategy: "hover",
+  },
 });
