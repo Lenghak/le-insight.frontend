@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/common/lib/utils";
 
 import type { CheckedState } from "@radix-ui/react-checkbox";
