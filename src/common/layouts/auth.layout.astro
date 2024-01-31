@@ -1,0 +1,101 @@
+---
+import { ModeToggle } from "@/common/components/theme/mode-toggle";
+import { buttonVariants } from "@/common/components/ui/button";
+import { Muted } from "@/common/components/ui/muted";
+import { Separator } from "@/common/components/ui/separator";
+
+import { cn } from "@/common/lib/utils";
+
+import { H1 } from "@/common/components/ui/h1";
+import { ChevronLeftIcon, DotIcon } from "lucide-react";
+
+const pathname = Astro.url.pathname;
+const { title, description } = Astro.props;
+---
+
+<main class="container flex h-screen w-full flex-row items-center">
+  <section
+    class="relative flex h-full w-full flex-col items-center justify-center"
+  >
+    <a
+      href={"/auth/sign-in"}
+      class={cn(
+        buttonVariants({
+          variant: "link",
+        }),
+        "absolute left-0 top-8 items-center gap-4 font-bold",
+        pathname === "/auth/sign-in" ? "hidden" : "",
+      )}
+    >
+      <ChevronLeftIcon size={18} />
+      <span>Sign In</span>
+    </a>
+
+    <ModeToggle
+      className="absolute right-8 top-8"
+      client:load
+    />
+
+    <div class="flex flex-col items-center justify-center gap-6">
+      {/* Title */}
+      <div class="flex flex-col items-center justify-center gap-4">
+        <H1>{title}</H1>
+        <Muted className="max-w-xs text-center">
+          {description}
+        </Muted>
+      </div>
+
+      <slot />
+    </div>
+
+    <Muted className="mt-12 max-w-xs text-center">
+      By continuing, you agree to our
+      <a
+        href={"/terms"}
+        class={cn(
+          buttonVariants({
+            size: "sm",
+            variant: "link",
+          }),
+          "font-bold",
+        )}
+      >
+        Terms of Service
+      </a>
+      and our
+      <a
+        href={"/privacy"}
+        class={cn(
+          buttonVariants({
+            size: "sm",
+            variant: "link",
+          }),
+          "font-bold",
+        )}
+      >
+        Privacy Policy
+      </a>
+    </Muted>
+  </section>
+
+  <section class="hidden h-full w-1/4 items-center md:flex">
+    <div
+      id="auth_app_logo"
+      class="grid h-full w-fit grid-cols-1 grid-rows-[1fr,_auto,_1fr] place-items-center items-center justify-center gap-4"
+    >
+      <Separator
+        orientation="vertical"
+        className="h-full w-[0.031rem] bg-foreground"
+      />
+
+      <div class="flex w-fit flex-col items-start justify-center">
+        <DotIcon className="fill-foreground" />
+      </div>
+
+      <Separator
+        orientation="vertical"
+        className="h-full w-[0.031rem] bg-foreground"
+      />
+    </div>
+  </section>
+</main>

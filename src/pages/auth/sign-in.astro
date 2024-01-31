@@ -1,0 +1,18 @@
+---
+import AuthLayout from "@/common/layouts/auth.layout.astro";
+import RootLayout from "@/common/layouts/root.layout.astro";
+import SignInForm from "@/modules/auth/sign-in.form";
+---
+
+<RootLayout>
+  <!-- Head -->
+  <title slot="head">Le-Insight | Sign In</title>
+  <!--  -->
+
+  <AuthLayout
+    title="Sign In"
+    description="Let's get started by enter some credential information below."
+  >
+    <SignInForm client:load />
+  </AuthLayout>
+</RootLayout>
