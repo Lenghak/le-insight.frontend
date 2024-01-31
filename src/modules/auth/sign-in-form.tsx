@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
+import { Muted } from "@/common/components/ui/muted";
 
 import { cn } from "@/common/lib/utils";
 
@@ -39,7 +40,7 @@ export default function SignInForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => console.log(values))}
-        className="w-full space-y-4"
+        className="w-full space-y-2"
       >
         <FormField
           control={form.control}
@@ -49,11 +50,11 @@ export default function SignInForm() {
               <FormLabel className="font-semibold">Email</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter email address"
+                  placeholder="someone@example.com"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="font-semibold italic" />
+              <FormMessage className="ml-4 list-item text-xs font-semibold" />
             </FormItem>
           )}
         />
@@ -75,7 +76,7 @@ export default function SignInForm() {
                     variant={"ghost"}
                     size={"icon"}
                     type="button"
-                    className="absolute right-0 top-0 rounded-md"
+                    className="absolute right-0 top-0 rounded-md hover:bg-transparent"
                     onClick={() => setShowPassword(!isPasswordShowed)}
                   >
                     {isPasswordShowed ? (
@@ -86,14 +87,14 @@ export default function SignInForm() {
                   </Button>
                 </div>
               </FormControl>
-              <FormMessage className="font-semibold italic" />
+              <FormMessage className="ml-4 list-item text-xs font-semibold" />
             </FormItem>
           )}
         />
 
         <div className="flex w-full items-center justify-end">
           <a
-            href={"/forgot-password"}
+            href={"/auth/forgot-password"}
             className={cn(
               buttonVariants({
                 variant: "link",
@@ -112,6 +113,19 @@ export default function SignInForm() {
         >
           Sign In
         </Button>
+
+        <Muted className="text-center">
+          Don&apos;t have an account?{" "}
+          <a
+            href="/auth/sign-up"
+            className={cn(
+              buttonVariants({ size: "sm", variant: "link" }),
+              "font-bold",
+            )}
+          >
+            Create One
+          </a>
+        </Muted>
       </form>
     </Form>
   );
