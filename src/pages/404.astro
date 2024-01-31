@@ -1,0 +1,23 @@
+---
+import { H1 } from "@/common/components/ui/h1";
+import { P } from "@/common/components/ui/p";
+import { BackButton } from "@/modules/error/components/back-button";
+
+import RootLayout from "@/common/layouts/root-layout.astro";
+---
+
+<RootLayout>
+  <title>Le-Insight | 404</title>
+
+  <main class="flex h-screen flex-col items-center justify-center">
+    <H1 className="text-7xl underline lg:text-9xl">404</H1>
+    <P className="max-w-sm text-center">
+      Oops! Looks like you have stumble across a page that does not exist in our
+      universe.
+    </P>
+
+    <div class="mt-8 flex flex-row items-center justify-center gap-4">
+      <BackButton client:load />
+    </div>
+  </main>
+</RootLayout>
