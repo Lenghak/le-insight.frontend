@@ -14,42 +14,42 @@ const config = {
       parserOptions: {
         project: path.join(__dirname, "tsconfig.json"),
       },
+      rules: {
+        "@typescript-eslint/consistent-type-imports": [
+          "warn",
+          {
+            prefer: "type-imports",
+            fixStyle: "inline-type-imports",
+          },
+        ],
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { argsIgnorePattern: "^_" },
+        ],
+        "@typescript-eslint/no-misused-promises": [
+          2,
+          {
+            checksVoidReturn: {
+              attributes: false,
+            },
+          },
+        ],
+      },
     },
     {
+      // Define the configuration for `.astro` file.
       files: ["*.astro"],
+      // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
+      // Parse the script in `.astro` as TypeScript by adding the following configuration.
+      // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: "@typescript-eslint/parser",
-        extraFileExtensions: ["*.astro"],
+        extraFileExtensions: [".astro"],
       },
     },
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    parser: "@typescript-eslint/parser",
-    extraFileExtensions: [".astro"],
-    // The script of Astro components uses ESM.
-    sourceType: "module",
-    project: path.join(__dirname, "tsconfig.json"),
-  },
-  rules: {
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
-      {
-        prefer: "type-imports",
-        fixStyle: "inline-type-imports",
-      },
-    ],
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-    "@typescript-eslint/no-misused-promises": [
-      2,
-      {
-        checksVoidReturn: {
-          attributes: false,
-        },
-      },
-    ],
-  },
+
   ignorePatterns: [".eslintrc.cjs"],
 };
 

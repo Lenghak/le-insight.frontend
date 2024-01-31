@@ -17,6 +17,9 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^7.0.2
     version: 7.0.2(astro@4.2.6)
+  '@fontsource-variable/open-sans':
+    specifier: ^5.0.23
+    version: 5.0.23
   '@hookform/resolvers':
     specifier: ^3.3.4
     version: 3.3.4(react-hook-form@7.49.3)
@@ -987,6 +990,10 @@ packages:
 
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
+    dev: false
+
+  /@fontsource-variable/open-sans@5.0.23:
+    resolution: {integrity: sha512-fIvxjvdqyl53Nw2ostM94pNAXtqpJPKWUlNqZo2NGzOERz/TK4HL+Lgxy5XCNVw2yPdeGt01xb0Qr5aa9fZ9gA==}
     dev: false
 
   /@hookform/resolvers@3.3.4(react-hook-form@7.49.3):

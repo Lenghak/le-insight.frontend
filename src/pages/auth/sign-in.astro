@@ -1,0 +1,24 @@
+---
+import { H1 } from "@/common/components/ui/h1";
+import { Muted } from "@/common/components/ui/muted";
+import AuthLayout from "@/common/layouts/auth.layout.astro";
+import RootLayout from "@/common/layouts/root.layout.astro";
+---
+
+<RootLayout>
+  <!-- Head -->
+  <title slot="head">Le-Insight | Sign In</title>
+  <!--  -->
+
+  <AuthLayout>
+    <div class="flex flex-col items-center justify-center gap-6">
+      {/* Title */}
+      <div class="flex flex-col items-center justify-center gap-4">
+        <H1>Sign In</H1>
+        <Muted className="max-w-xs text-center">
+          Let&apos;s get started by enter some credential information below.
+        </Muted>
+      </div>
+    </div>
+  </AuthLayout>
+</RootLayout>
