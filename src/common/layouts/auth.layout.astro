@@ -6,9 +6,11 @@ import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
+import { H1 } from "@/common/components/ui/h1";
 import { ChevronLeftIcon, DotIcon } from "lucide-react";
 
 const pathname = Astro.url.pathname;
+const { title, description } = Astro.props;
 ---
 
 <main class="container flex h-screen w-full flex-row items-center">
@@ -34,7 +36,17 @@ const pathname = Astro.url.pathname;
       client:load
     />
 
-    <slot />
+    <div class="flex flex-col items-center justify-center gap-6">
+      {/* Title */}
+      <div class="flex flex-col items-center justify-center gap-4">
+        <H1>{title}</H1>
+        <Muted className="max-w-xs text-center">
+          {description}
+        </Muted>
+      </div>
+
+      <slot />
+    </div>
 
     <Muted className="mt-12 max-w-xs text-center">
       By continuing, you agree to our
