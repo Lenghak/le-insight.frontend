@@ -1,0 +1,31 @@
+---
+import { buttonVariants } from "@/common/components/ui/button";
+import OnboardingLayout from "@/common/layouts/onboarding-layout.astro";
+import { cn } from "@/common/lib/utils";
+import { MoveRightIcon } from "lucide-react";
+---
+
+<OnboardingLayout
+  title="Welcome onboard!"
+  description="Happy to see you here! Shall we start to get to know each other?"
+  class="items-center justify-start gap-0 space-y-6 text-center md:flex-col"
+>
+  <!-- Onboarding image -->
+  <img
+    src="/svg/creative-writing.svg"
+    alt="Creative Writing"
+    class="w-full object-cover sm:w-1/2"
+  />
+
+  <!-- Actions  -->
+  <a
+    href="/onboarding/personality"
+    class={cn(
+      buttonVariants({ size: "lg", variant: "default" }),
+      "gap-4 font-bold",
+    )}
+  >
+    <span>Continue</span>
+    <MoveRightIcon className="h-5 w-5" />
+  </a>
+</OnboardingLayout>
