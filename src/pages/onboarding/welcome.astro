@@ -8,6 +8,7 @@ import { MoveRightIcon } from "lucide-react";
 <OnboardingLayout
   title="Welcome onboard!"
   description="Happy to see you here! Shall we start to get to know each other?"
+  class="items-center justify-start gap-0 space-y-6 text-center md:flex-col"
 >
   <!-- Onboarding image -->
   <img
@@ -18,7 +19,6 @@ import { MoveRightIcon } from "lucide-react";
 
   <!-- Actions  -->
   <a
-    slot="actions"
     href="/onboarding/personality"
     class={cn(
       buttonVariants({ size: "lg", variant: "default" }),

@@ -58,7 +58,7 @@ export default function OnboardingForm() {
   return (
     <Form {...form}>
       <form
-        className="flex h-full w-full flex-wrap items-center space-y-8 md:justify-center"
+        className="flex h-full w-full flex-wrap content-between items-center space-y-8 sm:px-8 md:content-normal md:justify-center"
         onSubmit={form.handleSubmit((values) => console.log(values))}
       >
         <FormField
@@ -130,7 +130,7 @@ export default function OnboardingForm() {
           </Small>
           <Button
             type="submit"
-            className="xs:w-auto w-full gap-4 font-bold"
+            className="w-full gap-4 font-bold xs:w-auto"
             size={"lg"}
           >
             <span>Continue</span>
