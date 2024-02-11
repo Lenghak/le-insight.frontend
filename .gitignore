@@ -27,6 +27,3 @@ pnpm-debug.log*
 
 # vercel
 .vercel
-
-# npm
-.npmrc
