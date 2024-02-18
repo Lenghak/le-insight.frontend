@@ -1,0 +1,10 @@
+---
+import RootLayout from "@/common/layouts/root-layout.astro";
+import WriteEditor from "@/modules/write/components/write-editor";
+---
+
+<RootLayout title="Le-Insight | Write">
+  <main class="flex h-full min-h-dvh w-full items-start justify-center">
+    <WriteEditor client:load />
+  </main>
+</RootLayout>
