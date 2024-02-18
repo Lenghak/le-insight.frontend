@@ -1,3 +1,5 @@
+import SignInRequestSchema from "@/modules/auth/types/sign-in-schema";
+
 import { Button, buttonVariants } from "@/common/components/ui/button";
 import {
   Form,
@@ -16,18 +18,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const SignInFormSchema = z.object({
-  email: z.string().email("Enter a valid email address"),
-  password: z.string().min(8, {
-    message: "Enter at least 8 characters password",
-  }),
-});
+import { type z } from "zod";
 
 export default function SignInForm() {
-  const form = useForm<z.infer<typeof SignInFormSchema>>({
-    resolver: zodResolver(SignInFormSchema),
+  const form = useForm<z.infer<typeof SignInRequestSchema>>({
+    resolver: zodResolver(SignInRequestSchema),
     defaultValues: {
       email: "",
       password: "",

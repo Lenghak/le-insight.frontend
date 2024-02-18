@@ -9,6 +9,7 @@ const config = {
     {
       extends: [
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@tanstack/eslint-plugin-query/recommended",
       ],
       files: ["*.ts", "*.tsx"],
       parserOptions: {
