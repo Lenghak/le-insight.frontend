@@ -4,6 +4,7 @@ import type { SignInRequestType } from "@/modules/auth/types/sign-in-schema";
 
 import { queryClient } from "@/common/stores/api";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export default function useSignIn() {
   return useMutation(
@@ -11,6 +12,9 @@ export default function useSignIn() {
       mutationKey: authKeys.operation("sign-in"),
       mutationFn: async ({ email, password }: SignInRequestType) =>
         await postSignIn({ email, password }),
+      onMutate: () => {
+        toast("Event has been created.");
+      },
     },
     queryClient,
   );

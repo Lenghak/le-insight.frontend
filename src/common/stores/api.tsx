@@ -1,3 +1,4 @@
+import { env } from "@/core/env";
 import { QueryClient } from "@tanstack/query-core";
 import axios from "axios";
 
@@ -13,5 +14,5 @@ export const queryClient = new QueryClient({
 });
 
 export const queryInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_ENDPOINT,
+  baseURL: env.PUBLIC_API_ENDPOINT,
 });

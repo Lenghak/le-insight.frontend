@@ -1,4 +1,5 @@
-import SignInRequestSchema from "@/modules/auth/types/sign-in-schema";
+import useSignIn from "@/modules/auth/hooks/use-sign-in";
+import { SignInRequestSchema } from "@/modules/auth/types/sign-in-schema";
 
 import { Button, buttonVariants } from "@/common/components/ui/button";
 import {
@@ -30,11 +31,15 @@ export default function SignInForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
+  const { mutateAsync: signIn } = useSignIn();
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => console.log(values))}
+        onSubmit={form.handleSubmit(
+          async (values) =>
+            await signIn({ email: values.email, password: values.password }),
+        )}
         className="w-full space-y-2"
       >
         <FormField
@@ -65,6 +70,7 @@ export default function SignInForm() {
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
+                    autoComplete="on"
                     {...field}
                   />
                   <Button
