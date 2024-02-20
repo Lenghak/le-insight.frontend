@@ -26,6 +26,10 @@ export const SignInResponseSchema = createReponseSchema({
       attributes: ProfilesSchema.omit({ id: true, type: true }),
     }),
   ),
+  meta: z.object({
+    accessToken: z.string(),
+    refreshToken: z.string(),
+  }),
 });
 
 // type

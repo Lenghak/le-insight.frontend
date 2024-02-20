@@ -1,6 +1,11 @@
 ---
 import { ModeToggle } from "@/common/components/theme/mode-toggle";
 import RootLayout from "@/common/layouts/root-layout.astro";
+
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+console.log(session?.user);
 ---
 
 <RootLayout title="Le-Insight">

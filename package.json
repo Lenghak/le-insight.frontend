@@ -2,6 +2,7 @@
   "name": "frontend",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -16,6 +17,7 @@
     "@astrojs/react": "^3.0.10",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.3.1",
+    "@auth/core": "^0.18.6",
     "@fontsource-variable/open-sans": "^5.0.25",
     "@hookform/resolvers": "^3.3.4",
     "@nanostores/react": "^0.7.1",
@@ -90,6 +92,7 @@
     "@tiptap/react": "^2.2.3",
     "@tiptap/starter-kit": "^2.2.3",
     "astro": "^4.4.0",
+    "auth-astro": "^4.1.1",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

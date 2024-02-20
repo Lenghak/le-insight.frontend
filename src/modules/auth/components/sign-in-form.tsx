@@ -1,4 +1,3 @@
-import useSignIn from "@/modules/auth/hooks/use-sign-in";
 import { SignInRequestSchema } from "@/modules/auth/types/sign-in-schema";
 
 import { Button, buttonVariants } from "@/common/components/ui/button";
@@ -16,6 +15,7 @@ import { Muted } from "@/common/components/ui/muted";
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "auth-astro/client";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,14 +31,18 @@ export default function SignInForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutateAsync: signIn } = useSignIn();
+  // const { mutateAsync: signIn } = useSignIn();
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(
-          async (values) =>
-            await signIn({ email: values.email, password: values.password }),
+        method="POST"
+        onSubmit={form.handleSubmit((values) =>
+          signIn("credentials", {
+            redirect: false,
+            callbackUrl: "/auth/sign-in",
+            ...values,
+          }),
         )}
         className="w-full space-y-2"
       >

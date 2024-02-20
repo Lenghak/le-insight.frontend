@@ -10,10 +10,10 @@ export const createReponseSchema = ({
 }: {
   id: z.ZodString;
   type: z.ZodLiteral<string>;
-  attributes: z.Schema;
-  relationships?: z.Schema;
-  included?: z.ZodArray<z.Schema>;
-  meta?: z.Schema;
+  attributes: z.ZodObject<z.ZodRawShape>;
+  relationships?: z.ZodObject<z.ZodRawShape>;
+  included?: z.ZodArray<z.ZodObject<z.ZodRawShape>>;
+  meta?: z.ZodObject<z.ZodRawShape>;
 }) =>
   z.object({
     jsonapi: z.object({ version: z.string().default("1.0") }),
@@ -34,7 +34,7 @@ export const createEntitySchema = ({
 }: {
   id: z.ZodString;
   type: z.ZodLiteral<string>;
-  attributes: z.Schema;
+  attributes: z.ZodObject<z.ZodRawShape>;
 }) =>
   z.object({
     id: id,

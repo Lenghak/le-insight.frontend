@@ -3,6 +3,8 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
+    AUTH_TRUST_HOST: z.literal("true"),
+    AUTH_SECRET: z.string().min(1),
     TIPTAP_PRO_TOKEN: z.string().min(1),
     OPEN_AI_API_KEY: z.string().min(1),
   },
