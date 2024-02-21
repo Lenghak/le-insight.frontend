@@ -3,7 +3,7 @@ import type {
   SignInResponseType,
 } from "@/modules/auth/types/sign-in-schema";
 
-import { queryInstance } from "@/common/stores/api";
+import { queryInstance } from "@/common/stores/api-store";
 import type { AxiosResponse } from "axios";
 
 export default async function postSignIn(signInType: SignInRequestType) {

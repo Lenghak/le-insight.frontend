@@ -5,19 +5,17 @@ declare module "@auth/core/types" {
     user: {
       type: string;
       id: string;
-      attributes: {
-        profile_id: string;
-        phone: string;
-        email: string;
-        role: string;
-        banned_until: string;
-        deleted_at: string;
-        invited_at: string;
-        confirmed_at: string;
-        confirmation_sent_at: string;
-        created_at: string;
-        updated_at: string;
-      };
+      profile_id: string;
+      phone: string;
+      email: string;
+      role: string;
+      banned_until: string;
+      deleted_at: string;
+      invited_at: string;
+      confirmed_at: string;
+      confirmation_sent_at: string;
+      created_at: string;
+      updated_at: string;
     };
     tokens: {
       sub: string | undefined;

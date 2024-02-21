@@ -6,6 +6,7 @@ import { defineConfig } from "auth-astro";
 export default defineConfig({
   providers: [
     Credentials({
+      id: "credentials",
       authorize: async (credentials, _) => {
         if (!credentials.email || !credentials.password) return null;
 
@@ -36,7 +37,7 @@ export default defineConfig({
       session.user = {
         id: token.id,
         type: token.type,
-        attributes: token.attributes,
+        ...token.attributes,
       };
 
       session.tokens = {
@@ -53,7 +54,7 @@ export default defineConfig({
     },
   },
   pages: {
-    error: "/auth/error",
+    error: "/500",
     newUser: "/onboarding/welcome",
     signIn: "/auth/sign-in",
     signOut: "/",

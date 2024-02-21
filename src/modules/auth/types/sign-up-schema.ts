@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+import { SignInResponseSchema } from "./sign-in-schema";
+
 // schema
-const SignUpRequestSchema = z.object({
+export const SignUpRequestSchema = z.object({
   firstName: z.string().trim().min(1, "Enter your first name"),
   lastName: z.string().trim().min(1, "Enter your last name"),
   email: z.string().email("Enter a valid email address"),
@@ -10,7 +12,8 @@ const SignUpRequestSchema = z.object({
   }),
 });
 
-export default SignUpRequestSchema;
+export const SignUpResponseSchema = SignInResponseSchema;
 
 // types
 export type SignUpRequestType = z.infer<typeof SignUpRequestSchema>;
+export type SignUpResponseType = z.infer<typeof SignUpResponseSchema>;

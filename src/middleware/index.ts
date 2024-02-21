@@ -1,16 +1,17 @@
 import type { APIContext, MiddlewareNext } from "astro";
 import * as middleware from "astro/virtual-modules/middleware.js";
 
-// async function cors(context: APIContext, next: MiddlewareNext) {}
+//  async function cors(context: APIContext, next: MiddlewareNext) {}
 
-async function auth(context: APIContext, next: MiddlewareNext) {
-  const currentPathname = context.url.pathname;
+async function auth(_: APIContext, next: MiddlewareNext) {
+  // const currentPathname = context.url.pathname;
 
-  if (currentPathname.startsWith("/auth")) {
-    // check if the user has already logged in
-    // -> true -> redirect to homepage
-    // -> false allow
-  }
+  // const session = await getSession(context.request);
+
+  // check if the user has already logged in
+  // if (currentPathname.startsWith("/auth") && session?.user) {
+  //   return context.redirect("/");
+  // }
 
   return await next();
 }
