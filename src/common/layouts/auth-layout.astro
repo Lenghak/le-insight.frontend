@@ -13,10 +13,11 @@ interface Props {
   title: string;
   description: React.ReactNode;
   className?: string;
+  hideSignIn?: boolean;
 }
 
 const pathname = Astro.url.pathname;
-const { title, description, className } = Astro.props;
+const { title, description, className, hideSignIn } = Astro.props;
 ---
 
 <main
@@ -32,7 +33,7 @@ const { title, description, className } = Astro.props;
           variant: "link",
         }),
         "absolute left-0 top-8 items-center gap-4 font-bold",
-        pathname === "/auth/sign-in" ? "hidden" : "",
+        pathname === "/auth/sign-in" || hideSignIn ? "hidden" : "",
       )}
     >
       <ChevronLeftIcon size={18} />

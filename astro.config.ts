@@ -6,6 +6,13 @@ import auth from "auth-astro";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
+  adapter: vercel({
+    edgeMiddleware: true,
+    isr: {
+      expiration: 60 * 60,
+    },
+  }),
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -13,14 +20,7 @@ export default defineConfig({
     react(),
     auth(),
   ],
-  output: "server",
   prefetch: {
     defaultStrategy: "hover",
   },
-  adapter: vercel({
-    edgeMiddleware: true,
-    isr: {
-      expiration: 60 * 60,
-    },
-  }),
 });

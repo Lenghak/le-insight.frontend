@@ -58,7 +58,7 @@ export default defineConfig({
     newUser: "/onboarding/welcome",
     signIn: "/auth/sign-in",
     signOut: "/",
-    verifyRequest: "/verify",
+    verifyRequest: "/confirm-email",
   },
   session: {
     strategy: "jwt",
