@@ -91,7 +91,7 @@
     "@tiptap/pm": "^2.2.3",
     "@tiptap/react": "^2.2.3",
     "@tiptap/starter-kit": "^2.2.3",
-    "astro": "^4.4.1",
+    "astro": "^4.4.2",
     "auth-astro": "^4.1.1",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
