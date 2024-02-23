@@ -5,6 +5,7 @@ export const authKeys = {
     operator:
       | "sign-up"
       | "sign-in"
+      | "sign-out"
       | "reset-password"
       | "forgot-password"
       | "verify-email",

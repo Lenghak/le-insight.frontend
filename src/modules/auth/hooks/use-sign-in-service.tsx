@@ -5,7 +5,7 @@ import type { SignInRequestType } from "@/modules/auth/types/sign-in-schema";
 import { queryClient } from "@/common/stores/api-store";
 import { useMutation } from "@tanstack/react-query";
 
-export default function useSignIn() {
+export default function useSignInService() {
   return useMutation(
     {
       mutationKey: authKeys.operation("sign-in"),

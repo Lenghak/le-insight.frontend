@@ -1,3 +1,5 @@
+import { useResetPasswordService } from "@/modules/auth/hooks/use-reset-password-service";
+
 import { Button } from "@/common/components/ui/button";
 import {
   Form,
@@ -11,7 +13,7 @@ import { Input } from "@/common/components/ui/input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -29,7 +31,15 @@ const ResetPasswordFormSchema = z
     path: ["confirmPassword"], // path of error
   });
 
-export default function ResetPasswordForm() {
+interface ResetPasswordFormProps {
+  email: string;
+  token: string;
+}
+
+export default function ResetPasswordForm({
+  email,
+  token,
+}: ResetPasswordFormProps) {
   const form = useForm<z.infer<typeof ResetPasswordFormSchema>>({
     resolver: zodResolver(ResetPasswordFormSchema),
     defaultValues: {
@@ -40,10 +50,25 @@ export default function ResetPasswordForm() {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
+  const { mutate: resetPassword, isSuccess } = useResetPasswordService();
+
+  useEffect(() => {
+    if (isSuccess) {
+      window.location.replace("/");
+    }
+  }, [isSuccess]);
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => console.log(values))}
+        onSubmit={form.handleSubmit((values) =>
+          resetPassword({
+            email,
+            token,
+            password: values.newPassword,
+            confirmPassword: values.confirmPassword,
+          }),
+        )}
         className="flex w-full flex-col gap-4"
       >
         <FormField

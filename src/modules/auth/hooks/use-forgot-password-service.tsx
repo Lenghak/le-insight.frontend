@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export default function useForgotPassword() {
+export default function useForgotPasswordService() {
   const mutation = useMutation(
     {
       mutationKey: authKeys.operation("forgot-password"),
