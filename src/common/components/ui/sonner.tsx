@@ -12,8 +12,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       className="toaster group"
       toastOptions={{
         classNames: {
-          default:
-            "group group-[.toaster]:bg-default group-[.toaster]:text-foreground",
+          default: "bg-default text-foreground",
           warning: "warning group toast group-[.toaster]:text-warning",
           info: "informative group toast group-[.toaster]:text-informative",
           success: "successive group toast group-[.toaster]:text-successive",
