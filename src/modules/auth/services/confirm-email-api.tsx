@@ -1,14 +1,17 @@
-import type { ConfirmEmailRequestType } from "@/modules/auth/types/confirm-email";
+import {
+  ConfirmEmailRequestSchema,
+  type ConfirmEmailRequestType,
+} from "@/modules/auth/types/confirm-email-schema";
 
 import { queryInstance } from "@/common/stores/api-store";
 import type { AxiosResponse } from "axios";
 
-export default async function postConfrimEmail(
+export default async function postConfirmEmail(
   confirmEmailRequest: ConfirmEmailRequestType,
 ) {
   return queryInstance.post<
     unknown,
     AxiosResponse<unknown>,
     ConfirmEmailRequestType
-  >("/confirm", confirmEmailRequest);
+  >("/auth/confirm", ConfirmEmailRequestSchema.parse(confirmEmailRequest));
 }

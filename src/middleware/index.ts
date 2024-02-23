@@ -6,7 +6,7 @@ import { getSession } from "auth-astro/server";
 
 async function auth(context: APIContext, next: MiddlewareNext) {
   const currentPathname = context.url.pathname;
-  const isAuthPath = currentPathname.startsWith("/auth");
+  const isAuthPath = currentPathname.startsWith("/auth/sign");
   const isConfirmPath = currentPathname === "/auth/confirm-email";
 
   const session = await getSession(context.request);
@@ -18,7 +18,7 @@ async function auth(context: APIContext, next: MiddlewareNext) {
   }
 
   // check if the user has already logged in
-  if (isAuthPath && !isConfirmPath && isUserLoggedIn) {
+  if (isAuthPath && isUserLoggedIn) {
     return context.redirect("/");
   }
 

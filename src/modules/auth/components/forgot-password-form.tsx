@@ -1,3 +1,6 @@
+import useForgotPassword from "@/modules/auth/hooks/use-forgot-password";
+import { ForgotPasswordRequestSchema } from "@/modules/auth/types/forgot-password-schema";
+
 import { Button } from "@/common/components/ui/button";
 import {
   Form,
@@ -10,26 +13,27 @@ import {
 import { Input } from "@/common/components/ui/input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2Icon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const ForgotPasswordFormSchema = z.object({
-  email: z.string().email("Enter a valid email address"),
-});
+import { type z } from "zod";
 
 export default function ForgotPasswordForm() {
-  const form = useForm<z.infer<typeof ForgotPasswordFormSchema>>({
-    resolver: zodResolver(ForgotPasswordFormSchema),
+  const form = useForm<z.infer<typeof ForgotPasswordRequestSchema>>({
+    resolver: zodResolver(ForgotPasswordRequestSchema),
     defaultValues: {
       email: "",
     },
   });
 
+  const { mutate: requestRecovery, isSuccess, isPending } = useForgotPassword();
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => console.log(values))}
-        className="w-full space-y-4"
+        onSubmit={form.handleSubmit((values) =>
+          requestRecovery({ email: values.email }),
+        )}
+        className="w-full max-w-screen-xs space-y-4"
       >
         <FormField
           control={form.control}
@@ -48,12 +52,30 @@ export default function ForgotPasswordForm() {
           )}
         />
 
-        <Button
-          type="submit"
-          className="w-full rounded-md font-bold"
-        >
-          Send Link to Email
-        </Button>
+        {isSuccess && !isPending ? (
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            Have not received the recovery link yet?
+            <Button
+              variant={"link"}
+              className="font-bold"
+            >
+              Resend
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {!isSuccess && (
+          <Button
+            type={isPending ? "button" : "submit"}
+            className="w-full rounded-md font-bold"
+            disabled={isPending}
+          >
+            {isPending ? <Loader2Icon className="size-4 animate-spin" /> : null}
+            Send Link to Email
+          </Button>
+        )}
       </form>
     </Form>
   );

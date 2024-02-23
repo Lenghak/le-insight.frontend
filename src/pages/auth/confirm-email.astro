@@ -5,13 +5,53 @@ import RootLayout from "@/common/layouts/root-layout.astro";
 import { cn } from "@/common/lib/utils";
 import { MoveRightIcon } from "lucide-react";
 
+import postConfirmEmail from "@/modules/auth/services/confirm-email-api";
 import { getSession } from "auth-astro/server";
 import authConfig from "auth:config";
+import { AxiosError } from "axios";
+
+export const prerender = false;
 
 const session = await getSession(Astro.request, authConfig);
 
 if (!session?.user) {
-  return Astro.redirect("/auth/sign-in");
+  Astro.redirect("/auth/sign-in");
+}
+
+const token = Astro.url.searchParams.get("token");
+console.log(token);
+
+const status = {
+  title: "Internal Server Error",
+  description:
+    "We cannot verify your email right now due to some technical problems on our ends. Please try again later.",
+};
+
+if (token) {
+  try {
+    const res = await postConfirmEmail({
+      email: session?.user?.email ?? "",
+      token,
+    });
+
+    if (res.status === 200) {
+      (status.title = "Email Verified Successfully"),
+        (status.description =
+          "Thank you for signing up. Your email has been verified.");
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 429) {
+        status.title = "Too Many Request";
+        status.description =
+          "You have requested multiple requests in a short period of time. You need to wait for a while in order to request again.";
+      } else if (error.response?.status === 400) {
+        status.title = "Invalid Token";
+        status.description =
+          "Your token is invalid or has already expired. You can request for a new token to your email again.";
+      }
+    }
+  }
 }
 
 // if the token is verified
@@ -21,8 +61,9 @@ if (!session?.user) {
 
 <RootLayout title="Le-Insight | Forgot Password">
   <AuthLayout
-    title="Email Verified"
-    description="Thank you. Your email has been verified. Please continue to the application."
+    title={status.title}
+    description={status.description}
+    hideSignIn
   >
     <a
       href="/"
@@ -34,7 +75,7 @@ if (!session?.user) {
         "gap-4 font-bold",
       )}
     >
-      <span>Go to home</span>
+      <span>Continue</span>
       <MoveRightIcon className="size-5" />
     </a>
   </AuthLayout>
