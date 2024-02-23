@@ -95,7 +95,6 @@ export default function OnboardingForm() {
                             />
                           </FormControl>
                           <FormLabel
-                            tabIndex={0}
                             className={cn(
                               buttonVariants({
                                 size: "default",

@@ -8,7 +8,7 @@
   ],
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "scss.lint.unknownAtRules": "ignore",
   "editor.formatOnSave": true,

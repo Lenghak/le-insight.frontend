@@ -1,3 +1,5 @@
+import { SignInRequestSchema } from "@/modules/auth/types/sign-in-schema";
+
 import { Button, buttonVariants } from "@/common/components/ui/button";
 import {
   Form,
@@ -13,21 +15,17 @@ import { Muted } from "@/common/components/ui/muted";
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "auth-astro/client";
+import { AxiosError } from "axios";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const SignInFormSchema = z.object({
-  email: z.string().email("Enter a valid email address"),
-  password: z.string().min(8, {
-    message: "Enter at least 8 characters password",
-  }),
-});
+import { toast } from "sonner";
+import { type z } from "zod";
 
 export default function SignInForm() {
-  const form = useForm<z.infer<typeof SignInFormSchema>>({
-    resolver: zodResolver(SignInFormSchema),
+  const form = useForm<z.infer<typeof SignInRequestSchema>>({
+    resolver: zodResolver(SignInRequestSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -39,7 +37,39 @@ export default function SignInForm() {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => console.log(values))}
+        method="POST"
+        onSubmit={form.handleSubmit((values) => {
+          signIn("credentials", {
+            redirect: false,
+            callbackUrl: "/auth/sign-in",
+            ...values,
+          })
+            .then(async (res) => {
+              const json = (await res?.json()) as { url?: string };
+              if (json?.url?.includes("?"))
+                toast.error("Invalid Credential", {
+                  closeButton: true,
+                  duration: 10 * 1000,
+                  description:
+                    "The email and password are invalid. Please check and try again.",
+                });
+            })
+            .catch((err) =>
+              toast.error(
+                err instanceof AxiosError && err.response?.status === 401
+                  ? "Invalid Credential"
+                  : "Sign In Failed",
+                {
+                  closeButton: true,
+                  duration: 10 * 1000,
+                  description:
+                    err instanceof AxiosError && err.response?.status === 401
+                      ? "The email and password are invalid. Please check and try again."
+                      : "There was a technical problem while creating your account. Please try again later.",
+                },
+              ),
+            );
+        })}
         className="w-full space-y-2"
       >
         <FormField
@@ -70,6 +100,7 @@ export default function SignInForm() {
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
+                    autoComplete="on"
                     {...field}
                   />
                   <Button

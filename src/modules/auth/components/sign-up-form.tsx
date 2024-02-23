@@ -1,3 +1,5 @@
+import useSignUp from "@/modules/auth/hooks/use-sign-up";
+
 import { Button, buttonVariants } from "@/common/components/ui/button";
 import {
   Form,
@@ -39,11 +41,13 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
+  const { mutate: signUp } = useSignUp();
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => console.log(values))}
+        method="POST"
+        onSubmit={form.handleSubmit((values) => signUp(values))}
         className="w-full space-y-2"
       >
         <div className="flex w-full items-start justify-between gap-4">
@@ -59,7 +63,7 @@ export default function SignUpForm() {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="ml-4 list-item font-semibold text-xs" />
+                <FormMessage className="ml-4 list-item text-xs font-semibold" />
               </FormItem>
             )}
           />
@@ -76,7 +80,7 @@ export default function SignUpForm() {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="ml-4 list-item font-semibold text-xs" />
+                <FormMessage className="ml-4 list-item text-xs font-semibold" />
               </FormItem>
             )}
           />
@@ -94,7 +98,7 @@ export default function SignUpForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="ml-4 list-item font-semibold text-xs" />
+              <FormMessage className="ml-4 list-item text-xs font-semibold" />
             </FormItem>
           )}
         />
@@ -110,6 +114,7 @@ export default function SignUpForm() {
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
+                    autoComplete="on"
                     {...field}
                   />
                   <Button
@@ -127,7 +132,7 @@ export default function SignUpForm() {
                   </Button>
                 </div>
               </FormControl>
-              <FormMessage className="ml-4 list-item font-semibold text-xs" />
+              <FormMessage className="ml-4 list-item text-xs font-semibold" />
             </FormItem>
           )}
         />

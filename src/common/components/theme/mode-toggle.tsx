@@ -33,7 +33,7 @@ export function ModeToggle({ className }: { className?: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           size="icon"
           className={cn(className)}
         >

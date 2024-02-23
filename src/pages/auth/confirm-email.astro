@@ -1,0 +1,41 @@
+---
+import { buttonVariants } from "@/common/components/ui/button";
+import AuthLayout from "@/common/layouts/auth-layout.astro";
+import RootLayout from "@/common/layouts/root-layout.astro";
+import { cn } from "@/common/lib/utils";
+import { MoveRightIcon } from "lucide-react";
+
+import { getSession } from "auth-astro/server";
+import authConfig from "auth:config";
+
+const session = await getSession(Astro.request, authConfig);
+
+if (!session?.user) {
+  return Astro.redirect("/auth/sign-in");
+}
+
+// if the token is verified
+// - then show success message
+// - else show invalid token
+---
+
+<RootLayout title="Le-Insight | Forgot Password">
+  <AuthLayout
+    title="Email Verified"
+    description="Thank you. Your email has been verified. Please continue to the application."
+  >
+    <a
+      href="/"
+      class={cn(
+        buttonVariants({
+          variant: "default",
+          size: "lg",
+        }),
+        "gap-4 font-bold",
+      )}
+    >
+      <span>Go to home</span>
+      <MoveRightIcon className="size-5" />
+    </a>
+  </AuthLayout>
+</RootLayout>

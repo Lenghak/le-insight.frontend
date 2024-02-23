@@ -1,6 +1,8 @@
 ---
 import "@/styles/globals.css";
 import "@fontsource-variable/open-sans";
+import { Toaster as SonnerToaster } from "@/common/components/ui/sonner";
+import { Toaster } from "@/common/components/ui/toaster";
 
 interface Props {
   title: string;
@@ -69,5 +71,7 @@ interface Props {
   </head>
   <body>
     <slot />
+    <SonnerToaster client:load />
+    <Toaster client:load />
   </body>
 </html>

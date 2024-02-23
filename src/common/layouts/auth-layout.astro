@@ -9,11 +9,20 @@ import { cn } from "@/common/lib/utils";
 import { H1 } from "@/common/components/ui/h1";
 import { ChevronLeftIcon, DotIcon } from "lucide-react";
 
+interface Props {
+  title: string;
+  description: React.ReactNode;
+  className?: string;
+  hideSignIn?: boolean;
+}
+
 const pathname = Astro.url.pathname;
-const { title, description } = Astro.props;
+const { title, description, className, hideSignIn } = Astro.props;
 ---
 
-<main class="container flex h-screen w-full flex-row items-center">
+<main
+  class={cn("container flex h-screen w-full flex-row items-center", className)}
+>
   <section
     class="relative flex h-full w-full flex-col items-center justify-center"
   >
@@ -24,7 +33,7 @@ const { title, description } = Astro.props;
           variant: "link",
         }),
         "absolute left-0 top-8 items-center gap-4 font-bold",
-        pathname === "/auth/sign-in" ? "hidden" : "",
+        pathname === "/auth/sign-in" || hideSignIn ? "hidden" : "",
       )}
     >
       <ChevronLeftIcon size={18} />
