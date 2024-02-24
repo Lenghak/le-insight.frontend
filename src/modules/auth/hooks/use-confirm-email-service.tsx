@@ -5,7 +5,7 @@ import type { ConfirmEmailRequestType } from "@/modules/auth/types/confirm-email
 import { queryClient } from "@/common/stores/api-store";
 import { useMutation } from "@tanstack/react-query";
 
-export default function useConfirmEmail() {
+export default function useConfirmEmailService() {
   return useMutation(
     {
       mutationKey: authKeys.operation("verify-email"),

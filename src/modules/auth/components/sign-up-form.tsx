@@ -1,4 +1,4 @@
-import useSignUp from "@/modules/auth/hooks/use-sign-up";
+import useSignUpService from "@/modules/auth/hooks/use-sign-up-service";
 
 import { Button, buttonVariants } from "@/common/components/ui/button";
 import {
@@ -41,7 +41,7 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutate: signUp } = useSignUp();
+  const { mutate: signUp } = useSignUpService();
 
   return (
     <Form {...form}>

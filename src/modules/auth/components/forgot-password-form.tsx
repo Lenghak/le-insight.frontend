@@ -1,4 +1,4 @@
-import useForgotPassword from "@/modules/auth/hooks/use-forgot-password";
+import useForgotPasswordService from "@/modules/auth/hooks/use-forgot-password-service";
 import { ForgotPasswordRequestSchema } from "@/modules/auth/types/forgot-password-schema";
 
 import { Button } from "@/common/components/ui/button";
@@ -25,7 +25,11 @@ export default function ForgotPasswordForm() {
     },
   });
 
-  const { mutate: requestRecovery, isSuccess, isPending } = useForgotPassword();
+  const {
+    mutate: requestRecovery,
+    isSuccess,
+    isPending,
+  } = useForgotPasswordService();
 
   return (
     <Form {...form}>

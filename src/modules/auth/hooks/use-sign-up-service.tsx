@@ -8,7 +8,7 @@ import { signIn } from "auth-astro/client";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export default function useSignUp() {
+export default function useSignUpService() {
   return useMutation(
     {
       mutationKey: authKeys.operation("sign-up"),
