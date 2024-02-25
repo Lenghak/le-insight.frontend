@@ -1,8 +1,8 @@
 ---
 import { buttonVariants } from "@/common/components/ui/button";
-import AuthLayout from "@/modules/auth/layouts/auth-layout.astro";
 import RootLayout from "@/common/layouts/root-layout.astro";
 import { cn } from "@/common/lib/utils";
+import AuthLayout from "@/modules/auth/layouts/auth-layout.astro";
 import { MoveRightIcon } from "lucide-react";
 
 import postConfirmEmail from "@/modules/auth/services/confirm-email-api";
@@ -30,7 +30,6 @@ const status = {
 if (token) {
   try {
     const res = await postConfirmEmail({
-      email: session?.user?.email ?? "",
       token,
     });
 

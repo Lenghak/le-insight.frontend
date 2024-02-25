@@ -32,14 +32,10 @@ const ResetPasswordFormSchema = z
   });
 
 interface ResetPasswordFormProps {
-  email: string;
   token: string;
 }
 
-export default function ResetPasswordForm({
-  email,
-  token,
-}: ResetPasswordFormProps) {
+export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
   const form = useForm<z.infer<typeof ResetPasswordFormSchema>>({
     resolver: zodResolver(ResetPasswordFormSchema),
     defaultValues: {
@@ -63,7 +59,6 @@ export default function ResetPasswordForm({
       <form
         onSubmit={form.handleSubmit((values) =>
           resetPassword({
-            email,
             token,
             password: values.newPassword,
             confirmPassword: values.confirmPassword,
@@ -89,6 +84,7 @@ export default function ResetPasswordForm({
                     placeholder="Enter a new password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
+                    autoComplete="on"
                     {...field}
                   />
                   <Button
@@ -129,6 +125,7 @@ export default function ResetPasswordForm({
                     placeholder="Re-type your password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
+                    autoComplete="on"
                     {...field}
                   />
                   <Button
