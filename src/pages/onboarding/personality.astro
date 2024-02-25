@@ -1,12 +1,15 @@
 ---
-import OnboardingLayout from "@/common/layouts/onboarding-layout.astro";
+import OnboardingLayout from "@/modules/onboarding/layouts/onboarding-layout.astro";
+import RootLayout from "@/common/layouts/root-layout.astro";
 import OnboardingForm from "@/modules/onboarding/components/onboarding-form";
 ---
 
-<OnboardingLayout
-  title="Interests"
-  description="Let's find out about your stuffs you wanted to appear on your new feeds."
-  class="md:flex-col md:justify-start md:text-center"
->
-  <OnboardingForm client:load />
-</OnboardingLayout>
+<RootLayout title="Le-Insight | Onboarding">
+  <OnboardingLayout
+    title="Interests"
+    description="Let's find out about your stuffs you wanted to appear on your new feeds."
+    class="md:flex-col md:justify-start md:text-center"
+  >
+    <OnboardingForm client:load />
+  </OnboardingLayout>
+</RootLayout>
