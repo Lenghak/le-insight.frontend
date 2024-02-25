@@ -1,6 +1,6 @@
 import { authKeys } from "@/modules/auth/constants/query-keys";
 import postForgotPassword from "@/modules/auth/services/forgot-password-api";
-import type { ForgotPasswordRequestType } from "@/modules/auth/types/forgot-password-schema";
+import { type ForgotPasswordRequestType } from "@/modules/auth/types/forgot-password-schema";
 
 import { queryClient } from "@/common/stores/api-store";
 import { useMutation } from "@tanstack/react-query";

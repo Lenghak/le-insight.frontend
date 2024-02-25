@@ -2,7 +2,6 @@ import { z } from "zod";
 
 //schema
 export const ConfirmEmailRequestSchema = z.object({
-  email: z.string().email(),
   token: z.string(),
 });
 
