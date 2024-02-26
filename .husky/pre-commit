@@ -16,7 +16,7 @@ pnpm lint-staged ${staged}
 echo "${GREEN} Formatted" ${staged}
 echo "${GREEN}✔${NO_COLOR} Done Running Prettier"
 
-echo "${LIGHT_BLUE}!${NO_COLOR} Checking for Circlar Dependency"
+echo "${LIGHT_BLUE}!${NO_COLOR} Checking for Circular Dependency"
 pnpm cruise || exit $
 
 echo "${GREEN}✔${NO_COLOR} Done Running Pre-commit\n"
