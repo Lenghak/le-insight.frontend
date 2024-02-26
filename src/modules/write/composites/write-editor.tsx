@@ -19,10 +19,10 @@ import EditorSkeletons from "./editor-skeleton";
 
 export default memo(function WriteEditor() {
   const editor = useEditor({
+    autofocus: true,
     extensions: EDITOR_EXTENSION,
-    autofocus: "start",
     editable: true,
-    injectCSS: false,
+    injectCSS: true,
   });
 
   const isCollapsed = useStore($isCollapsed);
@@ -30,14 +30,14 @@ export default memo(function WriteEditor() {
   if (!editor) return <EditorSkeletons />;
 
   return (
-    <section className="grid h-full min-h-dvh w-full grid-cols-[auto_1fr] grid-rows-[auto_1fr] divide-x divide-y overflow-hidden transition-all">
+    <section className="grid h-full min-h-dvh w-full grid-cols-[auto_1fr] grid-rows-[auto_1fr] divide-x divide-y overflow-x-hidden transition-all">
       <HeaderMenu className="col-span-full" />
 
       <SideMenu>
         <TableOfContents editor={editor} />
       </SideMenu>
 
-      <section className="relative w-full overflow-y-auto bg-card p-4">
+      <section className="relative z-50 w-full overflow-y-auto bg-card p-4">
         <Button
           variant={"ghost"}
           size={"icon"}
@@ -49,11 +49,12 @@ export default memo(function WriteEditor() {
         </Button>
 
         <EditorContent
+          content={undefined}
           editor={editor}
-          className="mx-auto my-12 h-full w-full max-w-screen-md rounded-lg focus-visible:outline-none [&>*]:outline-none"
+          className="mx-auto my-12 h-full w-full max-w-screen-md whitespace-pre-wrap rounded-lg focus-visible:outline-none [&>*]:outline-none"
         />
-        <EditorBubbleMenu editor={editor} />
       </section>
+      <EditorBubbleMenu editor={editor} />
     </section>
   );
 });

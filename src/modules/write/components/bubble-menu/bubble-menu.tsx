@@ -1,12 +1,15 @@
+import { BUBBLE_QUICK_ITEMS } from "@/modules/write/constants/bubble-quick-items";
+
 import { Separator } from "@/common/components/ui/separator";
-import { Toggle } from "@/common/components/ui/toggle";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/common/components/ui/toggle-group";
 
 import { cn } from "@/common/lib/utils";
 
 import { type Editor as CoreEditor } from "@tiptap/core";
 import { BubbleMenu } from "@tiptap/react";
-
-import { BUBBLE_QUICK_ITEMS } from "../../constants/bubble-quick-items";
 
 interface EditorBubbleMenuProps {
   editor: CoreEditor;
@@ -19,7 +22,6 @@ export default function EditorBubbleMenu({ editor }: EditorBubbleMenuProps) {
       tippyOptions={{
         animation: true,
         delay: 1000,
-        followCursor: true,
         interactive: true,
       }}
       className={cn(
@@ -31,17 +33,18 @@ export default function EditorBubbleMenu({ editor }: EditorBubbleMenuProps) {
 
       <Separator className="h-4 w-[1px]" />
 
-      <div className="flex h-auto w-fit items-center justify-center gap-1">
+      <ToggleGroup type="multiple">
         {BUBBLE_QUICK_ITEMS.map((item, index) => (
-          <Toggle
-            key={index}
+          <ToggleGroupItem
             size={"sm"}
+            value={item.label}
+            key={index}
           >
             <span className="sr-only">{item.label}</span>
-            <item.icon className="size-4"></item.icon>
-          </Toggle>
+            <item.icon className="size-4" />
+          </ToggleGroupItem>
         ))}
-      </div>
+      </ToggleGroup>
     </BubbleMenu>
   );
 }

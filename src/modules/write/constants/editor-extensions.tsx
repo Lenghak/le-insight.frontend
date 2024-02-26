@@ -12,6 +12,7 @@ export const EDITOR_EXTENSION = [
   }),
   Document.extend({
     content: "heading block*",
+    draggable: true,
   }),
   FontFamily,
   Highlight,
@@ -23,6 +24,8 @@ export const EDITOR_EXTENSION = [
 
       return "Describe your context.";
     },
+    showOnlyWhenEditable: true,
+    showOnlyCurrent: true,
     considerAnyAsEmpty: true,
   }),
   TableOfContents,
