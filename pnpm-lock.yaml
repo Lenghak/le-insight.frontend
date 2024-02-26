@@ -26,6 +26,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.3.4
     version: 3.3.4(react-hook-form@7.50.1)
+  '@nanostores/persistent':
+    specifier: ^0.10.1
+    version: 0.10.1(nanostores@0.9.5)
   '@nanostores/react':
     specifier: ^0.7.2
     version: 0.7.2(nanostores@0.9.5)(react@18.2.0)
@@ -140,6 +143,9 @@ dependencies:
   '@tiptap-pro/extension-unique-id':
     specifier: ^2.7.5
     version: 2.7.5(@tiptap/core@2.2.4)(@tiptap/pm@2.2.4)
+  '@tiptap/core':
+    specifier: ^2.2.4
+    version: 2.2.4(@tiptap/pm@2.2.4)
   '@tiptap/extension-bullet-list':
     specifier: ^2.2.4
     version: 2.2.4(@tiptap/core@2.2.4)
@@ -1258,6 +1264,15 @@ packages:
 
   /@medv/finder@3.1.0:
     resolution: {integrity: sha512-ojkXjR3K0Zz3jnCR80tqPL+0yvbZk/lEodb6RIVjLz7W8RVA2wrw8ym/CzCpXO9SYVUIKHFUpc7jvf8UKfIM3w==}
+    dev: false
+
+  /@nanostores/persistent@0.10.1(nanostores@0.9.5):
+    resolution: {integrity: sha512-BMYj47ONmkrPkHfomimtBAwtDNNjO57lw0uk7jB35GHVwixmqWtlK6DVAAbioqwJn9WEaWSB/9Ss5ukBG0NHlQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0
+    dependencies:
+      nanostores: 0.9.5
     dev: false
 
   /@nanostores/react@0.7.2(nanostores@0.9.5)(react@18.2.0):
@@ -7181,7 +7196,7 @@ packages:
       lilconfig: 3.1.1
       postcss: 8.4.35
       ts-node: 10.9.2(@types/node@20.11.20)(typescript@5.3.3)
-      yaml: 2.3.4
+      yaml: 2.4.0
 
   /postcss-nested@6.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
@@ -9151,6 +9166,12 @@ packages:
   /yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
+    dev: true
+
+  /yaml@2.4.0:
+    resolution: {integrity: sha512-j9iR8g+/t0lArF4V6NE/QCfT+CO7iLqrXAHZbJdo+LfjqP1vR8Fg5bSiaq6Q2lOD1AUEVrEVIgABvBFYojJVYQ==}
+    engines: {node: '>= 14'}
+    hasBin: true
 
   /yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
