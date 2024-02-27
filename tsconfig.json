@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/astro/tsconfigs/strictest",
+  "extends": "./node_modules/astro/tsconfigs/strict",
   "compilerOptions": {
     "plugins": [
       {
@@ -10,9 +10,7 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-  },
+      "@/*": ["./src/*"]
+    }
+  }
 }
