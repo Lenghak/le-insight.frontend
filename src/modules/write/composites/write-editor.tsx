@@ -1,6 +1,6 @@
 import HeaderMenu from "@/modules/write/components/header-menu";
 import SideMenu from "@/modules/write/components/side-menu";
-import TableOfContents from "@/modules/write/components/table-of-contents";
+import TableOfContents from "@/extensions/table-of-contents";
 import { EDITOR_EXTENSION } from "@/modules/write/constants/editor-extensions";
 import {
   $isCollapsed,
