@@ -10,7 +10,7 @@ import { withTooltip } from "./tooltip";
 
 export const Toolbar = withCn(
   ToolbarPrimitive.Root,
-  "relative flex select-none items-center gap-1 bg-background",
+  "relative flex select-none items-center gap-1 bg-card rounded-lg",
 );
 
 export const ToolbarToggleGroup = withCn(
@@ -94,7 +94,7 @@ const ToolbarButton = withTooltip(
                 <div className="flex flex-1">{children}</div>
                 <div>
                   <Icons
-                    name="ArrowDown"
+                    name="ChevronDown"
                     className="ml-0.5 h-4 w-4"
                     data-icon
                   />
@@ -153,7 +153,7 @@ export const ToolbarGroup = withRef<
         </div>
       )}
 
-      <div className="mx-1 flex items-center gap-1">{children}</div>
+      <div className="mx-1 flex items-center gap-2">{children}</div>
     </div>
   );
 });

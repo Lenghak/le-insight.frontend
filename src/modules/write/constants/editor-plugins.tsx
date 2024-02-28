@@ -33,7 +33,24 @@ import {
   createAutoformatPlugin,
   createBasicElementsPlugin,
   createBasicMarksPlugin,
+  createBoldPlugin,
+  createCodePlugin,
+  createExitBreakPlugin,
+  createFontBackgroundColorPlugin,
+  createFontSizePlugin,
+  createHorizontalRulePlugin,
+  createItalicPlugin,
+  createKbdPlugin,
+  createMentionPlugin,
   createPlugins,
+  createSelectOnBackspacePlugin,
+  createStrikethroughPlugin,
+  createSubscriptPlugin,
+  createSuperscriptPlugin,
+  createTablePlugin,
+  createTodoListPlugin,
+  createTogglePlugin,
+  createUnderlinePlugin,
   ELEMENT_BLOCKQUOTE,
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
@@ -57,6 +74,7 @@ import {
   ELEMENT_TODO_LI,
   ELEMENT_TOGGLE,
   ELEMENT_TR,
+  KEYS_HEADING,
   MARK_CODE,
   MARK_ITALIC,
   MARK_KBD,
@@ -78,10 +96,7 @@ import {
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import {
-  createHighlightPlugin,
-  MARK_HIGHLIGHT,
-} from "@udecode/plate-highlight";
+import { MARK_HIGHLIGHT } from "@udecode/plate-highlight";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
 import { createBlockSelectionPlugin } from "@udecode/plate-selection";
@@ -124,19 +139,80 @@ export const EDITOR_PLUGINS = createPlugins(
     }),
     createBasicElementsPlugin(),
     createBasicMarksPlugin(),
-    createBlockSelectionPlugin(),
+    createBlockSelectionPlugin({
+      options: {
+        sizes: {
+          top: 0,
+          bottom: 0,
+        },
+      },
+    }),
+    createBoldPlugin(),
     createCaptionPlugin({
       options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),
-    createDndPlugin(),
-    createHighlightPlugin(),
+    // createCloudPlugin({
+    //   options: {
+    //     apiKey: env.PORTIVE_API_KEY,
+    //   },
+    // }),
+    // createCloudAttachmentPlugin(),
+    // createCloudImagePlugin({
+    //   options: {
+    //     maxInitialWidth: 320,
+    //     maxInitialHeight: 320,
+    //     minResizeWidth: 100,
+    //     maxResizeWidth: 720,
+    //   },
+    // }),
+    createCodePlugin(),
+    createDndPlugin({ options: { enableScroller: true } }),
+    createExitBreakPlugin({
+      options: {
+        rules: [
+          {
+            hotkey: "mod+enter",
+          },
+          {
+            hotkey: "mod+shift+enter",
+            before: true,
+          },
+          {
+            hotkey: "enter",
+            query: {
+              start: true,
+              end: true,
+              allow: KEYS_HEADING,
+            },
+            relative: true,
+            level: 1,
+          },
+        ],
+      },
+    }),
+    createFontBackgroundColorPlugin(),
+    createFontSizePlugin(),
+    createHorizontalRulePlugin(),
+    createItalicPlugin(),
+    createKbdPlugin(),
+    createMentionPlugin(),
     createNodeIdPlugin(),
     createNormalizeTypesPlugin({
       options: {
         rules: [{ path: [0], strictType: ELEMENT_H1 }],
       },
     }),
+    createSelectOnBackspacePlugin({
+      options: { query: { allow: [ELEMENT_HR] } },
+    }),
+    createStrikethroughPlugin(),
+    createSubscriptPlugin(),
+    createSuperscriptPlugin(),
+    createTablePlugin(),
+    createTodoListPlugin(),
+    createTogglePlugin(),
     createTrailingBlockPlugin({ options: { type: ELEMENT_PARAGRAPH } }),
+    createUnderlinePlugin(),
   ],
   {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

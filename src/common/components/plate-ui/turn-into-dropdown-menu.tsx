@@ -126,7 +126,7 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
 
       <DropdownMenuContent
         align="start"
-        className="min-w-0"
+        className="min-w-0 rounded-lg"
       >
         <DropdownMenuLabel>Turn into</DropdownMenuLabel>
 
