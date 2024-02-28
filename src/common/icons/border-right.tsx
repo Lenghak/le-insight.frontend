@@ -1,11 +1,14 @@
+import { cn } from "@/common/lib/utils";
+
 import type { HTMLAttributes } from "react";
 
-export default function BorderRightIcon(
-  props: HTMLAttributes<HTMLSpanElement>,
-) {
+export default function BorderRightIcon({
+  className,
+  ...props
+}: HTMLAttributes<HTMLSpanElement>) {
   return (
-    <i
-      className="border_right_line"
+    <span
+      className={cn("border_right_line", className)}
       {...props}
     />
   );

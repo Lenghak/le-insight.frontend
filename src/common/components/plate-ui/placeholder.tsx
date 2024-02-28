@@ -48,7 +48,7 @@ export const withPlaceholders = (components: unknown) =>
     },
     {
       key: ELEMENT_H1,
-      placeholder: "Untitled",
+      placeholder: "Title",
       hideOnBlur: false,
     },
   ]);

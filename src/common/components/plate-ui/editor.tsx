@@ -76,7 +76,7 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
             className,
           )}
           disableDefaultStyles
-          readOnly={disabled ?? readOnly ?? false}
+          readOnly={disabled ?? readOnly}
           aria-disabled={disabled}
           {...props}
         />

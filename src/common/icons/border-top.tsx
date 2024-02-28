@@ -1,11 +1,14 @@
+import { cn } from "@/common/lib/utils";
+
 import type { HTMLAttributes } from "react";
 
-export default function BorderTopIcon(
-  props: HTMLAttributes<HTMLSpanElement>,
-) {
+export default function BorderTopIcon({
+  className,
+  ...props
+}: HTMLAttributes<HTMLSpanElement>) {
   return (
-    <i
-      className="border_top_line"
+    <span
+      className={cn("border_top_line", className)}
       {...props}
     />
   );

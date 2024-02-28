@@ -1,9 +1,13 @@
+import { cn } from "@/common/lib/utils";
 import type { HTMLAttributes } from "react";
 
-export default function BorderAllIcon(props: HTMLAttributes<HTMLSpanElement>) {
+export default function BorderAllIcon({
+  className,
+  ...props
+}: HTMLAttributes<HTMLSpanElement>) {
   return (
-    <i
-      className="border_all_line"
+    <span
+      className={cn("border_all_line", className)}
       {...props}
     />
   );

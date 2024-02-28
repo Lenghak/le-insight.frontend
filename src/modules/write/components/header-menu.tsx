@@ -40,8 +40,6 @@ export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
 
         <ProfileDropdown />
       </div>
-
-      {/* Side Menu Toggle */}
     </section>
   );
 }

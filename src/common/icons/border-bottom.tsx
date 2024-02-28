@@ -1,11 +1,14 @@
+import { cn } from "@/common/lib/utils";
+
 import type { HTMLAttributes } from "react";
 
-export default function BorderBottomIcon(
-  props: HTMLAttributes<HTMLSpanElement>,
-) {
+export default function BorderBottomIcon({
+  className,
+  ...props
+}: HTMLAttributes<HTMLSpanElement>) {
   return (
-    <i
-      className="border_bottom_line"
+    <span
+      className={cn("border_bottom_line", className)}
       {...props}
     />
   );

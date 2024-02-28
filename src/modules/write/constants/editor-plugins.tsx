@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { BlockquoteElement } from "@/common/components/plate-ui/blockquote-element";
 import { CodeBlockElement } from "@/common/components/plate-ui/code-block-element";
 import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
-import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
-import { EmojiCombobox } from "@/common/components/plate-ui/emoji-combobox";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
 import { HrElement } from "@/common/components/plate-ui/hr-element";
 import { ImageElement } from "@/common/components/plate-ui/image-element";
 import { KbdLeaf } from "@/common/components/plate-ui/kbd-leaf";
 import { LinkElement } from "@/common/components/plate-ui/link-element";
-import { LinkFloatingToolbar } from "@/common/components/plate-ui/link-floating-toolbar";
 import { MediaEmbedElement } from "@/common/components/plate-ui/media-embed-element";
 import { MentionElement } from "@/common/components/plate-ui/mention-element";
 import { MentionInputElement } from "@/common/components/plate-ui/mention-input-element";
@@ -28,283 +24,122 @@ import { TodoListElement } from "@/common/components/plate-ui/todo-list-element"
 import { ToggleElement } from "@/common/components/plate-ui/toggle-element";
 import { withDraggables } from "@/common/components/plate-ui/with-draggables";
 
+import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
+import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
+import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
+
 import { withProps } from "@udecode/cn";
-import { createAlignPlugin } from "@udecode/plate-alignment";
-import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import {
-  createBoldPlugin,
-  createCodePlugin,
-  createItalicPlugin,
-  createStrikethroughPlugin,
-  createSubscriptPlugin,
-  createSuperscriptPlugin,
-  createUnderlinePlugin,
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_ITALIC,
-  MARK_STRIKETHROUGH,
-  MARK_SUBSCRIPT,
-  MARK_SUPERSCRIPT,
-  MARK_UNDERLINE,
-} from "@udecode/plate-basic-marks";
-import {
-  createBlockquotePlugin,
+  createAutoformatPlugin,
+  createBasicElementsPlugin,
+  createBasicMarksPlugin,
+  createPlugins,
   ELEMENT_BLOCKQUOTE,
-} from "@udecode/plate-block-quote";
-import {
-  createExitBreakPlugin,
-  createSoftBreakPlugin,
-} from "@udecode/plate-break";
-import { createCaptionPlugin } from "@udecode/plate-caption";
-import {
-  createCodeBlockPlugin,
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
   ELEMENT_CODE_SYNTAX,
-} from "@udecode/plate-code-block";
-import { createComboboxPlugin } from "@udecode/plate-combobox";
-import { createCommentsPlugin, MARK_COMMENT } from "@udecode/plate-comments";
-import {
-  createPlugins,
-  PlateLeaf,
-  type RenderAfterEditable,
-} from "@udecode/plate-common";
-import { createDndPlugin } from "@udecode/plate-dnd";
-import { createEmojiPlugin } from "@udecode/plate-emoji";
-import {
-  createFontBackgroundColorPlugin,
-  createFontColorPlugin,
-  createFontSizePlugin,
-} from "@udecode/plate-font";
-import {
-  createHeadingPlugin,
   ELEMENT_H1,
   ELEMENT_H2,
   ELEMENT_H3,
   ELEMENT_H4,
   ELEMENT_H5,
   ELEMENT_H6,
-} from "@udecode/plate-heading";
+  ELEMENT_HR,
+  ELEMENT_IMAGE,
+  ELEMENT_LINK,
+  ELEMENT_MEDIA_EMBED,
+  ELEMENT_MENTION,
+  ELEMENT_MENTION_INPUT,
+  ELEMENT_PARAGRAPH,
+  ELEMENT_TABLE,
+  ELEMENT_TD,
+  ELEMENT_TH,
+  ELEMENT_TODO_LI,
+  ELEMENT_TOGGLE,
+  ELEMENT_TR,
+  MARK_CODE,
+  MARK_ITALIC,
+  MARK_KBD,
+  MARK_STRIKETHROUGH,
+  MARK_SUBSCRIPT,
+  MARK_SUPERSCRIPT,
+  MARK_UNDERLINE,
+  PlateLeaf,
+} from "@udecode/plate";
+import { createAlignPlugin } from "@udecode/plate-alignment";
+import {
+  autoformatArrow,
+  autoformatLegal,
+  autoformatLegalHtml,
+  autoformatMath,
+  autoformatPunctuation,
+  type AutoformatRule,
+  autoformatSmartQuotes,
+} from "@udecode/plate-autoformat";
+import { createCaptionPlugin } from "@udecode/plate-caption";
+import { createDndPlugin } from "@udecode/plate-dnd";
 import {
   createHighlightPlugin,
   MARK_HIGHLIGHT,
 } from "@udecode/plate-highlight";
-import {
-  createHorizontalRulePlugin,
-  ELEMENT_HR,
-} from "@udecode/plate-horizontal-rule";
-import { createIndentPlugin } from "@udecode/plate-indent";
-import { createIndentListPlugin } from "@udecode/plate-indent-list";
-import { createJuicePlugin } from "@udecode/plate-juice";
-import { createKbdPlugin, MARK_KBD } from "@udecode/plate-kbd";
-import { createLineHeightPlugin } from "@udecode/plate-line-height";
-import { createLinkPlugin, ELEMENT_LINK } from "@udecode/plate-link";
-import { createTodoListPlugin, ELEMENT_TODO_LI } from "@udecode/plate-list";
-import {
-  createImagePlugin,
-  createMediaEmbedPlugin,
-  ELEMENT_IMAGE,
-  ELEMENT_MEDIA_EMBED,
-} from "@udecode/plate-media";
-import {
-  createMentionPlugin,
-  ELEMENT_MENTION,
-  ELEMENT_MENTION_INPUT,
-} from "@udecode/plate-mention";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
-import {
-  createParagraphPlugin,
-  ELEMENT_PARAGRAPH,
-} from "@udecode/plate-paragraph";
-import { createResetNodePlugin } from "@udecode/plate-reset-node";
-import {
-  createDeletePlugin,
-  createSelectOnBackspacePlugin,
-} from "@udecode/plate-select";
 import { createBlockSelectionPlugin } from "@udecode/plate-selection";
-import { createDeserializeCsvPlugin } from "@udecode/plate-serializer-csv";
-import { createDeserializeDocxPlugin } from "@udecode/plate-serializer-docx";
-import { createDeserializeMdPlugin } from "@udecode/plate-serializer-md";
-import { createTabbablePlugin } from "@udecode/plate-tabbable";
-import {
-  createTablePlugin,
-  ELEMENT_TABLE,
-  ELEMENT_TD,
-  ELEMENT_TH,
-  ELEMENT_TR,
-} from "@udecode/plate-table";
-import { createTogglePlugin, ELEMENT_TOGGLE } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
-export const plugins = createPlugins(
+export const autoformatRules: AutoformatRule[] = [
+  ...autoformatBlocks,
+  ...autoformatIndentLists,
+  ...autoformatMarks,
+  ...autoformatSmartQuotes,
+  ...autoformatPunctuation,
+  ...autoformatLegal,
+  ...autoformatLegalHtml,
+  ...autoformatArrow,
+  ...autoformatMath,
+];
+
+export const EDITOR_PLUGINS = createPlugins(
   [
-    createParagraphPlugin(),
-    createHeadingPlugin(),
-    createBlockquotePlugin(),
-    createCodeBlockPlugin(),
-    createHorizontalRulePlugin(),
-    createLinkPlugin({
-      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable,
-    }),
-    createImagePlugin(),
-    createMediaEmbedPlugin(),
-    createCaptionPlugin({
-      options: {
-        pluginKeys: [
-          // ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED
-        ],
-      },
-    }),
-    createMentionPlugin(),
-    createTodoListPlugin(),
-    createTogglePlugin(),
-    createTablePlugin(),
-    createBoldPlugin(),
-    createItalicPlugin(),
-    createUnderlinePlugin(),
-    createStrikethroughPlugin(),
-    createCodePlugin(),
-    createSubscriptPlugin(),
-    createSuperscriptPlugin(),
-    createFontColorPlugin(),
-    createFontBackgroundColorPlugin(),
-    createFontSizePlugin(),
-    createHighlightPlugin(),
-    createKbdPlugin(),
     createAlignPlugin({
       inject: {
         props: {
           validTypes: [
             ELEMENT_PARAGRAPH,
-            // ELEMENT_H1, ELEMENT_H2, ELEMENT_H3
-          ],
-        },
-      },
-    }),
-    createIndentPlugin({
-      inject: {
-        props: {
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            // ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE, ELEMENT_CODE_BLOCK
-          ],
-        },
-      },
-    }),
-    createIndentListPlugin({
-      inject: {
-        props: {
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            // ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE, ELEMENT_CODE_BLOCK
-          ],
-        },
-      },
-    }),
-    createLineHeightPlugin({
-      inject: {
-        props: {
-          defaultNodeValue: 1.5,
-          validNodeValues: [1, 1.2, 1.5, 2, 3],
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            // ELEMENT_H1, ELEMENT_H2, ELEMENT_H3
+            ELEMENT_H1,
+            ELEMENT_H2,
+            ELEMENT_H3,
+            ELEMENT_H4,
+            ELEMENT_H5,
+            ELEMENT_H6,
           ],
         },
       },
     }),
     createAutoformatPlugin({
       options: {
-        rules: [
-          // Usage: https://platejs.org/docs/autoformat
-        ],
+        rules: [...autoformatRules] as AutoformatRule[],
         enableUndoOnDelete: true,
       },
     }),
-    createBlockSelectionPlugin({
-      options: {
-        sizes: {
-          top: 0,
-          bottom: 0,
-        },
-      },
+    createBasicElementsPlugin(),
+    createBasicMarksPlugin(),
+    createBlockSelectionPlugin(),
+    createCaptionPlugin({
+      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),
-    createComboboxPlugin(),
-    createDndPlugin({
-      options: { enableScroller: true },
-    }),
-    createEmojiPlugin({
-      renderAfterEditable: EmojiCombobox,
-    }),
-    createExitBreakPlugin({
-      options: {
-        rules: [
-          {
-            hotkey: "mod+enter",
-          },
-          {
-            hotkey: "mod+shift+enter",
-            before: true,
-          },
-          {
-            hotkey: "enter",
-            query: {
-              start: true,
-              end: true,
-              // allow: KEYS_HEADING,
-            },
-            relative: true,
-            level: 1,
-          },
-        ],
-      },
-    }),
+    createDndPlugin(),
+    createHighlightPlugin(),
     createNodeIdPlugin(),
-    createNormalizeTypesPlugin(),
-    createResetNodePlugin({
+    createNormalizeTypesPlugin({
       options: {
-        rules: [
-          // Usage: https://platejs.org/docs/reset-node
-        ],
+        rules: [{ path: [0], strictType: ELEMENT_H1 }],
       },
     }),
-    createSelectOnBackspacePlugin({
-      options: {
-        query: {
-          allow: [
-            // ELEMENT_IMAGE, ELEMENT_HR
-          ],
-        },
-      },
-    }),
-    createDeletePlugin(),
-    createSoftBreakPlugin({
-      options: {
-        rules: [
-          { hotkey: "shift+enter" },
-          {
-            hotkey: "enter",
-            query: {
-              allow: [
-                // ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD
-              ],
-            },
-          },
-        ],
-      },
-    }),
-    createTabbablePlugin(),
-    createTrailingBlockPlugin({
-      options: { type: ELEMENT_PARAGRAPH },
-    }),
-    createCommentsPlugin(),
-    createDeserializeDocxPlugin(),
-    createDeserializeCsvPlugin(),
-    createDeserializeMdPlugin(),
-    createJuicePlugin(),
+    createTrailingBlockPlugin({ options: { type: ELEMENT_PARAGRAPH } }),
   ],
   {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     components: withDraggables(
       withPlaceholders({
         [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
@@ -330,9 +165,7 @@ export const plugins = createPlugins(
         [ELEMENT_TD]: TableCellElement,
         [ELEMENT_TH]: TableCellHeaderElement,
         [ELEMENT_TODO_LI]: TodoListElement,
-        [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
         [MARK_CODE]: CodeLeaf,
-        [MARK_COMMENT]: CommentLeaf,
         [MARK_HIGHLIGHT]: HighlightLeaf,
         [MARK_ITALIC]: withProps(PlateLeaf, { as: "em" }),
         [MARK_KBD]: KbdLeaf,
