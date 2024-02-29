@@ -3,6 +3,7 @@ import { CodeBlockElement } from "@/common/components/plate-ui/code-block-elemen
 import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
+import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
 import { HrElement } from "@/common/components/plate-ui/hr-element";
@@ -33,6 +34,7 @@ import {
   createAutoformatPlugin,
   createBasicElementsPlugin,
   createBasicMarksPlugin,
+  createBoldPlugin,
   createComboboxPlugin,
   createDeletePlugin,
   createDeserializeCsvPlugin,
@@ -83,7 +85,9 @@ import {
   isCodeBlockEmpty,
   isSelectionAtCodeBlockStart,
   KEYS_HEADING,
+  MARK_BOLD,
   MARK_CODE,
+  MARK_COMMENT,
   MARK_ITALIC,
   MARK_KBD,
   MARK_STRIKETHROUGH,
@@ -175,6 +179,7 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
+    createBoldPlugin(),
     createCaptionPlugin({
       options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),
@@ -334,7 +339,9 @@ export const EDITOR_PLUGINS = createPlugins(
         [ELEMENT_TD]: TableCellElement,
         [ELEMENT_TH]: TableCellHeaderElement,
         [ELEMENT_TODO_LI]: TodoListElement,
+        [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
         [MARK_CODE]: CodeLeaf,
+        [MARK_COMMENT]: CommentLeaf,
         [MARK_HIGHLIGHT]: HighlightLeaf,
         [MARK_ITALIC]: withProps(PlateLeaf, { as: "em" }),
         [MARK_KBD]: KbdLeaf,
