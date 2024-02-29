@@ -1,7 +1,7 @@
 import { withRef } from "@udecode/cn";
 import { PlateElement, useElement } from "@udecode/plate-common";
 import { useToggleButton, useToggleButtonState } from "@udecode/plate-toggle";
-import { ChevronDownIcon, ChevronRight } from "lucide-react";
+import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
 export const ToggleElement = withRef<typeof PlateElement>(
   ({ children, ...props }, ref) => {
@@ -24,7 +24,7 @@ export const ToggleElement = withRef<typeof PlateElement>(
             {open ? (
               <ChevronDownIcon className="size-4" />
             ) : (
-              <ChevronRight className="size-4" />
+              <ChevronRightIcon className="size-4" />
             )}
           </span>
           {children}

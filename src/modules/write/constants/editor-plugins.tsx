@@ -33,24 +33,30 @@ import {
   createAutoformatPlugin,
   createBasicElementsPlugin,
   createBasicMarksPlugin,
-  createBoldPlugin,
-  createCodePlugin,
+  createComboboxPlugin,
+  createDeletePlugin,
+  createDeserializeCsvPlugin,
+  createDeserializeDocxPlugin,
+  createDeserializeMdPlugin,
   createExitBreakPlugin,
   createFontBackgroundColorPlugin,
+  createFontColorPlugin,
+  createFontFamilyPlugin,
   createFontSizePlugin,
   createHorizontalRulePlugin,
-  createItalicPlugin,
+  createIndentListPlugin,
+  createIndentPlugin,
   createKbdPlugin,
+  createLineHeightPlugin,
   createMentionPlugin,
   createPlugins,
+  createResetNodePlugin,
   createSelectOnBackspacePlugin,
-  createStrikethroughPlugin,
-  createSubscriptPlugin,
-  createSuperscriptPlugin,
+  createSoftBreakPlugin,
+  createTabbablePlugin,
   createTablePlugin,
   createTodoListPlugin,
   createTogglePlugin,
-  createUnderlinePlugin,
   ELEMENT_BLOCKQUOTE,
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
@@ -74,6 +80,8 @@ import {
   ELEMENT_TODO_LI,
   ELEMENT_TOGGLE,
   ELEMENT_TR,
+  isCodeBlockEmpty,
+  isSelectionAtCodeBlockStart,
   KEYS_HEADING,
   MARK_CODE,
   MARK_ITALIC,
@@ -83,6 +91,7 @@ import {
   MARK_SUPERSCRIPT,
   MARK_UNDERLINE,
   PlateLeaf,
+  unwrapCodeBlock,
 } from "@udecode/plate";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import {
@@ -95,12 +104,31 @@ import {
   autoformatSmartQuotes,
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
+import {
+  isBlockAboveEmpty,
+  isSelectionAtBlockStart,
+} from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import { MARK_HIGHLIGHT } from "@udecode/plate-highlight";
+import {
+  createHighlightPlugin,
+  MARK_HIGHLIGHT,
+} from "@udecode/plate-highlight";
+import { createJuicePlugin } from "@udecode/plate-juice";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
 import { createBlockSelectionPlugin } from "@udecode/plate-selection";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
+
+const resetBlockTypesCommonRule = {
+  types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI],
+  defaultType: ELEMENT_PARAGRAPH,
+};
+
+const resetBlockTypesCodeBlockRule = {
+  types: [ELEMENT_CODE_BLOCK],
+  defaultType: ELEMENT_PARAGRAPH,
+  onReset: unwrapCodeBlock,
+};
 
 export const autoformatRules: AutoformatRule[] = [
   ...autoformatBlocks,
@@ -147,7 +175,6 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    createBoldPlugin(),
     createCaptionPlugin({
       options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),
@@ -165,8 +192,12 @@ export const EDITOR_PLUGINS = createPlugins(
     //     maxResizeWidth: 720,
     //   },
     // }),
-    createCodePlugin(),
+    createComboboxPlugin(),
     createDndPlugin({ options: { enableScroller: true } }),
+    createDeletePlugin(),
+    createDeserializeDocxPlugin(),
+    createDeserializeCsvPlugin(),
+    createDeserializeMdPlugin(),
     createExitBreakPlugin({
       options: {
         rules: [
@@ -191,10 +222,36 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createFontBackgroundColorPlugin(),
+    createFontColorPlugin(),
+    createFontFamilyPlugin(),
     createFontSizePlugin(),
+    createHighlightPlugin(),
     createHorizontalRulePlugin(),
-    createItalicPlugin(),
+    createIndentPlugin({
+      inject: {
+        props: {
+          validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1],
+        },
+      },
+    }),
+    createIndentListPlugin({
+      inject: {
+        props: {
+          validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1],
+        },
+      },
+    }),
+    createJuicePlugin(),
     createKbdPlugin(),
+    createLineHeightPlugin({
+      inject: {
+        props: {
+          defaultNodeValue: 1.5,
+          validNodeValues: [1, 1.2, 1.5, 2, 3],
+          validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
+        },
+      },
+    }),
     createMentionPlugin(),
     createNodeIdPlugin(),
     createNormalizeTypesPlugin({
@@ -202,17 +259,53 @@ export const EDITOR_PLUGINS = createPlugins(
         rules: [{ path: [0], strictType: ELEMENT_H1 }],
       },
     }),
+    createResetNodePlugin({
+      options: {
+        rules: [
+          {
+            ...resetBlockTypesCommonRule,
+            hotkey: "Enter",
+            predicate: isBlockAboveEmpty,
+          },
+          {
+            ...resetBlockTypesCommonRule,
+            hotkey: "Backspace",
+            predicate: isSelectionAtBlockStart,
+          },
+          {
+            ...resetBlockTypesCodeBlockRule,
+            hotkey: "Enter",
+            predicate: isCodeBlockEmpty,
+          },
+          {
+            ...resetBlockTypesCodeBlockRule,
+            hotkey: "Backspace",
+            predicate: isSelectionAtCodeBlockStart,
+          },
+        ],
+      },
+    }),
     createSelectOnBackspacePlugin({
       options: { query: { allow: [ELEMENT_HR] } },
     }),
-    createStrikethroughPlugin(),
-    createSubscriptPlugin(),
-    createSuperscriptPlugin(),
+    createSoftBreakPlugin({
+      options: {
+        rules: [
+          { hotkey: "shift+enter" },
+          {
+            hotkey: "enter",
+            query: {
+              allow: [ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD],
+            },
+          },
+        ],
+      },
+    }),
     createTablePlugin(),
+    createTabbablePlugin(),
     createTodoListPlugin(),
     createTogglePlugin(),
     createTrailingBlockPlugin({ options: { type: ELEMENT_PARAGRAPH } }),
-    createUnderlinePlugin(),
   ],
   {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

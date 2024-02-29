@@ -7,13 +7,21 @@ import {
   findNode,
   focusEditor,
   isBlock,
-  isCollapsed,
   type TElement,
   toggleNodeType,
   useEditorRef,
   useEditorSelector,
 } from "@udecode/plate-common";
-import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
+import {
+  ELEMENT_H1,
+  ELEMENT_H2,
+  ELEMENT_H3,
+  ELEMENT_H4,
+  ELEMENT_H5,
+  ELEMENT_H6,
+} from "@udecode/plate-heading";
+import { toggleIndentList } from "@udecode/plate-indent-list";
+import { unwrapList } from "@udecode/plate-list";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 
 import {
@@ -22,6 +30,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
   useOpenState,
 } from "./dropdown-menu";
@@ -53,40 +62,56 @@ const items = [
     icon: Icons.h3,
   },
   {
+    value: ELEMENT_H4,
+    label: "Heading 4",
+    description: "Heading 4",
+    icon: Icons.h4,
+  },
+  {
+    value: ELEMENT_H5,
+    label: "Heading 5",
+    description: "Heading 5",
+    icon: Icons.h5,
+  },
+  {
+    value: ELEMENT_H6,
+    label: "Heading 6",
+    description: "Heading 6",
+    icon: Icons.h6,
+  },
+  {
     value: ELEMENT_BLOCKQUOTE,
     label: "Quote",
     description: "Quote (⌘+⇧+.)",
     icon: Icons.blockquote,
   },
-  // {
-  //   value: 'ul',
-  //   label: 'Bulleted list',
-  //   description: 'Bulleted list',
-  //   icon: Icons.ul,
-  // },
-  // {
-  //   value: 'ol',
-  //   label: 'Numbered list',
-  //   description: 'Numbered list',
-  //   icon: Icons.ol,
-  // },
+  {
+    value: "ul",
+    label: "Bulleted list",
+    description: "Bulleted list",
+    icon: Icons.ul,
+  },
+  {
+    value: "ol",
+    label: "Numbered list",
+    description: "Numbered list",
+    icon: Icons.ol,
+  },
 ];
 
 const defaultItem = items.find((item) => item.value === ELEMENT_PARAGRAPH)!;
 
 export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
   const value: string = useEditorSelector((editor) => {
-    if (isCollapsed(editor.selection)) {
-      const entry = findNode<TElement>(editor, {
-        match: (n) => isBlock(editor, n),
-      });
+    const entry = findNode<TElement>(editor, {
+      match: (n) => isBlock(editor, n),
+    });
 
-      if (entry) {
-        return (
-          items.find((item) => item.value === entry[0].type)?.value ??
-          ELEMENT_PARAGRAPH
-        );
-      }
+    if (entry) {
+      return (
+        items.find((item) => item.value === entry[0].type)?.value ??
+        ELEMENT_PARAGRAPH
+      );
     }
 
     return ELEMENT_PARAGRAPH;
@@ -112,7 +137,7 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
           isDropdown
           className="lg:min-w-[130px]"
         >
-          <SelectedItemIcon className="h-5 w-5 lg:hidden" />
+          <SelectedItemIcon className="size-4 lg:hidden" />
           <span className="max-lg:hidden">{selectedItemLabel}</span>
         </ToolbarButton>
       </DropdownMenuTrigger>
@@ -123,22 +148,20 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
       >
         <DropdownMenuLabel>Turn into</DropdownMenuLabel>
 
+        <DropdownMenuSeparator />
+
         <DropdownMenuRadioGroup
           className="flex flex-col gap-0.5"
           value={value}
           onValueChange={(type) => {
-            // if (type === 'ul' || type === 'ol') {
-            //   if (settingsStore.get.checkedId(KEY_LIST_STYLE_TYPE)) {
-            //     toggleIndentList(editor, {
-            //       listStyleType: type === 'ul' ? 'disc' : 'decimal',
-            //     });
-            //   } else if (settingsStore.get.checkedId('list')) {
-            //     toggleList(editor, { type });
-            //   }
-            // } else {
-            //   unwrapList(editor);
-            toggleNodeType(editor, { activeType: type });
-            // }
+            if (type === "ul" || type === "ol") {
+              toggleIndentList(editor, {
+                listStyleType: type === "ul" ? "disc" : "decimal",
+              });
+            } else {
+              unwrapList(editor);
+              toggleNodeType(editor, { activeType: type });
+            }
 
             collapseSelection(editor);
             focusEditor(editor);
@@ -150,7 +173,7 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
               value={itemValue}
               className="min-w-[180px]"
             >
-              <Icon className="mr-2 h-5 w-5" />
+              <Icon className="mr-2 size-4" />
               {label}
             </DropdownMenuRadioItem>
           ))}

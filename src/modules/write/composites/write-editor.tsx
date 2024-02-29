@@ -38,7 +38,7 @@ export default function WriteEditor() {
           <DndProvider backend={HTML5Backend}>
             <Plate plugins={EDITOR_PLUGINS}>
               <Editor
-                className="mt-12 min-h-full w-full px-48"
+                className="pt-12 min-h-full w-full px-48"
                 variant={"ghost"}
                 focusRing={false}
                 size={"md"}
