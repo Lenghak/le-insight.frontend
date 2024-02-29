@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { cn } from "@udecode/cn";
 import {
@@ -71,10 +71,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
     <div className="flex w-[330px] flex-col">
       <div className="flex items-center">
         <div className="flex items-center pl-3 text-muted-foreground">
-          <Icons
-            name="Link2"
-            className="h-4 w-4"
-          />
+          <Icons.link className="h-4 w-4" />
         </div>
 
         <FloatingLinkUrlInput
@@ -87,10 +84,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
 
       <div className="flex items-center">
         <div className="flex items-center pl-3 text-muted-foreground">
-          <Icons
-            name="Text"
-            className="h-4 w-4"
-          />
+          <Icons.text className="h-4 w-4" />
         </div>
         <input
           className={inputVariants({ variant: "ghost", h: "sm" })}
@@ -121,10 +115,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
           size: "sms",
         })}
       >
-        <Icons
-          name="ExternalLink"
-          className="w-[1.125rem]"
-        />
+        <Icons.externalLink width={18} />
       </LinkOpenButton>
 
       <Separator orientation="vertical" />
@@ -137,10 +128,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
         })}
         {...unlinkButtonProps}
       >
-        <Icons
-          name="Unlink2"
-          className="w-[1.125rem]"
-        />
+        <Icons.unlink width={18} />
       </button>
     </div>
   );

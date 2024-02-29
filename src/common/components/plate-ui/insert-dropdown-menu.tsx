@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
@@ -13,6 +13,7 @@ import {
 } from "@udecode/plate-common";
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
 import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
+import { toggleIndentList } from "@udecode/plate-indent-list";
 import { ELEMENT_LINK, triggerFloatingLink } from "@udecode/plate-link";
 import {
   ELEMENT_IMAGE,
@@ -21,21 +22,7 @@ import {
 } from "@udecode/plate-media";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import { ELEMENT_TABLE, insertTable } from "@udecode/plate-table";
-import {
-  AppWindow,
-  Code2Icon,
-  Heading1Icon,
-  Heading2Icon,
-  Heading3Icon,
-  HeadingIcon,
-  ImageIcon,
-  Link2Icon,
-  List,
-  ListOrderedIcon,
-  Table2Icon,
-  TextQuoteIcon,
-  TypeIcon,
-} from "lucide-react";
+import { ClapperboardIcon, MinusIcon } from "lucide-react";
 import React from "react";
 
 import {
@@ -57,55 +44,55 @@ const items = [
         value: ELEMENT_PARAGRAPH,
         label: "Paragraph",
         description: "Paragraph",
-        icon: TypeIcon,
+        icon: Icons.paragraph,
       },
       {
         value: ELEMENT_H1,
         label: "Heading 1",
         description: "Heading 1",
-        icon: Heading1Icon,
+        icon: Icons.h1,
       },
       {
         value: ELEMENT_H2,
         label: "Heading 2",
         description: "Heading 2",
-        icon: Heading2Icon,
+        icon: Icons.h2,
       },
       {
         value: ELEMENT_H3,
         label: "Heading 3",
         description: "Heading 3",
-        icon: Heading3Icon,
+        icon: Icons.h3,
       },
       {
         value: ELEMENT_BLOCKQUOTE,
         label: "Quote",
         description: "Quote (⌘+⇧+.)",
-        icon: TextQuoteIcon,
+        icon: Icons.blockquote,
       },
       {
         value: ELEMENT_TABLE,
         label: "Table",
         description: "Table",
-        icon: Table2Icon,
+        icon: Icons.table,
       },
       {
         value: "ul",
         label: "Bulleted list",
         description: "Bulleted list",
-        icon: List,
+        icon: Icons.ul,
       },
       {
         value: "ol",
         label: "Numbered list",
         description: "Numbered list",
-        icon: ListOrderedIcon,
+        icon: Icons.ol,
       },
       {
         value: ELEMENT_HR,
         label: "Divider",
         description: "Divider (---)",
-        icon: HeadingIcon,
+        icon: MinusIcon,
       },
     ],
   },
@@ -116,26 +103,20 @@ const items = [
         value: ELEMENT_CODE_BLOCK,
         label: "Code",
         description: "Code (```)",
-        icon: Code2Icon,
+        icon: Icons.codeblock,
       },
       {
         value: ELEMENT_IMAGE,
         label: "Image",
         description: "Image",
-        icon: ImageIcon,
+        icon: Icons.image,
       },
       {
         value: ELEMENT_MEDIA_EMBED,
         label: "Embed",
         description: "Embed",
-        icon: AppWindow,
+        icon: ClapperboardIcon,
       },
-      // {
-      //   value: ELEMENT_EXCALIDRAW,
-      //   label: "Excalidraw",
-      //   description: "Excalidraw",
-      //   icon: Icons.excalidraw,
-      // },
     ],
   },
   {
@@ -145,7 +126,7 @@ const items = [
         value: ELEMENT_LINK,
         label: "Link",
         description: "Link",
-        icon: Link2Icon,
+        icon: Icons.link,
       },
     ],
   },
@@ -167,7 +148,7 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
           tooltip="Insert"
           isDropdown
         >
-          <Icons name="Plus" />
+          <Icons.add />
         </ToolbarButton>
       </DropdownMenuTrigger>
 
@@ -211,10 +192,9 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                           nextBlock: true,
                         });
 
-                        // if (settingsStore.get.checkedId(KEY_LIST_STYLE_TYPE)) {
-                        //   toggleIndentList(editor, {
-                        //     listStyleType: type === "ul" ? "disc" : "decimal",
-                        //   });
+                        toggleIndentList(editor, {
+                          listStyleType: type === "ul" ? "disc" : "decimal",
+                        });
                         // } else if (settingsStore.get.checkedId("list")) {
                         //   toggleList(editor, { type });
                         // }

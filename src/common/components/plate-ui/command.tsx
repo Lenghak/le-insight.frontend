@@ -29,7 +29,10 @@ export const CommandInput = withRef<typeof CommandPrimitive.Input>(
       className="flex items-center border-b px-3"
       cmdk-input-wrapper=""
     >
-      <Icons name="Search" className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <Icons
+        name="Search"
+        className="mr-2 h-4 w-4 shrink-0 opacity-50"
+      />
       <CommandPrimitive.Input
         ref={ref}
         className={cn(

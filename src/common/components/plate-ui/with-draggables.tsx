@@ -28,7 +28,7 @@ export const withDraggable = (
   withDraggablePrimitive<DraggableProps>(
     Draggable,
     Component,
-    options as unknown as WithDraggableOptions<DraggableProps>,
+    options as Record<string, unknown>,
   );
 
 export const withDraggablesPrimitive = createNodesWithHOC(withDraggable);

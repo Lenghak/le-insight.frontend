@@ -15,7 +15,8 @@ export const TooltipContent = withCn(
 );
 
 export function withTooltip<
-  T extends React.ComponentType | keyof HTMLElementTagNameMap,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  T extends React.ComponentType<any> | keyof HTMLElementTagNameMap,
 >(Component: T) {
   return React.forwardRef<
     // @ts-expect-error T cannot satifies the types

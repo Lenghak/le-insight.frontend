@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { cn, withRef } from "@udecode/cn";
 import {
@@ -72,7 +72,7 @@ export interface DraggableProps
     props: {
       monitor: DropTargetMonitor<DragItemNode, unknown>;
       dragItem: DragItemNode;
-      nodeRef: unknown;
+      nodeRef: string;
       id: string;
     },
   ) => boolean;
@@ -81,10 +81,7 @@ export interface DraggableProps
 const dragHandle = (
   <Tooltip>
     <TooltipTrigger>
-      <Icons
-        name="GripVertical"
-        className="h-4 w-4 text-muted-foreground"
-      />
+      <Icons.dragHandle className="h-4 w-4 text-muted-foreground" />
     </TooltipTrigger>
     <TooltipContent>Drag to move</TooltipContent>
   </Tooltip>

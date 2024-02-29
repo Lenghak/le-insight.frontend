@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import {
@@ -30,19 +30,13 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
   const item = {
     editing: (
       <>
-        <Icons
-          name="PencilRuler"
-          className="mr-2 h-5 w-5"
-        />
+        <Icons.editing className="mr-2 h-5 w-5" />
         <span className="hidden lg:inline">Editing</span>
       </>
     ),
     viewing: (
       <>
-        <Icons
-          name="Eye"
-          className="mr-2 h-5 w-5"
-        />
+        <Icons.viewing className="mr-2 h-5 w-5" />
         <span className="hidden lg:inline">Viewing</span>
       </>
     ),

@@ -6,9 +6,9 @@ import { ResizableProvider, useResizableStore } from "@udecode/plate-resizable";
 import { Caption, CaptionTextarea } from "./caption";
 import { MediaPopover } from "./media-popover";
 import {
-  mediaResizeHandleVariants,
   Resizable,
   ResizeHandle,
+  mediaResizeHandleVariants,
 } from "./resizable";
 
 export const ImageElement = withHOC(

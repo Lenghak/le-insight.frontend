@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { cn } from "@udecode/cn";
 import {
@@ -55,10 +55,7 @@ export function CodeBlockCombobox() {
             ? languages.find((language) => language.value === state.value)
                 ?.label
             : "Plain Text"}
-          <Icons
-            name="ChevronsUpDown"
-            className="ml-2 h-4 w-4 shrink-0 opacity-50"
-          />
+          <Icons.chevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
@@ -77,8 +74,7 @@ export function CodeBlockCombobox() {
                   setOpen(false);
                 }}
               >
-                <Icons
-                  name="Check"
+                <Icons.check
                   className={cn(
                     "mr-2 h-4 w-4",
                     state.value === language.value

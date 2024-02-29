@@ -9,7 +9,7 @@ interface Props {
 }
 ---
 
-<script is:inline>
+<script is:inline type="module">
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");

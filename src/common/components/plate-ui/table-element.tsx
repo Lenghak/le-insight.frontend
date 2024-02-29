@@ -1,11 +1,5 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons, iconVariants } from "@/common/components/plate-ui/icons";
 
-import BorderAllIcon from "@/common/icons/border-all";
-import BorderBlankIcon from "@/common/icons/border-blank";
-import BorderBottom from "@/common/icons/border-bottom";
-import BorderLeftIcon from "@/common/icons/border-left";
-import BorderRightIcon from "@/common/icons/border-right";
-import BorderTopIcon from "@/common/icons/border-top";
 import type * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import { cn, withRef } from "@udecode/cn";
@@ -67,28 +61,28 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasBottomBorder}
         onCheckedChange={getOnSelectTableBorder("bottom")}
       >
-        <BorderBottom className="size-3" />
+        <Icons.borderBottom className={iconVariants({ size: "sm" })} />
         <div>Bottom Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasTopBorder}
         onCheckedChange={getOnSelectTableBorder("top")}
       >
-        <BorderTopIcon className="size-3" />
+        <Icons.borderTop className={iconVariants({ size: "sm" })} />
         <div>Top Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasLeftBorder}
         onCheckedChange={getOnSelectTableBorder("left")}
       >
-        <BorderLeftIcon className="size-3" />
+        <Icons.borderLeft className={iconVariants({ size: "sm" })} />
         <div>Left Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasRightBorder}
         onCheckedChange={getOnSelectTableBorder("right")}
       >
-        <BorderRightIcon className="size-3" />
+        <Icons.borderRight className={iconVariants({ size: "sm" })} />
         <div>Right Border</div>
       </DropdownMenuCheckboxItem>
 
@@ -98,14 +92,14 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasNoBorders}
         onCheckedChange={getOnSelectTableBorder("none")}
       >
-        <BorderBlankIcon className="size-3" />
+        <Icons.borderNone className={iconVariants({ size: "sm" })} />
         <div>No Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasOuterBorders}
         onCheckedChange={getOnSelectTableBorder("outer")}
       >
-        <BorderAllIcon className="size-3" />
+        <Icons.borderAll className={iconVariants({ size: "sm" })} />
         <div>Outside Borders</div>
       </DropdownMenuCheckboxItem>
     </DropdownMenuContent>
@@ -138,10 +132,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
         isMenu
         onClick={() => mergeTableCells(editor)}
       >
-        <Icons
-          name="Group"
-          className="mr-2 h-4 w-4"
-        />
+        <Icons.combine className="mr-2 h-4 w-4" />
         Merge
       </Button>
     );
@@ -153,10 +144,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
         isMenu
         onClick={() => unmergeTableCells(editor)}
       >
-        <Icons
-          name="Ungroup"
-          className="mr-2 h-4 w-4"
-        />
+        <Icons.ungroup className="mr-2 h-4 w-4" />
         Unmerge
       </Button>
     );
@@ -169,7 +157,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
               variant="ghost"
               isMenu
             >
-              <BorderAllIcon className="mr-2 h-4 w-4" />
+              <Icons.borderAll className="mr-2 h-4 w-4" />
               Borders
             </Button>
           </DropdownMenuTrigger>
@@ -185,10 +173,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
           isMenu
           {...buttonProps}
         >
-          <Icons
-            name="Delete"
-            className="mr-2 h-4 w-4"
-          />
+          <Icons.delete className="mr-2 h-4 w-4" />
           Delete
         </Button>
       </>

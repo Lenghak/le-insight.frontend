@@ -30,7 +30,11 @@ export default function WriteEditor() {
           <ListTreeIcon className="size-5" />
         </Button> */}
 
-        <TooltipProvider>
+        <TooltipProvider
+          disableHoverableContent
+          delayDuration={500}
+          skipDelayDuration={0}
+        >
           <DndProvider backend={HTML5Backend}>
             <Plate plugins={EDITOR_PLUGINS}>
               <Editor

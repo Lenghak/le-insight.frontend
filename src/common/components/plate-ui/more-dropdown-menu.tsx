@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { MARK_SUBSCRIPT, MARK_SUPERSCRIPT } from "@udecode/plate-basic-marks";
@@ -28,7 +28,7 @@ export function MoreDropdownMenu(props: DropdownMenuProps) {
           pressed={openState.open}
           tooltip="Insert"
         >
-          <Icons name="MoreHorizontal" />
+          <Icons.more />
         </ToolbarButton>
       </DropdownMenuTrigger>
 
@@ -45,10 +45,7 @@ export function MoreDropdownMenu(props: DropdownMenuProps) {
             focusEditor(editor);
           }}
         >
-          <Icons
-            name="Superscript"
-            className="mr-2 h-5 w-5"
-          />
+          <Icons.superscript className="mr-2 h-5 w-5" />
           Superscript
           {/* (⌘+,) */}
         </DropdownMenuItem>
@@ -61,10 +58,7 @@ export function MoreDropdownMenu(props: DropdownMenuProps) {
             focusEditor(editor);
           }}
         >
-          <Icons
-            name="Subscript"
-            className="mr-2 h-5 w-5"
-          />
+          <Icons.subscript className="mr-2 h-5 w-5" />
           Subscript
           {/* (⌘+.) */}
         </DropdownMenuItem>

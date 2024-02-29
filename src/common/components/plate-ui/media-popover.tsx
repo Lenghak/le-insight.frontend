@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import {
   isSelectionExpanded,
@@ -61,10 +61,7 @@ export function MediaPopover({ pluginKey, children }: MediaPopoverProps) {
           <div className="flex w-[330px] flex-col">
             <div className="flex items-center">
               <div className="flex items-center pl-3 text-muted-foreground">
-                <Icons
-                  name="Link2"
-                  className="h-4 w-4"
-                />
+                <Icons.link className="h-4 w-4" />
               </div>
 
               <FloatingMediaPrimitive.UrlInput
@@ -94,10 +91,7 @@ export function MediaPopover({ pluginKey, children }: MediaPopoverProps) {
               size="sms"
               {...buttonProps}
             >
-              <Icons
-                name="Delete"
-                className="h-4 w-4"
-              />
+              <Icons.delete className="h-4 w-4" />
             </Button>
           </div>
         )}

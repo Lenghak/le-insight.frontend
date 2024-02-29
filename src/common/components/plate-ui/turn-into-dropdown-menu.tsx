@@ -1,3 +1,5 @@
+import { Icons } from "@/common/components/plate-ui/icons";
+
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
 import {
@@ -13,15 +15,6 @@ import {
 } from "@udecode/plate-common";
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
-import {
-  Heading1Icon,
-  Heading2Icon,
-  Heading3Icon,
-  ListIcon,
-  ListOrderedIcon,
-  TextQuoteIcon,
-  TypeIcon,
-} from "lucide-react";
 
 import {
   DropdownMenu,
@@ -39,44 +32,44 @@ const items = [
     value: ELEMENT_PARAGRAPH,
     label: "Paragraph",
     description: "Paragraph",
-    icon: TypeIcon,
+    icon: Icons.paragraph,
   },
   {
     value: ELEMENT_H1,
     label: "Heading 1",
     description: "Heading 1",
-    icon: Heading1Icon,
+    icon: Icons.h1,
   },
   {
     value: ELEMENT_H2,
     label: "Heading 2",
     description: "Heading 2",
-    icon: Heading2Icon,
+    icon: Icons.h2,
   },
   {
     value: ELEMENT_H3,
     label: "Heading 3",
     description: "Heading 3",
-    icon: Heading3Icon,
+    icon: Icons.h3,
   },
   {
     value: ELEMENT_BLOCKQUOTE,
     label: "Quote",
     description: "Quote (⌘+⇧+.)",
-    icon: TextQuoteIcon,
+    icon: Icons.blockquote,
   },
-  {
-    value: "ul",
-    label: "Bulleted list",
-    description: "Bulleted list",
-    icon: ListIcon,
-  },
-  {
-    value: "ol",
-    label: "Numbered list",
-    description: "Numbered list",
-    icon: ListOrderedIcon,
-  },
+  // {
+  //   value: 'ul',
+  //   label: 'Bulleted list',
+  //   description: 'Bulleted list',
+  //   icon: Icons.ul,
+  // },
+  // {
+  //   value: 'ol',
+  //   label: 'Numbered list',
+  //   description: 'Numbered list',
+  //   icon: Icons.ol,
+  // },
 ];
 
 const defaultItem = items.find((item) => item.value === ELEMENT_PARAGRAPH)!;
@@ -126,7 +119,7 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
 
       <DropdownMenuContent
         align="start"
-        className="min-w-0 rounded-lg"
+        className="min-w-0"
       >
         <DropdownMenuLabel>Turn into</DropdownMenuLabel>
 

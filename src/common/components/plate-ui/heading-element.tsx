@@ -12,7 +12,7 @@ const headingVariants = cva("", {
       h5: "mt-[0.75em] text-lg font-semibold tracking-tight",
       h6: "mt-[0.75em] text-base font-semibold tracking-tight",
     },
-    isFirstBlock: {
+    isfirstblock: {
       true: "mt-0",
       false: "",
     },
@@ -20,12 +20,12 @@ const headingVariants = cva("", {
 });
 
 const HeadingElementVariants = withVariants(PlateElement, headingVariants, [
-  "isFirstBlock",
+  "isfirstblock",
   "variant",
 ]);
 
 export const HeadingElement = withRef<typeof HeadingElementVariants>(
-  ({ variant = "h1", isFirstBlock, children, ...props }, ref) => {
+  ({ variant = "h1", isfirstblock, children, ...props }, ref) => {
     const { element, editor } = props;
 
     const Element = variant!;
@@ -35,7 +35,7 @@ export const HeadingElement = withRef<typeof HeadingElementVariants>(
         ref={ref}
         asChild
         variant={variant}
-        isFirstBlock={element === editor.children[0] || isFirstBlock}
+        isfirstblock={element === editor.children[0] || isfirstblock}
         {...props}
       >
         <Element>{children}</Element>

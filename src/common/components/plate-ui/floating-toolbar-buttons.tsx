@@ -1,4 +1,4 @@
-import { Icons } from "@/common/components/ui/icons";
+import { Icons } from "@/common/components/plate-ui/icons";
 
 import {
   MARK_BOLD,
@@ -26,31 +26,31 @@ export function FloatingToolbarButtons() {
             nodeType={MARK_BOLD}
             tooltip="Bold (⌘+B)"
           >
-            <Icons name="Bold" />
+            <Icons.bold />
           </MarkToolbarButton>
           <MarkToolbarButton
             nodeType={MARK_ITALIC}
             tooltip="Italic (⌘+I)"
           >
-            <Icons name="Italic" />
+            <Icons.italic />
           </MarkToolbarButton>
           <MarkToolbarButton
             nodeType={MARK_UNDERLINE}
             tooltip="Underline (⌘+U)"
           >
-            <Icons name="Underline" />
+            <Icons.underline />
           </MarkToolbarButton>
           <MarkToolbarButton
             nodeType={MARK_STRIKETHROUGH}
             tooltip="Strikethrough (⌘+⇧+M)"
           >
-            <Icons name="Strikethrough" />
+            <Icons.strikethrough />
           </MarkToolbarButton>
           <MarkToolbarButton
             nodeType={MARK_CODE}
             tooltip="Code (⌘+E)"
           >
-            <Icons name="Code2" />
+            <Icons.code />
           </MarkToolbarButton>
         </>
       )}
