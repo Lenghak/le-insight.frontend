@@ -15,7 +15,6 @@ export default function Logo({ className, ...props }: LogoProps) {
       }
       alt="Logo"
       className={cn("h-10 min-h-10 w-10 min-w-10", className)}
-      loading="lazy"
       {...props}
     />
   );

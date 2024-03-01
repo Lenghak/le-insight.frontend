@@ -14,7 +14,7 @@ export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
     <section
       className={cn(
         className,
-        "flex min-h-16 items-center justify-between gap-4 bg-card px-4 transition-all",
+        "flex min-h-16 items-center justify-between gap-4 px-4 transition-all",
       )}
       {...props}
     >
@@ -40,8 +40,6 @@ export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
 
         <ProfileDropdown />
       </div>
-
-      {/* Side Menu Toggle */}
     </section>
   );
 }

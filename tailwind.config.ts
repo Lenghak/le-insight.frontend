@@ -21,6 +21,10 @@ export default {
       fontFamily: {
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        xxs: ["0.625rem", "0.75rem"],
+        ...defaultTheme.fontSize,
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
