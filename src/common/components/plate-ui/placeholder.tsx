@@ -40,7 +40,7 @@ export const withPlaceholders = (components: unknown) =>
   withPlaceholdersPrimitive(components, [
     {
       key: ELEMENT_PARAGRAPH,
-      placeholder: "Type a paragraph",
+      placeholder: "Describe your paragraph with some context",
       hideOnBlur: true,
       query: {
         maxLevel: 1,
@@ -48,7 +48,8 @@ export const withPlaceholders = (components: unknown) =>
     },
     {
       key: ELEMENT_H1,
-      placeholder: "Title",
+      placeholder: "What is the title?",
       hideOnBlur: false,
+      query: { maxLevel: 1 },
     },
   ]);

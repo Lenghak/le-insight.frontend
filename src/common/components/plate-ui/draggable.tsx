@@ -13,6 +13,7 @@ import {
 } from "@udecode/plate-dnd";
 import { type DropTargetMonitor } from "react-dnd";
 
+import { Button } from "./button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export interface DraggableProps
@@ -80,10 +81,16 @@ export interface DraggableProps
 
 const dragHandle = (
   <Tooltip>
-    <TooltipTrigger>
-      <Icons.dragHandle className="h-4 w-4 text-muted-foreground" />
+    <TooltipTrigger asChild>
+      <Button
+        size={"icon"}
+        variant={"ghost"}
+        className="p-1"
+      >
+        <Icons.dragHandle className="h-4 w-4 text-muted-foreground" />
+      </Button>
     </TooltipTrigger>
-    <TooltipContent>Drag to move</TooltipContent>
+    <TooltipContent className="font-medium">Drag to move</TooltipContent>
   </Tooltip>
 );
 
@@ -92,7 +99,7 @@ export const Draggable = withRef<"div", DraggableProps>(
     const { element } = props;
 
     const state = useDraggableState({ element, onDropHandler });
-    const { dropLine, isDragging, isHovered } = state;
+    const { dropLine, isDragging } = state;
     const {
       groupProps,
       droplineProps,
@@ -128,9 +135,9 @@ export const Draggable = withRef<"div", DraggableProps>(
             >
               <div
                 ref={handleRef}
-                className="h-4 w-4"
+                className="pr-2"
               >
-                {isHovered && dragHandle}
+                {dragHandle}
               </div>
             </div>
           </div>

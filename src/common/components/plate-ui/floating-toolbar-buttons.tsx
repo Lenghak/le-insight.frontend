@@ -9,8 +9,10 @@ import {
 } from "@udecode/plate-basic-marks";
 import { useEditorReadOnly } from "@udecode/plate-common";
 
+import { AlignDropdownMenu } from "./align-dropdown-menu";
 import { MarkToolbarButton } from "./mark-toolbar-button";
 import { MoreDropdownMenu } from "./more-dropdown-menu";
+import { Separator } from "./separator";
 import { TurnIntoDropdownMenu } from "./turn-into-dropdown-menu";
 
 export function FloatingToolbarButtons() {
@@ -21,6 +23,12 @@ export function FloatingToolbarButtons() {
       {!readOnly && (
         <>
           <TurnIntoDropdownMenu />
+
+          <Separator className="h-6 w-[0.5px]" />
+
+          <AlignDropdownMenu />
+
+          <Separator className="h-6 w-[0.5px]" />
 
           <MarkToolbarButton
             nodeType={MARK_BOLD}
@@ -52,6 +60,8 @@ export function FloatingToolbarButtons() {
           >
             <Icons.code />
           </MarkToolbarButton>
+
+          <Separator className="h-6 w-[0.5px]" />
         </>
       )}
 

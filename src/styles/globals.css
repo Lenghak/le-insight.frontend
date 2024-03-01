@@ -89,8 +89,13 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    @apply w-full h-full flex items-start justify-center flex-col container
+  }
+
   body {
-    @apply bg-background text-foreground h-dvh w-full overflow-hidden font-sans scroll-smooth;
+    @apply bg-background text-foreground h-dvh overflow-hidden font-sans scroll-smooth container relative max-w-screen-2xl;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

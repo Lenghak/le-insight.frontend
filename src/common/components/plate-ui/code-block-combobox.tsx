@@ -68,7 +68,7 @@ export function CodeBlockCombobox() {
               <CommandItem
                 key={language.value}
                 value={language.value}
-                className="cursor-pointer"
+                className="cursor-pointer font-medium"
                 onSelect={(_value) => {
                   commandItemProps.onSelect(_value);
                   setOpen(false);

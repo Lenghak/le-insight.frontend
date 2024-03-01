@@ -34,7 +34,6 @@ import {
   createAutoformatPlugin,
   createBasicElementsPlugin,
   createBasicMarksPlugin,
-  createBoldPlugin,
   createComboboxPlugin,
   createDeletePlugin,
   createDeserializeCsvPlugin,
@@ -95,7 +94,7 @@ import {
   MARK_SUPERSCRIPT,
   MARK_UNDERLINE,
   PlateLeaf,
-  unwrapCodeBlock,
+  unwrapCodeBlock
 } from "@udecode/plate";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import {
@@ -104,10 +103,10 @@ import {
   autoformatLegalHtml,
   autoformatMath,
   autoformatPunctuation,
-  type AutoformatRule,
   autoformatSmartQuotes,
+  type AutoformatRule,
 } from "@udecode/plate-autoformat";
-import { createCaptionPlugin } from "@udecode/plate-caption";
+import { createCloudAttachmentPlugin, createCloudImagePlugin } from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
@@ -179,24 +178,24 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    createBoldPlugin(),
-    createCaptionPlugin({
-      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
-    }),
+    // createBoldPlugin(),
+    // createCaptionPlugin({
+    //   options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
+    // }),
     // createCloudPlugin({
     //   options: {
-    //     apiKey: env.PORTIVE_API_KEY,
+    //     // apiKey: env.PORTIVE_API_KEY,
     //   },
     // }),
-    // createCloudAttachmentPlugin(),
-    // createCloudImagePlugin({
-    //   options: {
-    //     maxInitialWidth: 320,
-    //     maxInitialHeight: 320,
-    //     minResizeWidth: 100,
-    //     maxResizeWidth: 720,
-    //   },
-    // }),
+    createCloudAttachmentPlugin(),
+    createCloudImagePlugin({
+      options: {
+        maxInitialWidth: 320,
+        maxInitialHeight: 320,
+        minResizeWidth: 100,
+        maxResizeWidth: 720,
+      },
+    }),
     createComboboxPlugin(),
     createDndPlugin({ options: { enableScroller: true } }),
     createDeletePlugin(),

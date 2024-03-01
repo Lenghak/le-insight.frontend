@@ -30,7 +30,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
   useOpenState,
 } from "./dropdown-menu";
@@ -135,10 +134,10 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
           pressed={openState.open}
           tooltip="Turn into"
           isDropdown
-          className="lg:min-w-[130px]"
+          className="gap-1"
         >
-          <SelectedItemIcon className="size-4 lg:hidden" />
-          <span className="max-lg:hidden">{selectedItemLabel}</span>
+          <SelectedItemIcon className="size-4" />
+          <span className="sr-only">{selectedItemLabel}</span>
         </ToolbarButton>
       </DropdownMenuTrigger>
 
@@ -146,9 +145,9 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
         align="start"
         className="min-w-0"
       >
-        <DropdownMenuLabel>Turn into</DropdownMenuLabel>
-
-        <DropdownMenuSeparator />
+        <DropdownMenuLabel className="text-xs font-bold uppercase tracking-wide">
+          HIERARCHY
+        </DropdownMenuLabel>
 
         <DropdownMenuRadioGroup
           className="flex flex-col gap-0.5"
