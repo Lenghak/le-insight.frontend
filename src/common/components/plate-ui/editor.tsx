@@ -1,8 +1,8 @@
 import { cn } from "@udecode/cn";
-import { PlateContent } from "@udecode/plate-common";
 import type { PlateContentProps } from "@udecode/plate-common";
-import { cva } from "class-variance-authority";
+import { PlateContent } from "@udecode/plate-common";
 import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import React from "react";
 
 const editorVariants = cva(
@@ -86,4 +86,4 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
 );
 Editor.displayName = "Editor";
 
-export { Editor };
+export default Editor;

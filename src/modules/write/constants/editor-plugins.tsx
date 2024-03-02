@@ -106,7 +106,6 @@ import {
   autoformatSmartQuotes,
   type AutoformatRule,
 } from "@udecode/plate-autoformat";
-import { createCloudAttachmentPlugin, createCloudImagePlugin } from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
@@ -178,7 +177,6 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    // createBoldPlugin(),
     // createCaptionPlugin({
     //   options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     // }),
@@ -187,15 +185,15 @@ export const EDITOR_PLUGINS = createPlugins(
     //     // apiKey: env.PORTIVE_API_KEY,
     //   },
     // }),
-    createCloudAttachmentPlugin(),
-    createCloudImagePlugin({
-      options: {
-        maxInitialWidth: 320,
-        maxInitialHeight: 320,
-        minResizeWidth: 100,
-        maxResizeWidth: 720,
-      },
-    }),
+    // createCloudAttachmentPlugin(),
+    // createCloudImagePlugin({
+    //   options: {
+    //     maxInitialWidth: 320,
+    //     maxInitialHeight: 320,
+    //     minResizeWidth: 100,
+    //     maxResizeWidth: 720,
+    //   },
+    // }),
     createComboboxPlugin(),
     createDndPlugin({ options: { enableScroller: true } }),
     createDeletePlugin(),

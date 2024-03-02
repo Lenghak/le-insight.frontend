@@ -1,8 +1,13 @@
+import { env } from "@/core/env";
 import type { APIContext, MiddlewareNext } from "astro";
 import * as middleware from "astro/virtual-modules/middleware.js";
 import { getSession } from "auth-astro/server";
 
-//  async function cors(context: APIContext, next: MiddlewareNext) {}
+async function cors(context: APIContext, next: MiddlewareNext) {
+  if (context.url.origin !== env.ORIGIN) return context.redirect("/403");
+
+  return await next();
+}
 
 async function auth(context: APIContext, next: MiddlewareNext) {
   const currentPathname = context.url.pathname;
@@ -25,4 +30,4 @@ async function auth(context: APIContext, next: MiddlewareNext) {
   return await next();
 }
 
-export const onRequest = middleware.sequence(auth);
+export const onRequest = middleware.sequence(cors, auth);
