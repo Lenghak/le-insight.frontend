@@ -2,8 +2,8 @@ import { cn } from "@udecode/cn";
 import {
   createNodeHOC,
   createNodesHOC,
-  type PlaceholderProps,
   usePlaceholderState,
+  type PlaceholderProps,
 } from "@udecode/plate-common";
 import { ELEMENT_H1 } from "@udecode/plate-heading";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
@@ -24,7 +24,7 @@ export const Placeholder = (props: PlaceholderProps) => {
         ...nodeProps,
         className: cn(
           enabled &&
-            "before:absolute before:cursor-text before:opacity-30 before:content-[attr(placeholder)]",
+          "before:absolute before:cursor-text before:opacity-30 before:content-[attr(placeholder)]",
         ),
         placeholder,
       },
