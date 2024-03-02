@@ -15,13 +15,11 @@ import { Muted } from "@/common/components/ui/muted";
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "auth-astro/client";
-import { AxiosError } from "axios";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { type z } from "zod";
+import useSignInService from "../hooks/use-sign-in-service";
 
 export default function SignInForm() {
   const form = useForm<z.infer<typeof SignInRequestSchema>>({
@@ -34,41 +32,14 @@ export default function SignInForm() {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
+  const { mutate: signIn, isPending: isSigningIn } = useSignInService()
+
   return (
     <Form {...form}>
       <form
         method="POST"
         onSubmit={form.handleSubmit((values) => {
-          signIn("credentials", {
-            redirect: false,
-            callbackUrl: "/auth/sign-in",
-            ...values,
-          })
-            .then(async (res) => {
-              const json = (await res?.json()) as { url?: string };
-              if (json?.url?.includes("?"))
-                toast.error("Invalid Credential", {
-                  closeButton: true,
-                  duration: 10 * 1000,
-                  description:
-                    "The email and password are invalid. Please check and try again.",
-                });
-            })
-            .catch((err) =>
-              toast.error(
-                err instanceof AxiosError && err.response?.status === 401
-                  ? "Invalid Credential"
-                  : "Sign In Failed",
-                {
-                  closeButton: true,
-                  duration: 10 * 1000,
-                  description:
-                    err instanceof AxiosError && err.response?.status === 401
-                      ? "The email and password are invalid. Please check and try again."
-                      : "There was a technical problem while creating your account. Please try again later.",
-                },
-              ),
-            );
+          signIn(values)
         })}
         className="w-full space-y-2"
       >
@@ -139,10 +110,12 @@ export default function SignInForm() {
         </div>
 
         <Button
-          type="submit"
-          className="w-full rounded-md font-bold"
+          type={isSigningIn ? "button" : "submit"}
+          disabled={isSigningIn}
+          className={cn("w-full rounded-md font-bold transition-all gap-0", isSigningIn && "gap-4")}
         >
-          Sign In
+          <Loader2Icon className={cn("size-0 animate-spin", isSigningIn && "size-4")} />
+          <span>Sign In</span>
         </Button>
 
         <Muted className="text-center">

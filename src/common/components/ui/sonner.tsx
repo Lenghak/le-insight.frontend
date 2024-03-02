@@ -12,11 +12,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
       className="toaster group"
       toastOptions={{
         classNames: {
-          default: "bg-default text-foreground",
-          warning: "warning group toast group-[.toaster]:text-warning",
-          info: "informative group toast group-[.toaster]:text-informative",
-          success: "successive group toast group-[.toaster]:text-successive",
-          error: "destructive group toast group-[.toaster]:text-destructive",
+          default: "bg-default group toast text-foreground group-[.toaster]:border-l-4 border-l-primary",
+          warning: "warning group toast group-[.toaster]:text-warning group-[.toaster]:border-l-warning",
+          info: "informative group toast group-[.toaster]:text-informative group-[.toaster]:border-l-informative",
+          success: "successive group toast group-[.toaster]:text-successive group-[.toaster]:border-l-successive",
+          error: "destructive group toast group-[.toaster]:text-destructive group-[.toaster]:border-l-destructive",
           toast:
             "group toast group-[.toaster]:bg-card group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:font-sans",
           description:

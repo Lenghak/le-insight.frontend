@@ -11,9 +11,11 @@ import {
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
 
+import { cn } from "@/common/lib/utils";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -46,23 +48,19 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
-  const { mutate: resetPassword, isSuccess } = useResetPasswordService();
-
-  useEffect(() => {
-    if (isSuccess) {
-      window.location.replace("/");
-    }
-  }, [isSuccess]);
+  const { mutateAsync: resetPassword, isPending: isResettingPassword } =
+    useResetPasswordService();
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) =>
-          resetPassword({
-            token,
-            password: values.newPassword,
-            confirmPassword: values.confirmPassword,
-          }),
+        onSubmit={form.handleSubmit(
+          async (values) =>
+            await resetPassword({
+              token,
+              password: values.newPassword,
+              confirmPassword: values.confirmPassword,
+            }),
         )}
         className="flex w-full flex-col gap-4"
       >
@@ -149,10 +147,20 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
         />
 
         <Button
-          type="submit"
-          className="mt-4 w-full rounded-md font-bold"
+          type={isResettingPassword ? "button" : "submit"}
+          disabled={isResettingPassword}
+          className={cn(
+            "w-full gap-0 rounded-md font-bold transition-all",
+            isResettingPassword && "gap-4",
+          )}
         >
-          Reset Password
+          <Loader2Icon
+            className={cn(
+              "size-0 animate-spin",
+              isResettingPassword && "size-4",
+            )}
+          />
+          <span>Reset Password</span>
         </Button>
       </form>
     </Form>

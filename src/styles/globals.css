@@ -91,11 +91,11 @@
   }
   
   html {
-    @apply w-full h-full flex items-start justify-center flex-col
+    @apply w-screen h-full flex items-start justify-center flex-col
   }
 
   body {
-    @apply bg-background text-foreground h-dvh overflow-hidden font-sans scroll-smooth relative max-w-screen-2xl;
+    @apply bg-background text-foreground h-dvh w-screen overflow-hidden font-sans scroll-smooth relative max-w-screen-2xl;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

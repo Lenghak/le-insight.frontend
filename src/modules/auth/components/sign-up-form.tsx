@@ -15,7 +15,7 @@ import { Muted } from "@/common/components/ui/muted";
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -41,7 +41,7 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutate: signUp } = useSignUpService();
+  const { mutate: signUp, isPending: isSigningUp } = useSignUpService();
 
   return (
     <Form {...form}>
@@ -151,10 +151,12 @@ export default function SignUpForm() {
         </Muted>
 
         <Button
-          type="submit"
-          className="w-full rounded-md font-bold"
+          type={isSigningUp ? "button" : "submit"}
+          disabled={isSigningUp}
+          className={cn("w-full rounded-md font-bold transition-all gap-0", isSigningUp && "gap-4")}
         >
-          Sign Up
+          <Loader2Icon className={cn("size-0 animate-spin", isSigningUp && "size-4")} />
+          <span>Sign Up</span>
         </Button>
       </form>
     </Form>
