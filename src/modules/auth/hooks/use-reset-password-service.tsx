@@ -8,6 +8,7 @@ import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export const useResetPasswordService = () => {
+
   return useMutation(
     {
       mutationKey: authKeys.operation("reset-password"),
@@ -31,7 +32,7 @@ export const useResetPasswordService = () => {
         }
       },
       onSuccess: () => {
-        toast.error("Password Reset Successfully", {
+        toast.success("Password Reset Successfully", {
           closeButton: true,
           duration: 10 * 1000,
           description:
