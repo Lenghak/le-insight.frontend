@@ -21,9 +21,9 @@ if (!session?.user) {
 const token = Astro.url.searchParams.get("token");
 
 const status = {
-  title: "Internal Server Error",
+  title: "Invalid Token",
   description:
-    "We cannot verify your email right now due to some technical problems on our ends. Please try again later.",
+    "Your token is invalid or has already expired. You can request for a new token to your email again.",
 };
 
 if (token) {
@@ -43,18 +43,14 @@ if (token) {
         status.title = "Too Many Request";
         status.description =
           "You have requested multiple requests in a short period of time. You need to wait for a while in order to request again.";
-      } else if (error.response?.status === 400) {
-        status.title = "Invalid Token";
-        status.description =
-          "Your token is invalid or has already expired. You can request for a new token to your email again.";
       }
+    } else {
+      status.title = "Internal Server Error";
+      status.description =
+        "We cannot verify your email right now due to some technical problems on our ends. Please try again later.";
     }
   }
 }
-
-// if the token is verified
-// - then show success message
-// - else show invalid token
 ---
 
 <RootLayout title="Le-Insight | Forgot Password">

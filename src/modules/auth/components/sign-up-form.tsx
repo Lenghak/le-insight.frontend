@@ -16,9 +16,10 @@ import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import useSignInService from "../hooks/use-sign-in-service";
 
 const SignUpFormSchema = z.object({
   firstName: z.string().trim().min(1, "Enter your first name"),
@@ -41,12 +42,21 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutate: signUp, isPending: isSigningUp } = useSignUpService();
+  const { mutate: signUp, isPending: isSigningUp, isSuccess: isSignUpSuccess } = useSignUpService();
+  const { mutate: signIn } = useSignInService()
+
+  useEffect(() => {
+    if (isSignUpSuccess) {
+      signIn({
+        email: form.getValues().email,
+        password: form.getValues().password
+      })
+    }
+  }, [isSignUpSuccess])
 
   return (
     <Form {...form}>
       <form
-        method="POST"
         onSubmit={form.handleSubmit((values) => signUp(values))}
         className="w-full space-y-2"
       >

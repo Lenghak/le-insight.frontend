@@ -42,7 +42,11 @@ export default function useSignInService() {
               },
             ),
           ),
+      onSuccess: () => {
+        return window.location.replace("/")
+      }
     },
+
     queryClient,
   );
 }
