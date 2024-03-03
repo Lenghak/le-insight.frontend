@@ -6,7 +6,7 @@ import { getSession } from "auth-astro/server";
 async function cors(context: APIContext, next: MiddlewareNext) {
   if (context.url.origin !== env.ORIGIN) return context.redirect("/403");
 
-  return await next();
+  return next();
 }
 
 async function auth(context: APIContext, next: MiddlewareNext) {
@@ -27,7 +27,7 @@ async function auth(context: APIContext, next: MiddlewareNext) {
     return context.redirect("/");
   }
 
-  return await next();
+  return next();
 }
 
 export const onRequest = middleware.sequence(cors, auth);

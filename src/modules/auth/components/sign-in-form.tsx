@@ -14,12 +14,12 @@ import { Muted } from "@/common/components/ui/muted";
 
 import { cn } from "@/common/lib/utils";
 
+import useSignInService from "@/modules/auth/hooks/use-sign-in-service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
-import useSignInService from "../hooks/use-sign-in-service";
 
 export default function SignInForm() {
   const form = useForm<z.infer<typeof SignInRequestSchema>>({
