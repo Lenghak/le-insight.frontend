@@ -48,20 +48,20 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
-  const { mutateAsync: resetPassword, isPending: isResettingPassword } =
+  const { mutate: resetPassword, isPending: isResettingPassword } =
     useResetPasswordService();
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(
-          async (values) =>
-            await resetPassword({
-              token,
-              password: values.newPassword,
-              confirmPassword: values.confirmPassword,
-            }),
-        )}
+        onSubmit={form.handleSubmit((values) => {
+          resetPassword({
+            token: token?.length > 0 ? token : new URLSearchParams(window.location.search).get("token") ?? "",
+            password: values.newPassword,
+            confirmPassword: values.confirmPassword,
+          });
+
+        })}
         className="flex w-full flex-col gap-4"
       >
         <FormField

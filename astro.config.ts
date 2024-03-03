@@ -8,12 +8,7 @@ import million from "million/compiler";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel({
-    edgeMiddleware: true,
-    isr: {
-      expiration: 60 * 60,
-    },
-  }),
+  adapter: vercel(),
   integrations: [
     tailwind({
       applyBaseStyles: false,

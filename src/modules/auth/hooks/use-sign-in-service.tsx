@@ -38,11 +38,15 @@ export default function useSignInService() {
                 description:
                   err instanceof AxiosError && err.response?.status === 401
                     ? "The email and password are invalid. Please check and try again."
-                    : "There was a technical problem while creating your account. Please try again later.",
+                    : "There was a technical problem while signing you in. Please try again later.",
               },
             ),
           ),
+      onSuccess: () => {
+        return window.location.replace("/")
+      }
     },
+
     queryClient,
   );
 }

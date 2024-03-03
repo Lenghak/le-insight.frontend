@@ -9,6 +9,7 @@ import WriteLayout from "@/modules/write/layouts/write-layout.astro";
   <WriteLayout>
     <HeaderMenu
       className="fixed top-0 z-50 col-span-full w-full max-w-screen-2xl backdrop-blur-md"
+      client:load
     />
 
     <WriteEditor client:only="react" />
