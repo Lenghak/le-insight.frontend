@@ -126,17 +126,17 @@ dependencies:
     specifier: ^0.9.2
     version: 0.9.2(typescript@5.3.3)(zod@3.22.4)
   '@tanstack/query-core':
-    specifier: ^5.24.1
-    version: 5.24.1
+    specifier: ^5.24.6
+    version: 5.24.6
   '@tanstack/react-query':
-    specifier: ^5.24.1
-    version: 5.24.1(react@18.2.0)
+    specifier: ^5.24.6
+    version: 5.24.6(react@18.2.0)
   '@udecode/cn':
     specifier: ^29.0.1
     version: 29.0.1(@types/react@18.2.61)(class-variance-authority@0.7.0)(react-dom@18.2.0)(react@18.2.0)(tailwind-merge@2.2.1)
   '@udecode/plate':
-    specifier: ^30.8.0
-    version: 30.8.0(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+    specifier: ^30.9.0
+    version: 30.9.0(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
   '@udecode/plate-alignment':
     specifier: ^30.5.3
     version: 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
@@ -291,8 +291,8 @@ dependencies:
     specifier: ^0.344.0
     version: 0.344.0(react@18.2.0)
   million:
-    specifier: ^3.0.3
-    version: 3.0.3
+    specifier: ^3.0.4
+    version: 3.0.4
   nanostores:
     specifier: ^0.10.0
     version: 0.10.0
@@ -327,8 +327,8 @@ dependencies:
     specifier: ^2.4.0
     version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
   react-resizable-panels:
-    specifier: ^2.0.11
-    version: 2.0.11(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^2.0.12
+    version: 2.0.12(react-dom@18.2.0)(react@18.2.0)
   react-tweet:
     specifier: ^3.2.0
     version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
@@ -3135,16 +3135,16 @@ packages:
       - typescript
     dev: true
 
-  /@tanstack/query-core@5.24.1:
-    resolution: {integrity: sha512-DZ6Nx9p7BhjkG50ayJ+MKPgff+lMeol7QYXkvuU5jr2ryW/4ok5eanaS9W5eooA4xN0A/GPHdLGOZGzArgf5Cg==}
+  /@tanstack/query-core@5.24.6:
+    resolution: {integrity: sha512-xYhxiMUPh1JzamVK8VwwkBpIBXVYRyIBW9gjSN+/BB4kL1nS86gnRWeW8L+sacCj1RiyEsysJe3GSvtbIpHdWw==}
     dev: false
 
-  /@tanstack/react-query@5.24.1(react@18.2.0):
-    resolution: {integrity: sha512-4+09JEdO4d6+Gc8Y/g2M/MuxDK5IY0QV8+2wL2304wPKJgJ54cBbULd3nciJ5uvh/as8rrxx6s0mtIwpRuGd1g==}
+  /@tanstack/react-query@5.24.6(react@18.2.0):
+    resolution: {integrity: sha512-eyIWwHiO1ZirYGzqs0kfRMkf8icuXroFunjnsgntk9YgGFbGoPs3Hxy9/OushNvpnkHT9RwPZb8UfEKzMzzEaQ==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.24.1
+      '@tanstack/query-core': 5.24.6
       react: 18.2.0
     dev: false
 
@@ -3853,8 +3853,8 @@ packages:
       - scheduler
     dev: false
 
-  /@udecode/plate-diff@30.8.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
-    resolution: {integrity: sha512-0WPpMUrZU9tehuNber8YPCrjfx9WKEOPCgSRPOp+suJBkoQsfkb/wsSxHBbiWdSkfmSmtzkBIJdxiqAavED2/Q==}
+  /@udecode/plate-diff@30.9.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
+    resolution: {integrity: sha512-FiChegLUmW4T4iFDMxBCUjExn0C1rgi4rZM57HtJ6phN3EyotPWHXgn2R7cfGhL6vBAY+4E44CS69dVyeKzkcg==}
     peerDependencies:
       '@udecode/plate-common': '>=30.4.5 < 31'
       react: '>=16.8.0'
@@ -4484,8 +4484,8 @@ packages:
       - supports-color
     dev: false
 
-  /@udecode/plate-suggestion@30.8.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
-    resolution: {integrity: sha512-QAb8b1/7Ym2HbXGzvRnsRf5h16aQhLJWZbRVKOrI3OrdfGKc6yNS1MTmGLkfOd04RW8lRN+FVJZC7Bc7Qjgpwg==}
+  /@udecode/plate-suggestion@30.9.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
+    resolution: {integrity: sha512-Ca1el7ei+pvm1SAh6nIgUQbH4cNpoi3nfkQFvAg96V2G+Yn9dBBcHIJ6w/971hgJ7Lp7tzGaUdlwfCjjdO1J5Q==}
     peerDependencies:
       '@udecode/plate-common': '>=30.4.5 < 31'
       react: '>=16.8.0'
@@ -4496,7 +4496,7 @@ packages:
       slate-react: '>=0.99.0'
     dependencies:
       '@udecode/plate-common': 30.4.5(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
-      '@udecode/plate-diff': 30.8.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+      '@udecode/plate-diff': 30.9.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -4623,8 +4623,8 @@ packages:
       - scheduler
     dev: false
 
-  /@udecode/plate@30.8.0(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
-    resolution: {integrity: sha512-DF1T/fagts7pev7l9jsZU7IiEuWPdBXWQHwJn/E+XMYNyoE6N5/WnNxkEckA3jgu2B8K5LoESwrZ+MOpIJ0d3A==}
+  /@udecode/plate@30.9.0(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
+    resolution: {integrity: sha512-HqTP14SeKGxEtvmfmmL1FcyDnmEDD+crui4BZasiYdw0zQi+xwlih+P4Z2qKiGTfzioxmmIUFlNAzxVHrXLPcA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -4643,7 +4643,7 @@ packages:
       '@udecode/plate-combobox': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-comments': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-common': 30.4.5(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
-      '@udecode/plate-diff': 30.8.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+      '@udecode/plate-diff': 30.9.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-find-replace': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-floating': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-font': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
@@ -4668,7 +4668,7 @@ packages:
       '@udecode/plate-serializer-docx': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-serializer-html': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-serializer-md': 30.7.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
-      '@udecode/plate-suggestion': 30.8.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+      '@udecode/plate-suggestion': 30.9.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-tabbable': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-table': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-toggle': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
@@ -7704,8 +7704,8 @@ packages:
       braces: 3.0.2
       picomatch: 2.3.1
 
-  /million@3.0.3:
-    resolution: {integrity: sha512-fuFF18eBfAQy/+0EnZbqi7lVyJqT0EISboz9bG5tKG0Be3KL2chG4cCp2Bv9wdU6WXI4RZ4mh1gtR4ZPoGn1Vw==}
+  /million@3.0.4:
+    resolution: {integrity: sha512-ioO9dUL4nw6AfNMmZ60k52O3B0UoQSNzoD4pHnoROn7Zr1Cl7b7k//TgbhC/Sazq8eSjIku2+dme67AQn/sB3w==}
     hasBin: true
     dependencies:
       '@babel/core': 7.24.0
@@ -8717,8 +8717,8 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.2.61)(react@18.2.0)
     dev: false
 
-  /react-resizable-panels@2.0.11(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-tA3OvGFEK/U9rKuEg6TpXcr+i+cN5X8B4UIvs7jqr5lby629pDTGvqRjo1EJLhBpRZfkg0Zz1INJlSYigaS99g==}
+  /react-resizable-panels@2.0.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-m0cfwlVQ+460iQbOSVfs3MljVniHI/LGpHGQBa7aNCYUYwaERHcf5W/lCTsoRhbGQfMW9An0M8gxUHILA53Jeg==}
     peerDependencies:
       react: ^16.14.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
