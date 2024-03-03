@@ -7,8 +7,9 @@ import { cn } from "@/common/lib/utils";
 
 import type { HTMLAttributes } from "react";
 
-interface HeaderMenuProps extends HTMLAttributes<HTMLDivElement> {}
+interface HeaderMenuProps extends HTMLAttributes<HTMLDivElement> { }
 
+// million-ignore
 export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
   return (
     <section

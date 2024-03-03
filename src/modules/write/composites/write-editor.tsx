@@ -9,6 +9,7 @@ import { Plate } from "@udecode/plate-common";
 import { Suspense, lazy } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import EditorSkeletons from "./editor-skeleton";
 
 const initialValue = [
   { type: "h1", children: [{ text: "" }] },
@@ -22,7 +23,7 @@ const Editor = lazy(() => import("@/common/components/plate-ui/editor"))
 
 export default function WriteEditor() {
   return (
-    <section className="relative col-span-full mt-14 w-full overflow-y-auto p-4 [&_.slate-selection-area]:border [&_.slate-selection-area]:border-primary [&_.slate-selection-area]:bg-primary/20">
+    <section className="relative col-span-full mt-14 w-full overflow-y-auto p-4 [&_.slate-selection-area]:border [&_.slate-selection-area]:border-primary [&_.slate-selection-area]:bg-primary/20 max-w-screen-xl">
       <TooltipProvider
         disableHoverableContent
         delayDuration={500}
@@ -33,7 +34,7 @@ export default function WriteEditor() {
             plugins={EDITOR_PLUGINS}
             initialValue={initialValue}
           >
-            <Suspense fallback={<>Loading...</>}>
+            <Suspense fallback={<EditorSkeletons />}>
               <Editor
                 className="min-h-full w-full overflow-hidden px-8 pt-12 sm:px-24 md:px-48 lg:px-64"
                 variant={"ghost"}
