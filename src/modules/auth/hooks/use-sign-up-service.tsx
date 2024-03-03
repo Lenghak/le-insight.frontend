@@ -4,17 +4,17 @@ import type { SignUpRequestType } from "@/modules/auth/types/sign-up-schema";
 
 import { queryClient } from "@/common/stores/api-store";
 import { useMutation } from "@tanstack/react-query";
-import { signIn } from "auth-astro/client";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export default function useSignUpService() {
+
   return useMutation(
     {
       mutationKey: authKeys.operation("sign-up"),
       mutationFn: async (signUpRequest: SignUpRequestType) => {
         try {
-          await postSignUp(signUpRequest);
+          return await postSignUp(signUpRequest);
         } catch (err) {
           if (err instanceof AxiosError) {
             toast.error(
@@ -32,12 +32,6 @@ export default function useSignUpService() {
             );
           }
         }
-
-        return await signIn("credentials", {
-          redirect: false,
-          callbackUrl: "/auth/sign-up",
-          ...signUpRequest,
-        });
       },
     },
     queryClient,
