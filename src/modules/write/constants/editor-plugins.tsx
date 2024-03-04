@@ -4,12 +4,14 @@ import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
 import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
+import { ExcalidrawElement } from "@/common/components/plate-ui/excalidraw-element";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
 import { HrElement } from "@/common/components/plate-ui/hr-element";
 import { ImageElement } from "@/common/components/plate-ui/image-element";
 import { KbdLeaf } from "@/common/components/plate-ui/kbd-leaf";
 import { LinkElement } from "@/common/components/plate-ui/link-element";
+import { LinkFloatingToolbar } from "@/common/components/plate-ui/link-floating-toolbar";
 import { MediaEmbedElement } from "@/common/components/plate-ui/media-embed-element";
 import { MentionElement } from "@/common/components/plate-ui/mention-element";
 import { MentionInputElement } from "@/common/components/plate-ui/mention-input-element";
@@ -44,11 +46,15 @@ import {
   createFontColorPlugin,
   createFontFamilyPlugin,
   createFontSizePlugin,
+  createFontWeightPlugin,
   createHorizontalRulePlugin,
+  createImagePlugin,
   createIndentListPlugin,
   createIndentPlugin,
   createKbdPlugin,
   createLineHeightPlugin,
+  createLinkPlugin,
+  createMediaEmbedPlugin,
   createMentionPlugin,
   createPlugins,
   createResetNodePlugin,
@@ -106,11 +112,14 @@ import {
   autoformatSmartQuotes,
   type AutoformatRule,
 } from "@udecode/plate-autoformat";
+import { createCaptionPlugin } from "@udecode/plate-caption";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
+  type RenderAfterEditable,
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
+import { createExcalidrawPlugin, ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   createHighlightPlugin,
   MARK_HIGHLIGHT,
@@ -194,12 +203,16 @@ export const EDITOR_PLUGINS = createPlugins(
     //     maxResizeWidth: 720,
     //   },
     // }),
+    createCaptionPlugin({
+      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
+    }),
     createComboboxPlugin(),
     createDndPlugin({ options: { enableScroller: true } }),
     createDeletePlugin(),
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
     createDeserializeMdPlugin(),
+    createExcalidrawPlugin(),
     createExitBreakPlugin({
       options: {
         rules: [
@@ -227,8 +240,10 @@ export const EDITOR_PLUGINS = createPlugins(
     createFontColorPlugin(),
     createFontFamilyPlugin(),
     createFontSizePlugin(),
+    createFontWeightPlugin(),
     createHighlightPlugin(),
     createHorizontalRulePlugin(),
+    createImagePlugin(),
     createIndentPlugin({
       inject: {
         props: {
@@ -254,6 +269,10 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
+    createLinkPlugin({
+      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable
+    }),
+    createMediaEmbedPlugin(),
     createMentionPlugin(),
     createNodeIdPlugin(),
     createNormalizeTypesPlugin({
@@ -288,7 +307,11 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createSelectOnBackspacePlugin({
-      options: { query: { allow: [ELEMENT_HR] } },
+      options: {
+        query: {
+          allow: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED, ELEMENT_HR, ELEMENT_EXCALIDRAW],
+        },
+      },
     }),
     createSoftBreakPlugin({
       options: {
@@ -336,6 +359,7 @@ export const EDITOR_PLUGINS = createPlugins(
         [ELEMENT_TD]: TableCellElement,
         [ELEMENT_TH]: TableCellHeaderElement,
         [ELEMENT_TODO_LI]: TodoListElement,
+        [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
         [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
         [MARK_CODE]: CodeLeaf,
         [MARK_COMMENT]: CommentLeaf,

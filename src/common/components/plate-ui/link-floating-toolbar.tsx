@@ -8,12 +8,12 @@ import {
 } from "@udecode/plate-floating";
 import {
   FloatingLinkUrlInput,
-  type LinkFloatingToolbarState,
   LinkOpenButton,
   useFloatingLinkEdit,
   useFloatingLinkEditState,
   useFloatingLinkInsert,
   useFloatingLinkInsertState,
+  type LinkFloatingToolbarState,
 } from "@udecode/plate-link";
 
 import { buttonVariants } from "./button";

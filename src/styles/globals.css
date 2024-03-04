@@ -95,7 +95,7 @@
   }
 
   body {
-    @apply bg-background text-foreground h-dvh w-screen overflow-hidden font-sans scroll-smooth relative max-w-screen-2xl;
+    @apply bg-background text-foreground h-dvh w-screen overflow-hidden font-sans scroll-smooth relative;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
