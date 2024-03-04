@@ -4,7 +4,7 @@ import {
   useColorDropdownMenuState,
 } from "@udecode/plate-font";
 
-import { DEFAULT_COLORS, DEFAULT_CUSTOM_COLORS } from "../../constants/color-constants";
+import { DEFAULT_COLORS, DEFAULT_CUSTOM_COLORS } from "@/common/constants/color-constants";
 import { ColorPicker } from "./color-picker";
 import {
   DropdownMenu,
@@ -13,11 +13,6 @@ import {
 } from "./dropdown-menu";
 import { ToolbarButton } from "./toolbar";
 
-export type TColor = {
-  name: string;
-  value: string;
-  isBrightColor: boolean;
-};
 
 type ColorDropdownMenuProps = {
   nodeType: string;

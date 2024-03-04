@@ -1,3 +1,9 @@
+export type TColor = {
+  name: string;
+  value: string;
+  isBrightColor: boolean;
+};
+
 export const DEFAULT_COLORS = [
   {
     name: "Black",
