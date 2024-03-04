@@ -1,6 +1,6 @@
 import { Icons } from "@/common/components/plate-ui/icons";
 
-import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
+import { type DropdownMenuProps as PrimitiveDropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
 import {
   ELEMENT_CODE_BLOCK,
@@ -22,9 +22,11 @@ import {
 } from "@udecode/plate-media";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import { ELEMENT_TABLE, insertTable } from "@udecode/plate-table";
-import { ClapperboardIcon, MinusIcon } from "lucide-react";
+import { ClapperboardIcon, MinusIcon, PencilLineIcon } from "lucide-react";
 import React from "react";
 
+import { cn } from "@/common/lib/utils";
+import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +37,11 @@ import {
   useOpenState,
 } from "./dropdown-menu";
 import { ToolbarButton } from "./toolbar";
+
+interface DropdownMenuProps extends PrimitiveDropdownMenuProps {
+  triggerClassName?: string
+  isDropdown?: boolean
+}
 
 const items = [
   {
@@ -117,6 +124,12 @@ const items = [
         description: "Embed",
         icon: ClapperboardIcon,
       },
+      {
+        value: ELEMENT_EXCALIDRAW,
+        label: "Excalidraw",
+        description: "Excalidraw",
+        icon: PencilLineIcon,
+      },
     ],
   },
   {
@@ -132,6 +145,7 @@ const items = [
   },
 ];
 
+
 export function InsertDropdownMenu(props: DropdownMenuProps) {
   const editor = useEditorRef();
   const openState = useOpenState();
@@ -144,9 +158,10 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
     >
       <DropdownMenuTrigger asChild>
         <ToolbarButton
+          className={cn(props.triggerClassName)}
           pressed={openState.open}
           tooltip="Insert"
-          isDropdown
+          isDropdown={props.isDropdown ?? true}
         >
           <Icons.add />
         </ToolbarButton>
@@ -170,19 +185,16 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                     switch (type) {
                       case ELEMENT_CODE_BLOCK: {
                         insertEmptyCodeBlock(editor);
-
                         break;
                       }
                       case ELEMENT_IMAGE: {
                         await insertMedia(editor, { type: ELEMENT_IMAGE });
-
                         break;
                       }
                       case ELEMENT_MEDIA_EMBED: {
                         await insertMedia(editor, {
                           type: ELEMENT_MEDIA_EMBED,
                         });
-
                         break;
                       }
                       case "ul":
@@ -203,12 +215,10 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                       }
                       case ELEMENT_TABLE: {
                         insertTable(editor);
-
                         break;
                       }
                       case ELEMENT_LINK: {
                         triggerFloatingLink(editor, { focused: true });
-
                         break;
                       }
                       default: {

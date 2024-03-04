@@ -14,6 +14,8 @@ import {
 import { type DropTargetMonitor } from "react-dnd";
 
 import { Button } from "./button";
+import { InsertDropdownMenu } from "./insert-dropdown-menu";
+import { Toolbar } from "./toolbar";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export interface DraggableProps
@@ -128,10 +130,15 @@ export const Draggable = withRef<"div", DraggableProps>(
           <div className={cn("flex h-[1.5em]", classNames.blockToolbarWrapper)}>
             <div
               className={cn(
-                "pointer-events-auto mr-1 flex items-center",
+                "pointer-events-auto mr-1 flex items-center space-x-1",
                 classNames.blockToolbar,
               )}
             >
+
+              <Toolbar>
+                <InsertDropdownMenu triggerClassName="text-muted-foreground" isDropdown={false} />
+              </Toolbar>
+
               <div
                 ref={handleRef}
                 className="pr-2"
