@@ -83,9 +83,8 @@ const dragHandle = (
   <Tooltip>
     <TooltipTrigger asChild>
       <Button
-        size={"icon"}
+        size={"sms"}
         variant={"ghost"}
-        className="p-1"
       >
         <Icons.dragHandle className="h-4 w-4 text-muted-foreground" />
       </Button>

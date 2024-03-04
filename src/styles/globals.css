@@ -88,6 +88,33 @@
 @layer base {
   * {
     @apply border-border;
+
+  }
+  /* width */
+  *::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* Track */
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+      /* Handle */
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border: 0.25rem solid transparent;
+    background-clip: padding-box;
+    @apply rounded-full transition-all;
+
+    /* Handle on hover */
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+    border: 0.25rem solid transparent;
+    background-clip: padding-box;
   }
   
   html {
@@ -100,6 +127,8 @@
       'rlig' 1,
       'calt' 1;
   }
+
+ 
 }
 
 @layer utilities { 

@@ -45,7 +45,7 @@ const editorVariants = cva(
 export type EditorProps = PlateContentProps &
   VariantProps<typeof editorVariants>;
 
-const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
+export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
   (
     {
       className,
@@ -85,5 +85,3 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
   },
 );
 Editor.displayName = "Editor";
-
-export default Editor;
