@@ -7,9 +7,9 @@ import {
   type TEditor,
 } from "@udecode/plate-common";
 import {
-  type DragItemNode,
   useDraggable,
   useDraggableState,
+  type DragItemNode,
 } from "@udecode/plate-dnd";
 import { type DropTargetMonitor } from "react-dnd";
 
@@ -18,51 +18,51 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export interface DraggableProps
   extends PlateElementProps,
-    ClassNames<{
-      /**
-       * Block and gutter.
-       */
-      blockAndGutter: string;
+  ClassNames<{
+    /**
+     * Block and gutter.
+     */
+    blockAndGutter: string;
 
-      /**
-       * Block.
-       */
-      block: string;
+    /**
+     * Block.
+     */
+    block: string;
 
-      /**
-       * Gutter at the left side of the editor.
-       * It has the height of the block
-       */
-      gutterLeft: string;
+    /**
+     * Gutter at the left side of the editor.
+     * It has the height of the block
+     */
+    gutterLeft: string;
 
-      /**
-       * Block toolbar wrapper in the gutter left.
-       * It has the height of a line of the block.
-       */
-      blockToolbarWrapper: string;
+    /**
+     * Block toolbar wrapper in the gutter left.
+     * It has the height of a line of the block.
+     */
+    blockToolbarWrapper: string;
 
-      /**
-       * Block toolbar in the gutter.
-       */
-      blockToolbar: string;
+    /**
+     * Block toolbar in the gutter.
+     */
+    blockToolbar: string;
 
-      blockWrapper: string;
+    blockWrapper: string;
 
-      /**
-       * Button to dnd the block, in the block toolbar.
-       */
-      dragHandle: string;
+    /**
+     * Button to dnd the block, in the block toolbar.
+     */
+    dragHandle: string;
 
-      /**
-       * Icon of the drag button, in the drag icon.
-       */
-      dragIcon: string;
+    /**
+     * Icon of the drag button, in the drag icon.
+     */
+    dragIcon: string;
 
-      /**
-       * Show a dropline above or below the block when dragging a block.
-       */
-      dropLine: string;
-    }> {
+    /**
+     * Show a dropline above or below the block when dragging a block.
+     */
+    dropLine: string;
+  }> {
   /**
    * Intercepts the drop handling.
    * If `false` is returned, the default drop behavior is called after.
@@ -83,9 +83,8 @@ const dragHandle = (
   <Tooltip>
     <TooltipTrigger asChild>
       <Button
-        size={"icon"}
+        size={"sms"}
         variant={"ghost"}
-        className="p-1"
       >
         <Icons.dragHandle className="h-4 w-4 text-muted-foreground" />
       </Button>

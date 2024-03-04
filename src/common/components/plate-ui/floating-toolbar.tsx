@@ -2,10 +2,10 @@ import { cn, withRef } from "@udecode/cn";
 import { PortalBody, useComposedRef } from "@udecode/plate-common";
 import {
   flip,
-  type FloatingToolbarState,
   offset,
   useFloatingToolbar,
   useFloatingToolbarState,
+  type FloatingToolbarState,
 } from "@udecode/plate-floating";
 
 import { Toolbar } from "./toolbar";

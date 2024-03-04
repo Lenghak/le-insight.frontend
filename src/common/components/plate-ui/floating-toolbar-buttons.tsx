@@ -1,5 +1,6 @@
 import { Icons } from "@/common/components/plate-ui/icons";
 
+import { MARK_BG_COLOR, MARK_COLOR } from "@udecode/plate";
 import {
   MARK_BOLD,
   MARK_CODE,
@@ -10,6 +11,9 @@ import {
 import { useEditorReadOnly } from "@udecode/plate-common";
 
 import { AlignDropdownMenu } from "./align-dropdown-menu";
+import { ColorDropdownMenu } from "./color-dropdown-menu";
+import { LineHeightDropdownMenu } from "./line-height-dropdown-menu";
+import { LinkToolbarButton } from "./link-toolbar-button";
 import { MarkToolbarButton } from "./mark-toolbar-button";
 import { MoreDropdownMenu } from "./more-dropdown-menu";
 import { Separator } from "./separator";
@@ -27,6 +31,7 @@ export function FloatingToolbarButtons() {
           <Separator className="h-6 w-[0.5px]" />
 
           <AlignDropdownMenu />
+          <LineHeightDropdownMenu />
 
           <Separator className="h-6 w-[0.5px]" />
 
@@ -60,6 +65,22 @@ export function FloatingToolbarButtons() {
           >
             <Icons.code />
           </MarkToolbarButton>
+
+          <LinkToolbarButton />
+
+          <ColorDropdownMenu
+            nodeType={MARK_COLOR}
+            tooltip="Text Color"
+          >
+            <Icons.color />
+          </ColorDropdownMenu>
+
+          <ColorDropdownMenu
+            nodeType={MARK_BG_COLOR}
+            tooltip="Highlight Color"
+          >
+            <Icons.bg />
+          </ColorDropdownMenu>
 
           <Separator className="h-6 w-[0.5px]" />
         </>

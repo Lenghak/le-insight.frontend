@@ -5,7 +5,7 @@ import { cn } from "@/common/lib/utils";
 import { useStore } from "@nanostores/react";
 import type { HTMLAttributes } from "react";
 
-interface SideMenuProps extends HTMLAttributes<HTMLDivElement> {}
+interface SideMenuProps extends HTMLAttributes<HTMLDivElement> { }
 
 export default function SideMenu({
   children,
