@@ -85,10 +85,10 @@ export default function OnboardingForm() {
                                 return checked
                                   ? field.onChange([...field.value, item.id])
                                   : field.onChange(
-                                      field.value?.filter(
-                                        (value) => value !== item.id,
-                                      ),
-                                    );
+                                    field.value?.filter(
+                                      (value) => value !== item.id,
+                                    ),
+                                  );
                               }}
                               className="hidden"
                               tabIndex={-1}
@@ -104,7 +104,7 @@ export default function OnboardingForm() {
                               }),
                               "cursor-pointer gap-2 font-semibold transition-all hover:border-primary",
                               form.formState.errors.items &&
-                                "border-destructive",
+                              "border-destructive",
                             )}
                           >
                             {field.value?.includes(item.id) ? (

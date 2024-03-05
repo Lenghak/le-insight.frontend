@@ -5,9 +5,9 @@ import { cn } from "@udecode/cn";
 import React from "react";
 
 import { buttonVariants } from "./button";
-import { type TColor } from "./color-dropdown-menu";
 import { DropdownMenuItem } from "./dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
+import type { TColor } from "@/common/constants/color-constants";
 
 type ColorDropdownMenuItemProps = {
   value: string;

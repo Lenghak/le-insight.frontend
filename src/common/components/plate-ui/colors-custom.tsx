@@ -3,7 +3,8 @@ import { useColorsCustom, useColorsCustomState } from "@udecode/plate-font";
 import { cn } from "@/common/lib/utils";
 import { ChevronRightIcon } from "lucide-react";
 import { buttonVariants } from "./button";
-import { type TColor } from "./color-dropdown-menu";
+
+import type { TColor } from "@/common/constants/color-constants";
 import { ColorDropdownMenuItems } from "./color-dropdown-menu-items";
 import { ColorInput } from "./color-input";
 import { DropdownMenuItem } from "./dropdown-menu";

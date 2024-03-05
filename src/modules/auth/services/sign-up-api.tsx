@@ -1,14 +1,14 @@
+import { getPublicQueryInstance } from "@/common/stores/api-store";
 import {
   SignUpRequestSchema,
   type SignUpRequestType,
   type SignUpResponseType,
 } from "@/modules/auth/types/sign-up-schema";
 
-import { queryInstance } from "@/common/stores/api-store";
-import type { AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosResponse } from "axios";
 
-export default async function postSignUp(signUpRequest: SignUpRequestType) {
-  return queryInstance.post<
+export default async function postSignUp(signUpRequest: SignUpRequestType, queryInstance?: AxiosInstance) {
+  return (queryInstance ?? getPublicQueryInstance()).post<
     SignUpResponseType,
     AxiosResponse<SignUpResponseType>,
     SignUpRequestType
