@@ -16,10 +16,9 @@ export default function EditorSkeletons() {
     </div>
 
     <div className="flex flex-col gap-4">
-      <For each={Array(3)} memo ssr={false}>
+      <For each={Array(3)} memo>
         {(_, index) => <Skeleton className={cn(`w-1/${index + 2} h-4`)} />}
       </For>
     </div>
-
   </div>;
 }

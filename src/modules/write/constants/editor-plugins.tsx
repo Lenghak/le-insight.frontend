@@ -30,6 +30,7 @@ import { withDraggables } from "@/common/components/plate-ui/with-draggables";
 import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
 import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
 import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
+import getCloudAuthToken from "@/modules/write/services/cloud-auth-api";
 
 import { withProps } from "@udecode/cn";
 import {
@@ -113,6 +114,7 @@ import {
   type AutoformatRule,
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
+import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin } from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
@@ -186,23 +188,26 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    // createCaptionPlugin({
-    //   options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
-    // }),
-    // createCloudPlugin({
-    //   options: {
-    //     // apiKey: env.PORTIVE_API_KEY,
-    //   },
-    // }),
-    // createCloudAttachmentPlugin(),
-    // createCloudImagePlugin({
-    //   options: {
-    //     maxInitialWidth: 320,
-    //     maxInitialHeight: 320,
-    //     minResizeWidth: 100,
-    //     maxResizeWidth: 720,
-    //   },
-    // }),
+    createCaptionPlugin({
+      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
+    }),
+    createCloudPlugin({
+      options: {
+        authToken: async () => {
+          const { data: res } = await getCloudAuthToken()
+          return res.data.attributes.token
+        }
+      },
+    }),
+    createCloudAttachmentPlugin(),
+    createCloudImagePlugin({
+      options: {
+        maxInitialWidth: 320,
+        maxInitialHeight: 320,
+        minResizeWidth: 100,
+        maxResizeWidth: 720,
+      },
+    }),
     createCaptionPlugin({
       options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),

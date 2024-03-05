@@ -1,14 +1,15 @@
+import { getPublicQueryInstance } from "@/common/stores/api-store";
 import {
   SignInRequestSchema,
   type SignInRequestType,
   type SignInResponseType,
 } from "@/modules/auth/types/sign-in-schema";
 
-import { queryInstance } from "@/common/stores/api-store";
-import type { AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosResponse } from "axios";
 
-export default async function postSignIn(signInRequest: SignInRequestType) {
-  return queryInstance.post<
+export default async function postSignIn(signInRequest: SignInRequestType, queryInstance?: AxiosInstance
+) {
+  return (queryInstance ?? getPublicQueryInstance()).post<
     SignInResponseType,
     AxiosResponse<SignInResponseType>,
     SignInRequestType

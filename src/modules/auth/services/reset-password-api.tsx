@@ -1,16 +1,17 @@
+import { getPublicQueryInstance } from "@/common/stores/api-store";
 import {
   ResetPasswordRequestSchema,
   type ResetPasswordRequestType,
   type ResetPasswordResponseType,
 } from "@/modules/auth/types/reset-password-schema";
 
-import { queryInstance } from "@/common/stores/api-store";
-import type { AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default async function postResetPassword(
   resetPasswordRequest: ResetPasswordRequestType,
+  queryInstance?: AxiosInstance
 ) {
-  return queryInstance.post<ResetPasswordResponseType, AxiosResponse<ResetPasswordResponseType>>(
+  return (queryInstance ?? getPublicQueryInstance()).post<ResetPasswordResponseType, AxiosResponse<ResetPasswordResponseType>, ResetPasswordRequestType>(
     "/auth/recovery-password",
     ResetPasswordRequestSchema.parse(resetPasswordRequest),
   );

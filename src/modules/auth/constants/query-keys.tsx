@@ -8,6 +8,8 @@ export const authKeys = {
       | "sign-out"
       | "reset-password"
       | "forgot-password"
-      | "verify-email",
+      | "verify-email"
+      | "refresh"
+      | "session"
   ) => [...authKeys.operations(), operator] as const,
 };
