@@ -1,5 +1,6 @@
 import { EDITOR_PLUGINS } from "@/modules/write/constants/editor-plugins";
 
+import HeaderMenu from "@/modules/write/components/header-menu";
 import { Plate } from "@udecode/plate-common";
 import { Suspense, lazy } from "react";
 import { DndProvider } from "react-dnd";
@@ -21,7 +22,7 @@ const Editor = lazy(() => import("@/common/components/plate-ui/editor").then(mod
 
 export default function WriteEditor() {
   return (
-    <section className="relative col-span-full mt-14 w-full overflow-y-auto p-4 [&_.slate-selection-area]:border [&_.slate-selection-area]:border-primary [&_.slate-selection-area]:bg-primary/20 max-w-screen-xl">
+    <section className="col-span-full mt-14 w-full overflow-y-auto p-4 [&_.slate-selection-area]:border [&_.slate-selection-area]:border-primary [&_.slate-selection-area]:bg-primary/20 max-w-screen-xl">
       <Suspense fallback={<EditorSkeletons />}>
         <TooltipProvider
           disableHoverableContent
@@ -33,6 +34,10 @@ export default function WriteEditor() {
               plugins={EDITOR_PLUGINS}
               initialValue={initialValue}
             >
+              <HeaderMenu
+                className="fixed top-0 z-50 col-span-full w-full max-w-screen-xl backdrop-blur-md"
+              />
+
               <Editor
                 className="min-h-full w-full overflow-hidden px-8 pt-12 sm:px-24 md:px-48 lg:px-64"
                 variant={"ghost"}

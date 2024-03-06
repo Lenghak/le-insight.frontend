@@ -1,21 +1,14 @@
+import { Button } from "@/common/components/ui/button";
+
 import { type PlateCloudEditor } from "@udecode/plate-cloud";
 import { useEditorRef, type Value } from "@udecode/plate-common";
-import React from "react";
-
-const buttonStyle: React.CSSProperties = {
-  marginRight: 4,
-  background: "#f0f0f0",
-  border: "none",
-  padding: 8,
-  cursor: "pointer",
-};
 
 export function CloudToolbarButtons() {
   const editor = useEditorRef<Value, PlateCloudEditor>();
-  const getSaveValue = () => {
-    console.info("editor.children", editor.children);
-    console.info("editor.cloud.getSaveValue()", editor.cloud.getSaveValue());
-  };
+  // const getSaveValue = () => {
+  //   console.info("editor.children", editor.children);
+  //   console.info("editor.cloud.getSaveValue()", editor.cloud.getSaveValue());
+  // };
 
   const finishUploads = async () => {
     await editor.cloud.finishUploads();
@@ -23,23 +16,30 @@ export function CloudToolbarButtons() {
 
   return (
     <>
-      <button
+      {/* <button
         type="button"
         style={buttonStyle}
         onClick={getSaveValue}
       >
         Get Save Value
-      </button>
-      <button
+      </button> */}
+
+      <Button
         type="button"
-        style={buttonStyle}
+        variant={"outline"}
+        className="bg-card font-semibold"
+        onClick={() => console.debug(editor.cloud.getSaveValue())}
+      >
+        Save as draft
+      </Button>
+
+      <Button
+        type="button"
+        className="font-semibold"
         onClick={finishUploads}
       >
-        Await Finish Uploads
-      </button>
-      <span>
-        Note: After clicking a button, output will be shown in console.
-      </span>
+        Publish
+      </Button>
     </>
   );
 }
