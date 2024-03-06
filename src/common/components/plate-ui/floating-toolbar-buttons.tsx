@@ -10,6 +10,8 @@ import {
 } from "@udecode/plate-basic-marks";
 import { useEditorReadOnly } from "@udecode/plate-common";
 
+import { IndentToolbarButton } from "@/common/components/plate-ui/indent-toolbar-button";
+import { OutdentToolbarButton } from "@/common/components/plate-ui/outdent-toolbar-button";
 import { AlignDropdownMenu } from "./align-dropdown-menu";
 import { ColorDropdownMenu } from "./color-dropdown-menu";
 import { LineHeightDropdownMenu } from "./line-height-dropdown-menu";
@@ -32,6 +34,8 @@ export function FloatingToolbarButtons() {
 
           <AlignDropdownMenu />
           <LineHeightDropdownMenu />
+          <IndentToolbarButton />
+          <OutdentToolbarButton />
 
           <Separator className="h-6 w-[0.5px]" />
 
