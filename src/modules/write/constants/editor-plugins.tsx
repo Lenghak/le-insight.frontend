@@ -1,11 +1,12 @@
 import { BlockquoteElement } from "@/common/components/plate-ui/blockquote-element";
+import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
+import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
 import { CodeBlockElement } from "@/common/components/plate-ui/code-block-element";
 import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
 import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
 import { EmojiCombobox } from "@/common/components/plate-ui/emoji-combobox";
-import { ExcalidrawElement } from "@/common/components/plate-ui/excalidraw-element";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
 import { HrElement } from "@/common/components/plate-ui/hr-element";
@@ -115,7 +116,7 @@ import {
   type AutoformatRule,
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
-import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin } from "@udecode/plate-cloud";
+import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin, ELEMENT_CLOUD_ATTACHMENT, ELEMENT_CLOUD_IMAGE } from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
@@ -123,7 +124,7 @@ import {
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from '@udecode/plate-emoji';
-import { createExcalidrawPlugin, ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
+import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   createHighlightPlugin,
   MARK_HIGHLIGHT,
@@ -222,7 +223,7 @@ export const EDITOR_PLUGINS = createPlugins(
     createEmojiPlugin({
       renderAfterEditable: EmojiCombobox as RenderAfterEditable,
     }),
-    createExcalidrawPlugin(),
+    // createExcalidrawPlugin(),
     createExitBreakPlugin({
       options: {
         rules: [
@@ -347,9 +348,12 @@ export const EDITOR_PLUGINS = createPlugins(
     components: withDraggables(
       withPlaceholders({
         [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
+        [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
+        [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
         [ELEMENT_CODE_BLOCK]: CodeBlockElement,
         [ELEMENT_CODE_LINE]: CodeLineElement,
         [ELEMENT_CODE_SYNTAX]: CodeSyntaxLeaf,
+        // [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
         [ELEMENT_HR]: HrElement,
         [ELEMENT_IMAGE]: ImageElement,
         [ELEMENT_LINK]: LinkElement,
@@ -369,7 +373,6 @@ export const EDITOR_PLUGINS = createPlugins(
         [ELEMENT_TD]: TableCellElement,
         [ELEMENT_TH]: TableCellHeaderElement,
         [ELEMENT_TODO_LI]: TodoListElement,
-        [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
         [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
         [MARK_CODE]: CodeLeaf,
         [MARK_COMMENT]: CommentLeaf,

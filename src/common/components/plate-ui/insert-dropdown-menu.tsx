@@ -22,11 +22,10 @@ import {
 } from "@udecode/plate-media";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import { ELEMENT_TABLE, insertTable } from "@udecode/plate-table";
-import { ClapperboardIcon, MinusIcon, PencilLineIcon } from "lucide-react";
+import { ClapperboardIcon, MinusIcon } from "lucide-react";
 import React from "react";
 
 import { cn } from "@/common/lib/utils";
-import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -124,12 +123,12 @@ const items = [
         description: "Embed",
         icon: ClapperboardIcon,
       },
-      {
-        value: ELEMENT_EXCALIDRAW,
-        label: "Excalidraw",
-        description: "Excalidraw",
-        icon: PencilLineIcon,
-      },
+      // {
+      //   value: ELEMENT_EXCALIDRAW,
+      //   label: "Excalidraw",
+      //   description: "Excalidraw",
+      //   icon: PencilLineIcon,
+      // },
     ],
   },
   {
