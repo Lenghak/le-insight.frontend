@@ -1,3 +1,5 @@
+import getCloudAuthToken from "@/modules/write/services/cloud-auth-api";
+
 import { BlockquoteElement } from "@/common/components/plate-ui/blockquote-element";
 import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
 import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
@@ -32,7 +34,6 @@ import { withDraggables } from "@/common/components/plate-ui/with-draggables";
 import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
 import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
 import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
-import getCloudAuthToken from "@/modules/write/services/cloud-auth-api";
 
 import { withProps } from "@udecode/cn";
 import {
@@ -116,14 +117,20 @@ import {
   type AutoformatRule,
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
-import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin, ELEMENT_CLOUD_ATTACHMENT, ELEMENT_CLOUD_IMAGE } from "@udecode/plate-cloud";
+import {
+  createCloudAttachmentPlugin,
+  createCloudImagePlugin,
+  createCloudPlugin,
+  ELEMENT_CLOUD_ATTACHMENT,
+  ELEMENT_CLOUD_IMAGE,
+} from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
   type RenderAfterEditable,
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import { createEmojiPlugin } from '@udecode/plate-emoji';
+import { createEmojiPlugin } from "@udecode/plate-emoji";
 import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   createHighlightPlugin,
@@ -197,9 +204,9 @@ export const EDITOR_PLUGINS = createPlugins(
     createCloudPlugin({
       options: {
         authToken: async () => {
-          const { data: res } = await getCloudAuthToken()
-          return res.data.attributes.token
-        }
+          const { data: res } = await getCloudAuthToken();
+          return res.data.attributes.token;
+        },
       },
     }),
     createCloudAttachmentPlugin(),
@@ -281,7 +288,7 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createLinkPlugin({
-      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable
+      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable,
     }),
     createMediaEmbedPlugin(),
     createMentionPlugin(),
@@ -320,7 +327,12 @@ export const EDITOR_PLUGINS = createPlugins(
     createSelectOnBackspacePlugin({
       options: {
         query: {
-          allow: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED, ELEMENT_HR, ELEMENT_EXCALIDRAW],
+          allow: [
+            ELEMENT_IMAGE,
+            ELEMENT_MEDIA_EMBED,
+            ELEMENT_HR,
+            ELEMENT_EXCALIDRAW,
+          ],
         },
       },
     }),

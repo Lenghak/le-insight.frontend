@@ -1,4 +1,4 @@
-import ProfileDropdown from "@/common/components/profile";
+import ProfileDropdown from "@/common/components/custom/profile";
 import { Button } from "@/common/components/ui/button";
 import { Separator } from "@/common/components/ui/separator";
 

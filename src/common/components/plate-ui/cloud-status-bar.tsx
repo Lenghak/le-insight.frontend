@@ -1,6 +1,6 @@
 import { cn } from "@udecode/cn";
 import { type Upload, type UploadProgress } from "@udecode/plate-cloud";
-import React, { type HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type HTMLAttributes } from "react";
 
 export function ProgressBar({
   upload,
@@ -56,7 +56,7 @@ export function FailBar({
   return (
     <div
       className={cn(
-        "h-4 rounded-lg border bg-red-700 text-center text-xs font-bold uppercase leading-tight text-white shadow-md",
+        "h-4 rounded-lg tracking-widest bg-destructive text-center text-xs font-bold uppercase text-destructive-foreground shadow-md",
         className,
       )}
       {...props}

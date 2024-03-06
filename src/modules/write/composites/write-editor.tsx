@@ -1,6 +1,5 @@
 import { EDITOR_PLUGINS } from "@/modules/write/constants/editor-plugins";
 
-
 import { Plate } from "@udecode/plate-common";
 import { Suspense, lazy } from "react";
 import { DndProvider } from "react-dnd";

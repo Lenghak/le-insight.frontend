@@ -187,12 +187,15 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                         break;
                       }
                       case ELEMENT_IMAGE: {
-                        await insertMedia(editor, { type: ELEMENT_IMAGE });
+                        await insertMedia(editor, {
+                          type: ELEMENT_IMAGE,
+                        });
                         break;
                       }
                       case ELEMENT_MEDIA_EMBED: {
                         await insertMedia(editor, {
                           type: ELEMENT_MEDIA_EMBED,
+                          removeEmpty: true
                         });
                         break;
                       }
@@ -206,9 +209,6 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                         toggleIndentList(editor, {
                           listStyleType: type === "ul" ? "disc" : "decimal",
                         });
-                        // } else if (settingsStore.get.checkedId("list")) {
-                        //   toggleList(editor, { type });
-                        // }
 
                         break;
                       }
