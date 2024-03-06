@@ -4,6 +4,7 @@ import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
 import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
+import { EmojiCombobox } from "@/common/components/plate-ui/emoji-combobox";
 import { ExcalidrawElement } from "@/common/components/plate-ui/excalidraw-element";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
@@ -121,6 +122,7 @@ import {
   type RenderAfterEditable,
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
+import { createEmojiPlugin } from '@udecode/plate-emoji';
 import { createExcalidrawPlugin, ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   createHighlightPlugin,
@@ -217,6 +219,9 @@ export const EDITOR_PLUGINS = createPlugins(
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
     createDeserializeMdPlugin(),
+    createEmojiPlugin({
+      renderAfterEditable: EmojiCombobox as RenderAfterEditable,
+    }),
     createExcalidrawPlugin(),
     createExitBreakPlugin({
       options: {
