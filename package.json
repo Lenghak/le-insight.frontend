@@ -108,7 +108,7 @@
     "date-fns": "^3.3.1",
     "embla-carousel-react": "8.0.0",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.344.0",
+    "lucide-react": "^0.351.0",
     "million": "^3.0.5",
     "nanostores": "^0.10.0",
     "next-themes": "^0.2.1",
@@ -162,7 +162,7 @@
     "scss": "^0.2.4",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.0"
   },
   "lint-staged": {
     "**/*.{js,ts,json}": ["prettier --write --config .prettierrc.cjs"]

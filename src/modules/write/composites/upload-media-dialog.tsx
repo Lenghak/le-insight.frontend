@@ -1,3 +1,4 @@
+import FileUpload from "@/modules/write/components/file-upload";
 import {
   $isMediaDialogOpen,
   setMediaDialogState,
@@ -7,38 +8,36 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/common/components/plate-ui/dialog";
-import { Button } from "@/common/components/ui/button";
+  DialogTrigger,
+} from "@/common/components/ui/dialog";
 
 import { useStore } from "@nanostores/react";
 
 interface UploadMediaDialogProps {
-  onSubmit: (value: File | string) => unknown
+  onSubmit: (value: File | string) => unknown;
+  trigger?: React.ReactNode;
 }
 
-export default function UploadMediaDialog({ }: UploadMediaDialogProps) {
+export default function UploadMediaDialog({ trigger }: UploadMediaDialogProps) {
   const isMediaDialogOpen = useStore($isMediaDialogOpen);
 
   return (
     <Dialog
-      modal={true}
       open={isMediaDialogOpen}
       onOpenChange={(open) => setMediaDialogState(open)}
     >
+      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Upload media</DialogTitle>
+          <DialogTitle className="font-bold">Upload media</DialogTitle>
           <DialogDescription>
             Drag and Drop the file on the area to upload
           </DialogDescription>
         </DialogHeader>
 
-        <DialogFooter>
-          <Button type="submit">Upload</Button>
-        </DialogFooter>
+        <FileUpload />
       </DialogContent>
     </Dialog>
   );
