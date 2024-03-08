@@ -3,7 +3,7 @@ import { z } from "zod";
 import { ProfilesSchema } from "@/common/types/profiles-type";
 import {
   createEntitySchema,
-  createReponseSchema,
+  createResponseSchema,
 } from "@/common/types/response-type";
 import { UsersSchema } from "@/common/types/users-type";
 
@@ -15,7 +15,7 @@ export const SignInRequestSchema = z.object({
   }),
 });
 
-export const SignInResponseSchema = createReponseSchema({
+export const SignInResponseSchema = createResponseSchema({
   id: UsersSchema.shape.id,
   type: UsersSchema.shape.type,
   attributes: UsersSchema.omit({ id: true, type: true }),

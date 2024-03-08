@@ -10,6 +10,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
     <Sonner
       theme={(theme as ToasterProps["theme"]) ?? "system"}
       className="toaster group"
+      closeButton={false}
       toastOptions={{
         classNames: {
           default: "bg-default group toast text-foreground group-[.toaster]:border-l-4 border-l-primary",

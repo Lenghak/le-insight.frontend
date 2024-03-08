@@ -1,30 +1,35 @@
 import { z } from "zod";
 
-export const createReponseSchema = ({
+export const createResponseSchema = <
+  A extends z.ZodObject<z.ZodRawShape>,
+  R extends z.ZodObject<z.ZodRawShape>,
+  I extends z.ZodArray<z.ZodObject<z.ZodRawShape>>,
+  M extends z.ZodObject<z.ZodRawShape>,
+>({
   id,
   type,
   attributes,
-  relationships = z.object({}),
-  included = z.array(z.NEVER),
-  meta = z.object({}),
+  relationships,
+  included,
+  meta,
 }: {
   id: z.ZodString;
   type: z.ZodLiteral<string>;
-  attributes: z.ZodObject<z.ZodRawShape>;
-  relationships?: z.ZodObject<z.ZodRawShape>;
-  included?: z.ZodArray<z.ZodObject<z.ZodRawShape>>;
-  meta?: z.ZodObject<z.ZodRawShape>;
+  attributes: A;
+  relationships?: R;
+  included?: I;
+  meta?: M;
 }) =>
   z.object({
     jsonapi: z.object({ version: z.string().default("1.0") }),
-    meta: meta,
+    meta: meta ?? z.object({}),
     data: z.object({
       type: type,
       id: id,
       attributes: attributes,
-      relationships: relationships,
+      relationships: relationships ?? z.object({}),
     }),
-    included: included,
+    included: included ?? z.array(z.never()),
   });
 
 export const createEntitySchema = ({

@@ -21,7 +21,6 @@ export default function useSignInService() {
             const json = (await res?.json()) as { url?: string };
             if (json?.url?.includes("?"))
               toast.error("Incorrect Email or Password", {
-                closeButton: true,
                 duration: 10 * 1000,
                 description:
                   "The email and password are invalid. Please check and try again.",
@@ -33,7 +32,6 @@ export default function useSignInService() {
                 ? "Incorrect Email or Password"
                 : "Sign In Failed",
               {
-                closeButton: true,
                 duration: 10 * 1000,
                 description:
                   err instanceof AxiosError && err.response?.status === 401
@@ -42,9 +40,6 @@ export default function useSignInService() {
               },
             ),
           ),
-      onSuccess: () => {
-        return window.location.replace("/")
-      }
     },
 
     queryClient,

@@ -8,8 +8,6 @@ export const env = createEnv({
 
     OPEN_AI_API_KEY: z.string().min(1),
     ORIGIN: z.string().url(),
-
-    PORTIVE_API_KEY: z.string().min(1),
   },
 
   /**

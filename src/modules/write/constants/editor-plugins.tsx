@@ -1,10 +1,14 @@
+import getCloudAuthToken from "@/modules/write/services/cloud-auth-api";
+
 import { BlockquoteElement } from "@/common/components/plate-ui/blockquote-element";
+import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
+import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
 import { CodeBlockElement } from "@/common/components/plate-ui/code-block-element";
 import { CodeLeaf } from "@/common/components/plate-ui/code-leaf";
 import { CodeLineElement } from "@/common/components/plate-ui/code-line-element";
 import { CodeSyntaxLeaf } from "@/common/components/plate-ui/code-syntax-leaf";
 import { CommentLeaf } from "@/common/components/plate-ui/comment-leaf";
-import { ExcalidrawElement } from "@/common/components/plate-ui/excalidraw-element";
+import { EmojiCombobox } from "@/common/components/plate-ui/emoji-combobox";
 import { HeadingElement } from "@/common/components/plate-ui/heading-element";
 import { HighlightLeaf } from "@/common/components/plate-ui/highlight-leaf";
 import { HrElement } from "@/common/components/plate-ui/hr-element";
@@ -114,12 +118,20 @@ import {
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import {
+  createCloudAttachmentPlugin,
+  createCloudImagePlugin,
+  createCloudPlugin,
+  ELEMENT_CLOUD_ATTACHMENT,
+  ELEMENT_CLOUD_IMAGE,
+} from "@udecode/plate-cloud";
+import {
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
   type RenderAfterEditable,
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import { createExcalidrawPlugin, ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
+import { createEmojiPlugin } from "@udecode/plate-emoji";
+import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   createHighlightPlugin,
   MARK_HIGHLIGHT,
@@ -186,23 +198,26 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    // createCaptionPlugin({
-    //   options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
-    // }),
-    // createCloudPlugin({
-    //   options: {
-    //     // apiKey: env.PORTIVE_API_KEY,
-    //   },
-    // }),
-    // createCloudAttachmentPlugin(),
-    // createCloudImagePlugin({
-    //   options: {
-    //     maxInitialWidth: 320,
-    //     maxInitialHeight: 320,
-    //     minResizeWidth: 100,
-    //     maxResizeWidth: 720,
-    //   },
-    // }),
+    createCaptionPlugin({
+      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
+    }),
+    createCloudPlugin({
+      options: {
+        authToken: async () => {
+          const { data: res } = await getCloudAuthToken();
+          return res.data.attributes.token;
+        },
+      },
+    }),
+    createCloudAttachmentPlugin(),
+    createCloudImagePlugin({
+      options: {
+        maxInitialWidth: 320,
+        maxInitialHeight: 320,
+        minResizeWidth: 100,
+        maxResizeWidth: 720,
+      },
+    }),
     createCaptionPlugin({
       options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
     }),
@@ -212,7 +227,10 @@ export const EDITOR_PLUGINS = createPlugins(
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
     createDeserializeMdPlugin(),
-    createExcalidrawPlugin(),
+    createEmojiPlugin({
+      renderAfterEditable: EmojiCombobox as RenderAfterEditable,
+    }),
+    // createExcalidrawPlugin(),
     createExitBreakPlugin({
       options: {
         rules: [
@@ -270,7 +288,7 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createLinkPlugin({
-      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable
+      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable,
     }),
     createMediaEmbedPlugin(),
     createMentionPlugin(),
@@ -309,7 +327,12 @@ export const EDITOR_PLUGINS = createPlugins(
     createSelectOnBackspacePlugin({
       options: {
         query: {
-          allow: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED, ELEMENT_HR, ELEMENT_EXCALIDRAW],
+          allow: [
+            ELEMENT_IMAGE,
+            ELEMENT_MEDIA_EMBED,
+            ELEMENT_HR,
+            ELEMENT_EXCALIDRAW,
+          ],
         },
       },
     }),
@@ -337,9 +360,12 @@ export const EDITOR_PLUGINS = createPlugins(
     components: withDraggables(
       withPlaceholders({
         [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
+        [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
+        [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
         [ELEMENT_CODE_BLOCK]: CodeBlockElement,
         [ELEMENT_CODE_LINE]: CodeLineElement,
         [ELEMENT_CODE_SYNTAX]: CodeSyntaxLeaf,
+        // [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
         [ELEMENT_HR]: HrElement,
         [ELEMENT_IMAGE]: ImageElement,
         [ELEMENT_LINK]: LinkElement,
@@ -359,7 +385,6 @@ export const EDITOR_PLUGINS = createPlugins(
         [ELEMENT_TD]: TableCellElement,
         [ELEMENT_TH]: TableCellHeaderElement,
         [ELEMENT_TODO_LI]: TodoListElement,
-        [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
         [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
         [MARK_CODE]: CodeLeaf,
         [MARK_COMMENT]: CommentLeaf,

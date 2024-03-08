@@ -42,7 +42,7 @@ export function LineHeightDropdownMenu({ ...props }: DropdownMenuProps) {
             <DropdownMenuRadioItem
               key={_value}
               value={_value}
-              className="min-w-[180px]"
+              className="min-w-[180px] font-medium"
             >
               {_value}
             </DropdownMenuRadioItem>

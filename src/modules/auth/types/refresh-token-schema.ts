@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-import { createReponseSchema } from "@/common/types/response-type";
+import { createResponseSchema } from "@/common/types/response-type";
 
 // schemas
 export const RefreshTokenRequestSchema = z.object({
   rt: z.string(),
 });
 
-export const RefreshTokensResponseSchema = createReponseSchema({
+export const RefreshTokensResponseSchema = createResponseSchema({
   id: z.string(),
   type: z.literal("tokens"),
   attributes: z.object({

@@ -22,11 +22,10 @@ import {
 } from "@udecode/plate-media";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import { ELEMENT_TABLE, insertTable } from "@udecode/plate-table";
-import { ClapperboardIcon, MinusIcon, PencilLineIcon } from "lucide-react";
+import { ClapperboardIcon, MinusIcon } from "lucide-react";
 import React from "react";
 
 import { cn } from "@/common/lib/utils";
-import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -124,12 +123,12 @@ const items = [
         description: "Embed",
         icon: ClapperboardIcon,
       },
-      {
-        value: ELEMENT_EXCALIDRAW,
-        label: "Excalidraw",
-        description: "Excalidraw",
-        icon: PencilLineIcon,
-      },
+      // {
+      //   value: ELEMENT_EXCALIDRAW,
+      //   label: "Excalidraw",
+      //   description: "Excalidraw",
+      //   icon: PencilLineIcon,
+      // },
     ],
   },
   {
@@ -188,12 +187,15 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                         break;
                       }
                       case ELEMENT_IMAGE: {
-                        await insertMedia(editor, { type: ELEMENT_IMAGE });
+                        await insertMedia(editor, {
+                          type: ELEMENT_IMAGE,
+                        });
                         break;
                       }
                       case ELEMENT_MEDIA_EMBED: {
                         await insertMedia(editor, {
                           type: ELEMENT_MEDIA_EMBED,
+                          removeEmpty: true
                         });
                         break;
                       }
@@ -207,9 +209,6 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                         toggleIndentList(editor, {
                           listStyleType: type === "ul" ? "disc" : "decimal",
                         });
-                        // } else if (settingsStore.get.checkedId("list")) {
-                        //   toggleList(editor, { type });
-                        // }
 
                         break;
                       }

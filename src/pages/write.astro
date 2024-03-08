@@ -1,17 +1,16 @@
 ---
 import RootLayout from "@/common/layouts/root-layout.astro";
-import HeaderMenu from "@/modules/write/components/header-menu";
 import WriteEditor from "@/modules/write/composites/write-editor";
 import WriteLayout from "@/modules/write/layouts/write-layout.astro";
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+
+if (!session?.user) return Astro.redirect("/auth/sign-in");
 ---
 
 <RootLayout title="Le-Insight | Write">
   <WriteLayout>
-    <HeaderMenu
-      className="fixed top-0 z-50 col-span-full w-full max-w-screen-xl backdrop-blur-md"
-      client:load
-    />
-
     <WriteEditor client:only="react" />
   </WriteLayout>
 </RootLayout>
