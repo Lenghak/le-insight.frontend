@@ -1436,6 +1436,7 @@ packages:
 
   /@next/swc-linux-arm64-musl@14.1.3:
     resolution: {integrity: sha512-esk1RkRBLSIEp1qaQXv1+s6ZdYzuVCnDAZySpa62iFTMGTisCyNQmqyCTL9P+cLJ4N9FKCI3ojtSfsyPHJDQNw==}
+    engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
