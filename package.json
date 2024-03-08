@@ -99,7 +99,7 @@
     "@udecode/plate-table": "^30.9.1",
     "@udecode/plate-toggle": "^30.5.3",
     "@udecode/plate-trailing-block": "^30.5.3",
-    "astro": "^4.4.12",
+    "astro": "^4.4.15",
     "auth-astro": "^4.1.1",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
@@ -140,9 +140,9 @@
     "@tanstack/eslint-plugin-query": "^5.20.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.63",
-    "@types/react-dom": "^18.2.20",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
@@ -158,11 +158,11 @@
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.5.12",
     "scss": "^0.2.4",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "lint-staged": {
     "**/*.{js,ts,json}": ["prettier --write --config .prettierrc.cjs"]

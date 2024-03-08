@@ -32,14 +32,14 @@ export default function SignInForm() {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
-  const { mutate: signIn, isPending: isSigningIn } = useSignInService()
+  const { mutateAsync: signIn, isPending: isSigningIn } = useSignInService()
 
   return (
     <Form {...form}>
       <form
         method="POST"
-        onSubmit={form.handleSubmit((values) => {
-          signIn(values)
+        onSubmit={form.handleSubmit(async (values) => {
+          await signIn(values)
         })}
         className="w-full space-y-2"
       >
