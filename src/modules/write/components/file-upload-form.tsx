@@ -1,33 +1,28 @@
+import useFileUploadHandler from "@/modules/write/hooks/use-file-upload-handler";
+
+import { Button } from "@/common/components/ui/button";
 import { Form } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
 import { Muted } from "@/common/components/ui/muted";
+import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { EDITOR_IMAGE_DIALOG_ID } from "@/modules/write/constants/dailogs-keys";
+import type { PlateEditor } from "@udecode/plate-common";
 import { ImageUpIcon } from "lucide-react";
 import type { HTMLAttributes } from "react";
-import { useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
-type FileUploadFormProps = HTMLAttributes<HTMLFormElement>;
+type FileUploadFormProps = HTMLAttributes<HTMLFormElement> & {
+  editor: PlateEditor;
+};
 
-const FileUploadSchema = z.object({});
-
-export default function FileUpload({
+export default function FileUploadForm({
+  editor,
   className,
   ...props
 }: FileUploadFormProps) {
-  const dropzone = useDropzone({
-    accept: {
-      "image/*": ["*"]
-    }
-  });
-  const form = useForm({
-    resolver: zodResolver(FileUploadSchema),
-    defaultValues: {},
-  });
+  const { dropzone, form } = useFileUploadHandler({ editor, dialogID: EDITOR_IMAGE_DIALOG_ID });
 
   return (
     <Form {...form}>
@@ -35,7 +30,6 @@ export default function FileUpload({
         className={cn("relative min-h-[20rem] w-full space-y-6", className)}
         {...props}
       >
-        {/* {!uploadDraft.fileReadResult ? ( */}
         <div
           className={cn(
             "group relative flex h-full w-full items-center justify-center rounded-md border-2 border-dashed border-border border-opacity-50 p-6 hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
@@ -59,9 +53,9 @@ export default function FileUpload({
           >
             <ImageUpIcon
               size={56}
-              strokeWidth={1.25}
+              strokeWidth={1}
               className={cn(
-                "text-primary",
+                "text-muted-foreground",
                 dropzone.isDragAccept ? "text-success" : "",
                 dropzone.isDragReject ? "text-destructive" : "",
                 dropzone.isDragActive ? "animate-bounce" : "",
@@ -70,17 +64,38 @@ export default function FileUpload({
 
             <Muted
               className={cn(
-                "transition-all max-w-48",
+                "transition-all max-w-56",
                 dropzone.isDragActive ? "hidden" : "",
               )}
             >
-              Drop an image here to upload
+              Drop an drop an image file here to upload
             </Muted>
+
+            <div className="flex w-full items-center justify-center gap-4">
+              <Separator
+                className="w-full max-w-10"
+                orientation="horizontal"
+              />
+              <Muted>Or</Muted>
+              <Separator
+                className="w-full max-w-10"
+                orientation="horizontal"
+              />
+            </div>
+
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                dropzone.open();
+              }}
+              type="button"
+              className="font-semibold rounded-lg"
+            >
+              Browse File
+            </Button>
           </div>
         </div>
-        {/* ) : (
-        <FileUploadPreview upload={uploadDraft} />
-      )} */}
+
       </form>
     </Form>
   );

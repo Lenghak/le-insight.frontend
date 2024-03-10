@@ -1,4 +1,11 @@
-import { atom } from "nanostores";
+import { map } from "nanostores";
 
-export const $isMediaDialogOpen = atom<boolean>(false)
-export const setMediaDialogState = (isOpen: boolean) => $isMediaDialogOpen.set(isOpen) 
+export const $mediaDialogState = map<{
+  id: string,
+  isOpen: boolean
+}>({
+  id: "",
+  isOpen: false,
+})
+
+export const setMediaDialogState = ({ id, isOpen }: { id: string, isOpen: boolean }) => $mediaDialogState.set({ id, isOpen }) 

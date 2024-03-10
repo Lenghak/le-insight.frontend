@@ -11,6 +11,8 @@ declare module "@auth/core/types" {
       role: string;
       banned_until: string;
       deleted_at: string;
+      first_name: string;
+      last_name: string;
       invited_at: string;
       confirmed_at: string;
       confirmation_sent_at: string;
@@ -33,6 +35,8 @@ declare module "@auth/core/jwt" {
     type: string;
     id: string;
     attributes: {
+      first_name: string;
+      last_name: string;
       profile_id: string;
       phone: string;
       email: string;

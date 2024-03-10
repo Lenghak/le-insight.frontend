@@ -1,7 +1,7 @@
 import { cn } from "@udecode/cn";
 import {
-  type TCloudImageElement,
   useCloudImageElementState,
+  type TCloudImageElement,
 } from "@udecode/plate-cloud";
 import {
   PlateElement,
@@ -13,7 +13,7 @@ import { ResizeControls } from "./cloud-resize-controls";
 import { StatusBar } from "./cloud-status-bar";
 
 export interface CloudImageElementProps
-  extends PlateElementProps<Value, TCloudImageElement> {}
+  extends PlateElementProps<Value, TCloudImageElement> { }
 
 export function CloudImageElement({
   className,
@@ -87,7 +87,7 @@ export function CloudImageElement({
             alt=""
           />
         )}
-        <div className="absolute inset-x-2 top-[50%] -mt-2">
+        <div className="absolute top-0 left-0 h-full w-full">
           <StatusBar upload={upload} />
         </div>
         {selected && focused && (

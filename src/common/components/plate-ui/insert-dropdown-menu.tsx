@@ -1,4 +1,14 @@
+import EmbedMediaDialog from "@/modules/write/composites/embed-media-dialog";
+import UploadMediaDialog from "@/modules/write/composites/upload-media-dialog";
+import {
+  EDITOR_IMAGE_DIALOG_ID,
+  EDITOR_MEDIA_DIALOG_ID,
+} from "@/modules/write/constants/dailogs-keys";
+import { setMediaDialogState } from "@/modules/write/stores/upload-dialog-store";
+
 import { Icons } from "@/common/components/plate-ui/icons";
+
+import { cn } from "@/common/lib/utils";
 
 import { type DropdownMenuProps as PrimitiveDropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
@@ -15,17 +25,12 @@ import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
 import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
 import { toggleIndentList } from "@udecode/plate-indent-list";
 import { ELEMENT_LINK, triggerFloatingLink } from "@udecode/plate-link";
-import {
-  ELEMENT_IMAGE,
-  ELEMENT_MEDIA_EMBED,
-  insertMedia,
-} from "@udecode/plate-media";
+import { ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED } from "@udecode/plate-media";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import { ELEMENT_TABLE, insertTable } from "@udecode/plate-table";
 import { ClapperboardIcon, MinusIcon } from "lucide-react";
 import React, { Fragment } from "react";
 
-import { cn } from "@/common/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,8 +43,8 @@ import {
 import { ToolbarButton } from "./toolbar";
 
 interface DropdownMenuProps extends PrimitiveDropdownMenuProps {
-  triggerClassName?: string
-  isDropdown?: boolean
+  triggerClassName?: string;
+  isDropdown?: boolean;
 }
 
 const items = [
@@ -144,14 +149,12 @@ const items = [
   },
 ];
 
-
 export function InsertDropdownMenu(props: DropdownMenuProps) {
   const editor = useEditorRef();
   const openState = useOpenState();
 
   return (
     <Fragment>
-
       <DropdownMenu
         modal={false}
         {...openState}
@@ -182,22 +185,23 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                   <DropdownMenuItem
                     key={type}
                     className="min-w-[180px]"
-                    onSelect={async () => {
+                    onSelect={() => {
                       switch (type) {
                         case ELEMENT_CODE_BLOCK: {
                           insertEmptyCodeBlock(editor);
                           break;
                         }
                         case ELEMENT_IMAGE: {
-                          await insertMedia(editor, {
-                            type: ELEMENT_IMAGE,
-                          })
+                          setMediaDialogState({
+                            id: EDITOR_IMAGE_DIALOG_ID,
+                            isOpen: true,
+                          });
                           break;
                         }
                         case ELEMENT_MEDIA_EMBED: {
-                          await insertMedia(editor, {
-                            type: ELEMENT_MEDIA_EMBED,
-                            removeEmpty: true
+                          setMediaDialogState({
+                            id: EDITOR_MEDIA_DIALOG_ID,
+                            isOpen: true,
                           });
                           break;
                         }
@@ -243,6 +247,8 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
         </DropdownMenuContent>
       </DropdownMenu>
 
+      <UploadMediaDialog editor={editor} />
+      <EmbedMediaDialog editor={editor} />
     </Fragment>
   );
 }

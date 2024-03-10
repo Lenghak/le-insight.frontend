@@ -19,6 +19,7 @@ import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
 import useSignInService from "../hooks/use-sign-in-service";
 
 const SignUpFormSchema = z.object({
@@ -42,17 +43,21 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutate: signUp, isPending: isSigningUp, isSuccess: isSignUpSuccess } = useSignUpService();
-  const { mutate: signIn } = useSignInService()
+  const {
+    mutate: signUp,
+    isPending: isSigningUp,
+    isSuccess: isSignUpSuccess,
+  } = useSignUpService();
+  const { mutate: signIn } = useSignInService();
 
   useEffect(() => {
     if (isSignUpSuccess) {
       signIn({
         email: form.getValues().email,
-        password: form.getValues().password
-      })
+        password: form.getValues().password,
+      });
     }
-  }, [isSignUpSuccess])
+  }, [isSignUpSuccess]);
 
   return (
     <Form {...form}>
@@ -66,10 +71,17 @@ export default function SignUpForm() {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">First Name</FormLabel>
+                <FormLabel
+                  className="font-semibold"
+                  htmlFor="firstname-field"
+                >
+                  First Name
+                </FormLabel>
                 <FormControl>
                   <Input
+                    id="firstname-field"
                     placeholder="e. g. John"
+                    autoComplete="on"
                     {...field}
                   />
                 </FormControl>
@@ -83,10 +95,17 @@ export default function SignUpForm() {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Last Name</FormLabel>
+                <FormLabel
+                  className="font-semibold"
+                  htmlFor="lastname-field"
+                >
+                  Last Name
+                </FormLabel>
                 <FormControl>
                   <Input
+                    id="lastname-field"
                     placeholder="e.g. Doe"
+                    autoComplete="on"
                     {...field}
                   />
                 </FormControl>
@@ -101,10 +120,17 @@ export default function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Email</FormLabel>
+              <FormLabel
+                className="font-semibold"
+                htmlFor="email-field"
+              >
+                Email
+              </FormLabel>
               <FormControl>
                 <Input
+                  id="email-field"
                   placeholder="someone@example.com"
+                  autoComplete="on"
                   {...field}
                 />
               </FormControl>
@@ -117,10 +143,11 @@ export default function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Password</FormLabel>
+              <FormLabel className="font-semibold" htmlFor="password-field">Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
+                    id="password-field"
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
@@ -163,9 +190,14 @@ export default function SignUpForm() {
         <Button
           type={isSigningUp ? "button" : "submit"}
           disabled={isSigningUp}
-          className={cn("w-full rounded-md font-bold transition-all gap-0", isSigningUp && "gap-4")}
+          className={cn(
+            "w-full gap-0 rounded-md font-bold transition-all",
+            isSigningUp && "gap-4",
+          )}
         >
-          <Loader2Icon className={cn("size-0 animate-spin", isSigningUp && "size-4")} />
+          <Loader2Icon
+            className={cn("size-0 animate-spin", isSigningUp && "size-4")}
+          />
           <span>Sign Up</span>
         </Button>
       </form>
