@@ -36,11 +36,11 @@ export function ProgressBar({
   return (
     <div
       ref={ref}
-      className={cn("h-4 rounded-lg bg-gray-100 shadow-md", className)}
+      className={cn("h-full rounded-lg bg-muted shadow-md", className)}
       {...props}
     >
       <div
-        className="h-4 rounded-lg bg-blue-500 duration-100"
+        className="h-full rounded-lg bg-informative duration-100"
         style={{
           width: progressWidth,
         }}
@@ -56,7 +56,7 @@ export function FailBar({
   return (
     <div
       className={cn(
-        "h-4 rounded-lg tracking-widest bg-destructive text-center text-xs font-bold uppercase text-destructive-foreground shadow-md",
+        "h-full rounded-lg tracking-widest bg-card backdrop-blur text-center text-xs font-bold uppercase text-foreground shadow-md",
         className,
       )}
       {...props}

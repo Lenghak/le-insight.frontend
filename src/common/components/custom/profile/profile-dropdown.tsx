@@ -1,3 +1,4 @@
+import useSessionService from "@/modules/auth/hooks/use-session-service";
 import useSignOutService from "@/modules/auth/hooks/use-sign-out-service";
 
 import {
@@ -19,13 +20,14 @@ import { CreditCard, Keyboard, LogOut, Settings, User } from "lucide-react";
 
 export default function ProfileDropdown() {
   const { mutate: signOut } = useSignOutService();
+  const { data: res } = useSessionService();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage />
-          <AvatarFallback>L</AvatarFallback>
+          <AvatarFallback>{res?.data?.user?.first_name[0]}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-4 w-56">

@@ -48,10 +48,12 @@ export default function SignInForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Email</FormLabel>
+              <FormLabel className="font-semibold" htmlFor="email-field">Email</FormLabel>
               <FormControl>
                 <Input
+                  id="email-field"
                   placeholder="someone@example.com"
+                  autoComplete="on"
                   {...field}
                 />
               </FormControl>
@@ -64,10 +66,11 @@ export default function SignInForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Password</FormLabel>
+              <FormLabel className="font-semibold" htmlFor="password-field">Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
+                    id="password-field"
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}

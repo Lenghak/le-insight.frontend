@@ -16,8 +16,15 @@ export default defineConfig({
             password: credentials.password as string,
           });
 
+          const profile = res.data.included[0];
+
           return {
             ...res.data.data,
+            attributes: {
+              first_name: profile.attributes["first_name"] as string | null,
+              last_name: profile.attributes["last_name"] as string | null,
+              ...res.data.data.attributes,
+            },
             ...res.data.meta,
           };
         } catch (err) {

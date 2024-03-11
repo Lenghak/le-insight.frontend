@@ -1,11 +1,11 @@
 import { EDITOR_PLUGINS } from "@/modules/write/constants/editor-plugins";
 
-import HeaderMenu from "@/modules/write/components/header-menu";
+import HeaderMenu from "@/modules/write/composites/header-menu";
 import { Plate } from "@udecode/plate-common";
 import { Suspense, lazy } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import EditorSkeletons from "./editor-skeleton";
+import EditorSkeletons from "../components/editor-skeleton";
 
 const initialValue = [
   { type: "h1", children: [{ text: "" }] },
