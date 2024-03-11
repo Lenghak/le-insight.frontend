@@ -1,6 +1,6 @@
 import ProfileDropdown from "@/common/components/custom/profile";
 import { CloudToolbarButtons } from "@/common/components/plate-ui/cloud-toolbar-buttons";
-import { Button } from "@/common/components/ui/button";
+import { buttonVariants } from "@/common/components/ui/button";
 import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
@@ -18,9 +18,9 @@ export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
       )}
       {...props}
     >
-      <Button variant={"outline"} onClick={() => window.history.back()} className="bg-card font-semibold">
+      <a href="/" className={cn(buttonVariants({ variant: "outline" }), "bg-card font-semibold")}>
         Cancel
-      </Button>
+      </a>
 
       <div className="flex w-fit items-center justify-end gap-4 pl-4">
 
