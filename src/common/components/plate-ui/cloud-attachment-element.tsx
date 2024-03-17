@@ -68,7 +68,7 @@ export function CloudAttachmentElement({
             rel="noreferrer"
           >
             <Icons
-              name="DownloadCloud"
+              name="CloudDownload"
               className="size-4 cursor-pointer text-muted-foreground hover:text-foreground"
             />
           </a>
