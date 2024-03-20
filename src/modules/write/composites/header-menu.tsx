@@ -1,11 +1,11 @@
 import ProfileDropdown from "@/common/components/custom/profile";
-import { CloudToolbarButtons } from "@/common/components/plate-ui/cloud-toolbar-buttons";
-import { buttonVariants } from "@/common/components/ui/button";
+import { Button, buttonVariants } from "@/common/components/ui/button";
 import { Separator } from "@/common/components/ui/separator";
+
 
 import { cn } from "@/common/lib/utils";
 
-import type { HTMLAttributes } from "react";
+import { type HTMLAttributes } from "react";
 
 interface HeaderMenuProps extends HTMLAttributes<HTMLDivElement> { }
 
@@ -18,13 +18,23 @@ export default function HeaderMenu({ className, ...props }: HeaderMenuProps) {
       )}
       {...props}
     >
-      <a href="/" className={cn(buttonVariants({ variant: "outline" }), "bg-card font-semibold")}>
+      <a
+        href="/"
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "bg-card font-semibold",
+        )}
+      >
         Cancel
       </a>
 
       <div className="flex w-fit items-center justify-end gap-4 pl-4">
-
-        <CloudToolbarButtons />
+        <Button
+          type="button"
+          className="font-semibold"
+        >
+          Publish
+        </Button>
 
         <Separator className="h-4 w-[1px]" />
 
