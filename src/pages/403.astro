@@ -3,6 +3,7 @@ import { H1 } from "@/common/components/ui/h1";
 import { P } from "@/common/components/ui/p";
 
 import RootLayout from "@/common/layouts/root-layout.astro";
+import { BackButton } from "@/modules/error/components/back-button";
 ---
 
 <RootLayout title="Le-Insight | 403">
@@ -12,4 +13,8 @@ import RootLayout from "@/common/layouts/root-layout.astro";
       Forbidden! Looks like you do not have access to the page.
     </P>
   </main>
+
+  <div class="mt-8 flex flex-row items-center justify-center gap-4">
+    <BackButton client:load />
+  </div>
 </RootLayout>

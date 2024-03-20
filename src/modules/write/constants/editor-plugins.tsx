@@ -37,6 +37,40 @@ import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
 
 import { withProps } from "@udecode/cn";
 import {
+  ELEMENT_BLOCKQUOTE,
+  ELEMENT_CODE_BLOCK,
+  ELEMENT_CODE_LINE,
+  ELEMENT_CODE_SYNTAX,
+  ELEMENT_H1,
+  ELEMENT_H2,
+  ELEMENT_H3,
+  ELEMENT_H4,
+  ELEMENT_H5,
+  ELEMENT_H6,
+  ELEMENT_HR,
+  ELEMENT_IMAGE,
+  ELEMENT_LINK,
+  ELEMENT_MEDIA_EMBED,
+  ELEMENT_MENTION,
+  ELEMENT_MENTION_INPUT,
+  ELEMENT_PARAGRAPH,
+  ELEMENT_TABLE,
+  ELEMENT_TD,
+  ELEMENT_TH,
+  ELEMENT_TODO_LI,
+  ELEMENT_TOGGLE,
+  ELEMENT_TR,
+  KEYS_HEADING,
+  MARK_BOLD,
+  MARK_CODE,
+  MARK_COMMENT,
+  MARK_ITALIC,
+  MARK_KBD,
+  MARK_STRIKETHROUGH,
+  MARK_SUBSCRIPT,
+  MARK_SUPERSCRIPT,
+  MARK_UNDERLINE,
+  PlateLeaf,
   createAutoformatPlugin,
   createBasicElementsPlugin,
   createBasicMarksPlugin,
@@ -68,42 +102,8 @@ import {
   createTablePlugin,
   createTodoListPlugin,
   createTogglePlugin,
-  ELEMENT_BLOCKQUOTE,
-  ELEMENT_CODE_BLOCK,
-  ELEMENT_CODE_LINE,
-  ELEMENT_CODE_SYNTAX,
-  ELEMENT_H1,
-  ELEMENT_H2,
-  ELEMENT_H3,
-  ELEMENT_H4,
-  ELEMENT_H5,
-  ELEMENT_H6,
-  ELEMENT_HR,
-  ELEMENT_IMAGE,
-  ELEMENT_LINK,
-  ELEMENT_MEDIA_EMBED,
-  ELEMENT_MENTION,
-  ELEMENT_MENTION_INPUT,
-  ELEMENT_PARAGRAPH,
-  ELEMENT_TABLE,
-  ELEMENT_TD,
-  ELEMENT_TH,
-  ELEMENT_TODO_LI,
-  ELEMENT_TOGGLE,
-  ELEMENT_TR,
   isCodeBlockEmpty,
   isSelectionAtCodeBlockStart,
-  KEYS_HEADING,
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_COMMENT,
-  MARK_ITALIC,
-  MARK_KBD,
-  MARK_STRIKETHROUGH,
-  MARK_SUBSCRIPT,
-  MARK_SUPERSCRIPT,
-  MARK_UNDERLINE,
-  PlateLeaf,
   unwrapCodeBlock
 } from "@udecode/plate";
 import { createAlignPlugin } from "@udecode/plate-alignment";
@@ -118,11 +118,11 @@ import {
 } from "@udecode/plate-autoformat";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import {
+  ELEMENT_CLOUD_ATTACHMENT,
+  ELEMENT_CLOUD_IMAGE,
   createCloudAttachmentPlugin,
   createCloudImagePlugin,
   createCloudPlugin,
-  ELEMENT_CLOUD_ATTACHMENT,
-  ELEMENT_CLOUD_IMAGE,
 } from "@udecode/plate-cloud";
 import {
   isBlockAboveEmpty,
@@ -133,8 +133,8 @@ import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from "@udecode/plate-emoji";
 import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
-  createHighlightPlugin,
   MARK_HIGHLIGHT,
+  createHighlightPlugin,
 } from "@udecode/plate-highlight";
 import { createJuicePlugin } from "@udecode/plate-juice";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
@@ -224,8 +224,8 @@ export const EDITOR_PLUGINS = createPlugins(
     createComboboxPlugin(),
     createDndPlugin({ options: { enableScroller: true } }),
     createDeletePlugin(),
-    createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
+    createDeserializeDocxPlugin(),
     createDeserializeMdPlugin(),
     createEmojiPlugin({
       renderAfterEditable: EmojiCombobox as RenderAfterEditable,

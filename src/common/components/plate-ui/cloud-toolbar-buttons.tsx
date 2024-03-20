@@ -5,10 +5,6 @@ import { useEditorRef, type Value } from "@udecode/plate-common";
 
 export function CloudToolbarButtons() {
   const editor = useEditorRef<Value, PlateCloudEditor>();
-  // const getSaveValue = () => {
-  //   console.info("editor.children", editor.children);
-  //   console.info("editor.cloud.getSaveValue()", editor.cloud.getSaveValue());
-  // };
 
   const finishUploads = async () => {
     await editor.cloud.finishUploads();
