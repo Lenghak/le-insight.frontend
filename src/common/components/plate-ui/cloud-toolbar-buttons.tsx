@@ -16,7 +16,10 @@ export function CloudToolbarButtons() {
         type="button"
         variant={"outline"}
         className="bg-card font-semibold"
-        onClick={() => console.debug(JSON.stringify(editor.cloud.getSaveValue()))}
+        onClick={async () => {
+          await finishUploads()
+          console.log(editor.cloud.getSaveValue())
+        }}
       >
         Save as draft
       </Button>
