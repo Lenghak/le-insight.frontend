@@ -13,7 +13,6 @@ const editor = createPlateEditor({ plugins: EDITOR_PLUGINS });
 const HTML = () => {
   serializeHtml(editor, {
     nodes: $editorContent.get(),
-    // if you use @udecode/plate-dnd
     dndWrapper: (props) => (
       <TooltipProvider>
         <DndProvider
@@ -22,6 +21,7 @@ const HTML = () => {
         />
       </TooltipProvider>
     ),
+    convertNewLinesToHtmlBr: true,
   });
 };
 
