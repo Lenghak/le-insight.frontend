@@ -23,7 +23,7 @@
     --muted: 0 0% 92%;
     --muted-foreground: 0 0% 45.1%;
     
-    --accent: 0 0% 92%;
+    --accent: 0 0% 96%;
     --accent-foreground: 0 0% 9%;
 
     --successive: 142 76% 36%;
@@ -61,7 +61,7 @@
     --secondary: 0 0% 9%;
     --secondary-foreground: 0 0% 98%;
     
-    --muted: 0 0% 15%;
+    --muted: 0 0% 9%;
     --muted-foreground: 0 0% 63.9%;
     
     --accent: 0 0% 15%;
@@ -118,11 +118,11 @@
   }
   
   html {
-    @apply w-screen h-full flex items-start justify-center flex-col
+    @apply w-dvw h-dvh flex items-start justify-center flex-col
   }
 
   body {
-    @apply bg-background text-foreground h-dvh w-screen overflow-hidden font-sans scroll-smooth relative;
+    @apply bg-background text-foreground h-full w-full overflow-hidden font-sans scroll-smooth relative;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
