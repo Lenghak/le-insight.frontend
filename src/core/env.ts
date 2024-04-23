@@ -7,7 +7,6 @@ export const env = createEnv({
     AUTH_SECRET: z.string().min(1),
 
     OPEN_AI_API_KEY: z.string().min(1),
-    ORIGIN: z.string().url(),
   },
 
   /**
@@ -18,6 +17,7 @@ export const env = createEnv({
 
   client: {
     PUBLIC_API_ENDPOINT: z.string().min(1),
+    PUBLIC_ORIGIN: z.string().url(),
   },
 
   /**
