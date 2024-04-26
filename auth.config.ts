@@ -20,9 +20,11 @@ export default defineConfig({
 
           return {
             ...res.data.data,
+            id: res.data.data.id,
             attributes: {
-              first_name: profile.attributes["first_name"] as string | null,
-              last_name: profile.attributes["last_name"] as string | null,
+              first_name: profile?.attributes["first_name"] as string | null,
+              last_name: profile?.attributes["last_name"] as string | null,
+              image_url: profile?.attributes["image_url"],
               ...res.data.data.attributes,
             },
             ...res.data.meta,
@@ -48,6 +50,7 @@ export default defineConfig({
       };
 
       session.tokens = {
+        role: token.attributes.role,
         iat: token.iat,
         exp: token.exp,
         jti: token.jti,
@@ -55,6 +58,7 @@ export default defineConfig({
         at: token.accessToken,
         rt: token.refreshToken,
       };
+
       return {
         ...session,
       };

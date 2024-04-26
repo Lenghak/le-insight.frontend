@@ -30,7 +30,7 @@ export default function ProfileDropdown() {
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage
-            src={user?.image_url}
+            src={user?.image_url ?? ""}
             alt={user?.first_name}
           />
           <AvatarFallback className="bg-background">

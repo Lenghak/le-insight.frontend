@@ -2,13 +2,14 @@ import { authKeys } from "@/modules/auth/constants/query-keys";
 import postResetPassword from "@/modules/auth/services/reset-password-api";
 import { type ResetPasswordRequestType } from "@/modules/auth/types/reset-password-schema";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export const useResetPasswordService = () => {
-
+  const queryClient = useStore($queryClient);
   return useMutation(
     {
       mutationKey: authKeys.operation("reset-password"),

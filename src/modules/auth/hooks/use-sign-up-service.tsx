@@ -2,12 +2,14 @@ import { authKeys } from "@/modules/auth/constants/query-keys";
 import postSignUp from "@/modules/auth/services/sign-up-api";
 import type { SignUpRequestType } from "@/modules/auth/types/sign-up-schema";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export default function useSignUpService() {
+  const queryClient = useStore($queryClient);
 
   return useMutation(
     {
@@ -20,7 +22,7 @@ export default function useSignUpService() {
             toast.error(
               err.response?.status === 409
                 ? "Account Already Exist"
-                : "Sign Up Error",
+                : "Create Error",
               {
                 closeButton: true,
                 duration: 10 * 1000,
@@ -32,6 +34,20 @@ export default function useSignUpService() {
             );
           }
         }
+      },
+      onSuccess: () => {
+        toast.success("User Created Successfully", {
+          closeButton: true,
+          duration: 10 * 1000,
+          description: "You can view a new updated data in any moment now.",
+        });
+      },
+      onSettled: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: [...authKeys.all],
+          exact: false,
+          stale: true,
+        });
       },
     },
     queryClient,

@@ -100,6 +100,7 @@
     "@udecode/plate-table": "^31.4.1",
     "@udecode/plate-toggle": "^31.4.0",
     "@udecode/plate-trailing-block": "^31.0.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "astro": "^4.7.0",
     "auth-astro": "^4.1.1",
     "axios": "^1.6.8",
@@ -166,9 +167,7 @@
     "typescript": "^5.4.5"
   },
   "lint-staged": {
-    "**/*.{js,ts,json}": [
-      "prettier --write --config .prettierrc.cjs"
-    ]
+    "**/*.{js,ts,json}": ["prettier --write --config .prettierrc.cjs"]
   },
   "pnpm": {
     "overrides": {

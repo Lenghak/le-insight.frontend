@@ -8,6 +8,7 @@ export const UsersSchema = z.object({
   phone: z.string().nullable(),
   email: z.string().email(),
   role: UserRoleSchema,
+  banned_at: z.string().datetime().nullable(),
   banned_until: z.string().datetime().nullable(),
   deleted_at: z.string().datetime().nullable(),
   invited_at: z.string().datetime().nullable(),

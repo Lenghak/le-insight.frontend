@@ -1,10 +1,10 @@
-import useRefreshTokenService from "@/modules/auth/hooks/use-refresh-token-service";
-import useSessionService from "@/modules/auth/hooks/use-session-service";
-
 import {
   createQueryInstance,
   getPublicQueryInstance,
 } from "@/common/stores/api-store";
+import useRefreshTokenService from "@auth/hooks/use-refresh-token-service";
+import useSessionService from "@auth/hooks/use-session-service";
+import { signOut } from "auth-astro/client";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
 
@@ -12,15 +12,19 @@ export default function usePrivateQueryInstance() {
   const { data: session } = useSessionService();
   const { mutateAsync: refreshToken } = useRefreshTokenService();
 
-  const tokens = session?.data?.tokens;
   const instance = getPublicQueryInstance();
 
   useEffect(() => {
-    if (session?.data?.tokens) {
-      const reqInterceptor = instance.interceptors.request.use((conf) => {
-        if (tokens?.at) conf.headers.Authorization = `Bearer ${tokens?.at}`;
-        return conf;
-      });
+    const tokens = session?.data?.tokens;
+
+    if (tokens) {
+      const reqInterceptor = instance.interceptors.request.use(
+        (conf) => {
+          if (tokens?.at) conf.headers.Authorization = `Bearer ${tokens?.at}`;
+          return conf;
+        },
+        (reject) => Promise.reject(reject),
+      );
 
       const resInterceptor = instance.interceptors.response.use(
         (conf) => conf,
@@ -32,15 +36,25 @@ export default function usePrivateQueryInstance() {
           if (err.response?.status === 401 && !prevConf?.sent) {
             prevConf.sent = true;
 
+            if (err.config?.url === "/auth/refresh") {
+              await signOut({ redirect: true, callbackUrl: "/auth/sign-in" });
+              return Promise.reject(err);
+            }
+
             const { data: res } = await refreshToken(
               createQueryInstance({
                 headers: { Authorization: `Bearer ${tokens?.rt}` },
               }),
             );
 
-            // @ts-expect-error session.data is probably null
-            session.data.tokens = res.data.attributes;
+            tokens.at = res.data.attributes.access_token;
+            tokens.rt = res.data.attributes.refresh_token;
+
+            prevConf.headers.Authorization = `Bearer ${tokens.at}`;
+            return instance(prevConf);
           }
+
+          return Promise.reject(err);
         },
       );
 
@@ -49,7 +63,7 @@ export default function usePrivateQueryInstance() {
         instance.interceptors.response.eject(resInterceptor);
       };
     }
-  }, [session, tokens]);
+  }, [session]);
 
   return instance;
 }

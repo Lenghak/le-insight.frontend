@@ -11,7 +11,13 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@categories/*": ["./src/modules/categories/*"],
+      "@users/*": ["./src/modules/users/*"],
+      "@dashboard/*": ["./src/modules/dashboard/*"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@ui/*": ["./src/common/components/ui/*"],
+      "@custom/*": ["./src/common/components/custom/*"]
     }
   }
 }

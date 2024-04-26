@@ -1,4 +1,4 @@
-import usePrivateQueryInstance from "@/common/hooks/api/use-private-query-instance";
+import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 import { writeKeys } from "@/modules/write/constants/query-keys";
 import getCloudAuthToken from "@/modules/write/services/cloud-auth-api";
 import { useQuery } from "@tanstack/react-query";

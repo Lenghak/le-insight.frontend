@@ -1,14 +1,17 @@
 import "@auth/core/jwt";
 
+import type { UsersRoleType } from "@/common/types/users-type";
+
 declare module "@auth/core/types" {
   interface Session {
     user: {
       type: string;
       id: string;
+      image_url: string;
       profile_id: string;
       phone: string;
       email: string;
-      role: string;
+      role: UsersRoleType;
       banned_until: string;
       deleted_at: string;
       first_name: string;
@@ -24,6 +27,7 @@ declare module "@auth/core/types" {
       iat: number | undefined;
       exp: number | undefined;
       jti: string | undefined;
+      role: UsersRoleType;
       at: string;
       rt: string;
     };
@@ -40,10 +44,11 @@ declare module "@auth/core/jwt" {
       profile_id: string;
       phone: string;
       email: string;
-      role: string;
+      role: UsersRoleType;
       banned_until: string;
       deleted_at: string;
       invited_at: string;
+      image_url: string;
       confirmed_at: string;
       confirmation_sent_at: string;
       created_at: string;

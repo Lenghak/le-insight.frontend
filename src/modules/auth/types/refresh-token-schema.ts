@@ -11,8 +11,8 @@ export const RefreshTokensResponseSchema = createResponseSchema({
   id: z.string(),
   type: z.literal("tokens"),
   attributes: z.object({
-    accessToken: z.string(),
-    refreshToken: z.string(),
+    access_token: z.string(),
+    refresh_token: z.string(),
   }),
 });
 
