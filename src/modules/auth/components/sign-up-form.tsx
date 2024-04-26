@@ -63,7 +63,7 @@ export default function SignUpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => signUp(values))}
-        className="w-full space-y-2"
+        className="mt-4 w-full space-y-6"
       >
         <div className="flex w-full items-start justify-between gap-4">
           <FormField
@@ -72,7 +72,7 @@ export default function SignUpForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel
-                  className="font-semibold"
+                  className="font-bold"
                   htmlFor="firstname-field"
                 >
                   First Name
@@ -81,6 +81,7 @@ export default function SignUpForm() {
                   <Input
                     id="firstname-field"
                     placeholder="e. g. John"
+                    className="rounded-full bg-background px-5 font-semibold"
                     autoComplete="on"
                     {...field}
                   />
@@ -96,7 +97,7 @@ export default function SignUpForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel
-                  className="font-semibold"
+                  className="font-bold"
                   htmlFor="lastname-field"
                 >
                   Last Name
@@ -105,6 +106,7 @@ export default function SignUpForm() {
                   <Input
                     id="lastname-field"
                     placeholder="e.g. Doe"
+                    className="rounded-full bg-background px-5 font-semibold"
                     autoComplete="on"
                     {...field}
                   />
@@ -121,15 +123,16 @@ export default function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel
-                className="font-semibold"
+                className="font-bold"
                 htmlFor="email-field"
               >
                 Email
               </FormLabel>
-              <FormControl>
+              <FormControl className="space-y-0">
                 <Input
                   id="email-field"
                   placeholder="someone@example.com"
+                  className="rounded-full bg-background px-5 font-semibold"
                   autoComplete="on"
                   {...field}
                 />
@@ -143,13 +146,18 @@ export default function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold" htmlFor="password-field">Password</FormLabel>
+              <FormLabel
+                className="font-bold"
+                htmlFor="password-field"
+              >
+                Password
+              </FormLabel>
               <FormControl>
-                <div className="relative">
+                <div className="relative flex items-center">
                   <Input
                     id="password-field"
                     placeholder="Enter a password"
-                    className="pr-12"
+                    className="rounded-full bg-background px-5 pr-12 font-semibold"
                     type={isPasswordShowed ? "text" : "password"}
                     autoComplete="on"
                     {...field}
@@ -158,7 +166,7 @@ export default function SignUpForm() {
                     variant={"ghost"}
                     size={"icon"}
                     type="button"
-                    className="absolute right-0 top-0 rounded-md hover:bg-transparent"
+                    className="absolute right-1 top-0 hover:bg-transparent"
                     onClick={() => setShowPassword(!isPasswordShowed)}
                   >
                     {isPasswordShowed ? (
@@ -191,7 +199,7 @@ export default function SignUpForm() {
           type={isSigningUp ? "button" : "submit"}
           disabled={isSigningUp}
           className={cn(
-            "w-full gap-0 rounded-md font-bold transition-all",
+            "w-full gap-0 font-bold transition-all",
             isSigningUp && "gap-4",
           )}
         >

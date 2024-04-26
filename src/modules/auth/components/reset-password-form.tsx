@@ -56,11 +56,14 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
       <form
         onSubmit={form.handleSubmit((values) => {
           resetPassword({
-            token: token?.length > 0 ? token : new URLSearchParams(window.location.search).get("token") ?? "",
+            token:
+              token?.length > 0
+                ? token
+                : new URLSearchParams(window.location.search).get("token") ??
+                  "",
             password: values.newPassword,
             confirmPassword: values.confirmPassword,
           });
-
         })}
         className="flex w-full flex-col gap-4"
       >
@@ -70,7 +73,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel
-                className="font-semibold"
+                className="font-bold"
                 htmlFor="new-password-field"
               >
                 New Password
@@ -80,7 +83,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
                   <Input
                     id="new-password-field"
                     placeholder="Enter a new password"
-                    className="pr-12"
+                    className="rounded-full px-4 pr-12 font-medium"
                     type={isPasswordShowed ? "text" : "password"}
                     autoComplete="on"
                     {...field}
@@ -111,7 +114,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel
-                className="font-semibold"
+                className="font-bold"
                 htmlFor="confirm-new-password"
               >
                 Confirm Password
@@ -121,7 +124,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
                   <Input
                     id="confirm-new-password"
                     placeholder="Re-type your password"
-                    className="pr-12"
+                    className="rounded-full px-4 pr-12 font-medium"
                     type={isPasswordShowed ? "text" : "password"}
                     autoComplete="on"
                     {...field}
@@ -130,7 +133,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
                     variant={"ghost"}
                     size={"icon"}
                     type="button"
-                    className="absolute right-0 top-0"
+                    className="absolute right-4 top-0"
                     onClick={() => setShowPassword(!isPasswordShowed)}
                   >
                     {isPasswordShowed ? (
@@ -150,7 +153,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           type={isResettingPassword ? "button" : "submit"}
           disabled={isResettingPassword}
           className={cn(
-            "w-full gap-0 rounded-md font-bold transition-all",
+            "w-full gap-0 font-bold transition-all",
             isResettingPassword && "gap-4",
           )}
         >
