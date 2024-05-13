@@ -1,12 +1,12 @@
 ---
-import { ModeToggle } from "@/common/components/custom/theme/mode-toggle";
-import { buttonVariants } from "@/common/components/ui/button";
-import { Muted } from "@/common/components/ui/muted";
-import { Separator } from "@/common/components/ui/separator";
+import { ModeToggle } from "@custom/theme/mode-toggle";
+import { buttonVariants } from "@ui/button";
+import { Muted } from "@ui/muted";
+import { Separator } from "@ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import { H1 } from "@/common/components/ui/h1";
+import { H1 } from "@ui/h1";
 import { ChevronLeftIcon, DotIcon } from "lucide-react";
 
 interface Props {
@@ -33,7 +33,7 @@ const { title, description, className, hideSignIn } = Astro.props;
           variant: "link",
         }),
         "absolute left-0 top-8 items-center gap-4 font-bold",
-        pathname === "/auth/sign-in" || hideSignIn ? "hidden" : "",
+        pathname === "/auth/sign-in" || hideSignIn ? "hidden" : ""
       )}
     >
       <ChevronLeftIcon size={18} />
@@ -66,7 +66,7 @@ const { title, description, className, hideSignIn } = Astro.props;
             size: "sm",
             variant: "link",
           }),
-          "font-bold",
+          "font-bold"
         )}
       >
         Terms of Service
@@ -79,7 +79,7 @@ const { title, description, className, hideSignIn } = Astro.props;
             size: "sm",
             variant: "link",
           }),
-          "font-bold",
+          "font-bold"
         )}
       >
         Privacy Policy
